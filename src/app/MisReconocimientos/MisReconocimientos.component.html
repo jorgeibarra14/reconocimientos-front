@@ -1,0 +1,159 @@
+<app-carrito-store></app-carrito-store>
+<div class="header">
+    <div class="container" style="height: 100%;">
+        <div class="row align-items-center" style="height: 100%;">
+            <div class="col-md-12">
+                <h1>Mis reconocimientos</h1>
+                <p class="descripcion m-0">Aquí podrás ver las competencias que han observado en ti.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid bg-principal">
+    <div class="row">
+        <!-- CONTENT -->
+        <div class="col-md-9 order-1 order-md-0">
+            <!-- RANGO -->
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="mt-3 mb-3 pb-3">Rango</h1>
+                </div>
+                <div class="col-md-12 text-center" *ngIf="loading">
+                    <div class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+                <div class="col-md-12" *ngIf="!loading">
+                    <!-- DEL 1 AL 4 NIVEL -->
+                    <div class="img-c-rango row justify-content-center" *ngIf="nivelActual.nivel != 5">
+                        <div class="col-md-3 my-auto">
+                            <div class="img ml-md-auto mr-md-0 mx-auto">
+                                <img [src]="nivelActual.img" class="img-fluid">
+                            </div>
+                        </div>
+                        <div class="col-md-6 text-center barra-progreso">
+                            <span class="total">{{ puntosAcumulados }} Bytes</span>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" [style]="'width: '+porcentajeSigNivel+'%'" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <p>Bytes restantes para el siguiente nivel: <span>{{ puntosSigNivel }}</span></p>
+                        </div>
+                        <div class="col-md-3 my-auto">
+                            <div class="img mr-md-auto ml-md-0 mx-auto">
+                                <img [src]="nivelSig.img" class="img-fluid">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- NIVEL 5 -->
+                    <div class="img-c-rango row justify-content-center" *ngIf="nivelActual.nivel == 5">
+                        <div class="col-md-12 text-center barra-progreso">
+                            <span class="total">{{ puntosAcumulados }} Bytes</span>
+                        </div>
+                        <div class="col-md-12 text-center">
+                            <div class="img mx-auto">
+                                <img [src]="nivelActual.img" class="img-fluid">
+                            </div>
+                        </div>
+                        <div class="col-md-12 text-center barra-progreso">
+                            <p>¡Has alcanzado el nivel máximo!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- RECONOCIMIENTOS -->
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="mt-3 mb-3 pb-3">Reconocimientos</h1>
+                </div>
+                <div class="col-md-12 text-center mb-2" *ngIf="competencia_activa != ''">
+                    <button type="button" class="btn btn-dark borrar-seleccion" (click)="borrarFiltro()">X Borrar
+                        selección</button>
+                </div>
+                <div class="col-md-12 competencias">
+                    <div class="row justify-content-center">
+                        <div class="col" *ngFor="let competencia of competencias">
+                            <ho1a-BloqueCompetencias [competencia]="competencia"
+                                [competencia_activa]="competencia_activa" (clickCompetencia)="filtrarDatos($event)">
+                            </ho1a-BloqueCompetencias>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 personas">
+                    <div class="row">
+                        <div class="col-md-12 mb-2" *ngFor="let persona of filtroPersonas">
+                            <ho1a-BloquePersonas [persona]="persona" [type]="'mis-reconocimientos'"></ho1a-BloquePersonas>
+                        </div>
+                        <div *ngIf="filtroPersonas?.length == 0 && competencia_activa != '' && buscado"
+                            class="col-md-12 text-center">
+                            <div class="alert alert-info" role="alert">No hay resultados.</div>
+                        </div>
+                        <div *ngIf="competencia_activa == '' && competencias !== undefined && competencias.length > 0"
+                            class="col-md-12 text-center">
+                            <div class="alert alert-secondary" role="alert">Selecciona una competencia para ver quiénes
+                                te han reconocido.</div>
+                        </div>
+                        <div *ngIf="competencias === undefined || competencias.length == 0"
+                            class="col-md-12 text-center">
+                            <div class="alert alert-secondary" role="alert">Aún no tienes ningún reconocimiento
+                                recibido.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- SIDEBAR -->
+        <div class="col-md-3 sidebar order-0 order-md-1 pb-5 pt-5">
+            <div class="row valores pb-5">
+                <div class="col-md-12">
+                    <h1 style="padding: 10px; margin: 10px;">VALOR</h1>
+                </div>
+                <div class="img-c-valor row">
+                    <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                        <img src="../assets/img/mis_reconocimientos/Disquette.png" class="img-fluid ml-2">
+                    </div>
+                    <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 mt-3">
+                        <span style="display: block; margin-left: 20px; font-weight:normal;"class="titulo">50 bytes</span>
+                        <span style="display: block; margin-left: 20px;" class="titulo">$500 mxn</span>
+                    </div>
+                </div>
+                <div class="img-c-valor row">
+                    <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                        <img src="../assets/img/mis_reconocimientos/USB.png" class="img-fluid ml-2">
+                    </div>
+                    <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 mt-3">
+                        <span style="display: block; margin-left: 20px; font-weight:normal;"class="titulo">99 bytes</span>
+                        <span style="display: block; margin-left: 20px;" class="titulo">$990 mxn</span>
+                    </div>
+                </div>
+                <div class="img-c-valor row">
+                    <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                        <img src="../assets/img/mis_reconocimientos/Disco_duro.png" class="img-fluid ml-2">
+                    </div>
+                    <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 mt-3">
+                        <span style="display: block; margin-left: 20px; font-weight:normal;"class="titulo">499 bytes<br>(1 mega)</span>
+                        <span style="display: block; margin-left: 20px;" class="titulo">$4990 mxn</span>
+                    </div>
+                </div>
+                <div class="img-c-valor row">
+                    <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                        <img src="../assets/img/mis_reconocimientos/Servidor.png" class="img-fluid ml-2">
+                    </div>
+                    <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 mt-3">
+                        <span style="display: block; margin-left: 20px; font-weight:normal;"class="titulo">599 bytes<br>(5 megas)</span>
+                        <span style="display: block; margin-left: 20px;" class="titulo">$5990 mxn</span>
+                    </div>
+                </div>
+                <div class="img-c-valor row">
+                    <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                        <img src="../assets/img/mis_reconocimientos/Megacable_Data_Center.png" class="img-fluid ml-2">
+                    </div>
+                    <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 mt-3">
+                        <span style="display: block; margin-left: 20px; font-weight:normal;"class="titulo">+600 bytes<br>(1 tera)</span>
+                        <span style="display: block; margin-left: 20px;" class="titulo">+$6000 mxn</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ho1a-Loading *ngIf="(competencia_activa != '' && filtroPersonas?.length == 0) || loading"></ho1a-Loading>

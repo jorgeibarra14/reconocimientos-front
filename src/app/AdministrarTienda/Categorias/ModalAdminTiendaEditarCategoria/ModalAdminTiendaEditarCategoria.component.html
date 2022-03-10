@@ -1,0 +1,68 @@
+<mat-dialog-title class="row">
+    <div class="col-md-10"></div>
+    <div class="col-md-2">
+        <button mat-dialog-close class="btn btn-cancelar btn-sm rounded mt-3" style="width: 35px; height: 35px; padding-left: 0px;
+        padding-right: 0px;" #buttonClose>
+            <i class="fas fa-window-close fa-lg"></i>
+        </button>
+    </div>
+</mat-dialog-title>
+<mat-dialog-content class="row">
+    <h2>
+        <div class="w-100">
+            {{titulo}}
+        </div>
+    </h2>
+    <form [formGroup]="formulario" novalidate>
+        <label class="col-md-12" for="categoria">Categoria:</label>
+        <div>
+            <input type="text" class="form-control" id="categoria" formControlName="categoria">
+            <i class="fas fa-pencil-alt" *ngIf="!tipo"></i>
+        </div>
+        <div *ngIf="formulario.controls['categoria'].invalid" class="invalid-feedback">
+            <div *ngIf="formulario.controls['categoria'].errors.required">
+                El campo es requerido.
+            </div>
+            <div *ngIf="formulario.controls['categoria'].errors.maxlength">
+                El texto es muy largo.
+            </div>
+        </div>
+        <label class="col-md-12" for="descripcion">Descripción:</label>
+        <div>
+            <textarea class="form-control" id="descripcion" formControlName="descripcion"></textarea>
+            <i class="fas fa-pencil-alt" *ngIf="!tipo"></i>
+        </div>
+        <div *ngIf="formulario.controls['descripcion'].invalid" class="invalid-feedback">
+            <div *ngIf="formulario.controls['descripcion'].errors.required">
+                El campo es requerido.
+            </div>
+            <div *ngIf="formulario.controls['descripcion'].errors.maxlength">
+                El texto es muy largo.
+            </div>
+        </div>
+        <label class="col-md-12" for="archivo">Archivo:</label>
+        <div>
+            <input type="file" class="form-control-file" id="archivo" formControlName="archivo"
+                (change)="fileChanged($event)">
+            <i class="fas fa-pencil-alt" *ngIf="!tipo"></i>
+        </div>
+        <div *ngIf="formulario.controls['archivo'].invalid && tipo" class="invalid-feedback">
+            <div *ngIf="formulario.controls['archivo'].errors.required">
+                El campo es requerido.
+            </div>
+        </div>
+    </form>
+
+    <div class="loading-spinner" *ngIf="enviado">
+        <div id="bg-loading"></div>
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end" *ngIf="!enviado">
+    <button cdkFocusInitial class="btn btn-guardar ml-1 mr-1 mt-1 mb-1"
+        style="color: white; height: 35px; min-width: 110px; font-size: 14px;" #buttonSend (click)="guardar()"><i
+            class="fas fa-save ml-0 mt-0 fa-lg"></i>
+        Guardar</button>
+</mat-dialog-actions>

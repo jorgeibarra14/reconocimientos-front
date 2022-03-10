@@ -1,0 +1,45 @@
+.card{
+    border: none;
+    background: #e9e9ec;
+    padding: 15px;
+    border-radius: 20px;
+    .card-header{
+        background: none;
+        padding: 0px;
+        img{
+            max-width: 75px;
+        }
+    }
+    .card-body{
+        padding: 5px;
+        h4{
+            color: #00446a;
+            font-weight: bold;
+            margin-bottom: 0px;
+            font-size: 20px;
+        }
+        .competencia{
+            color: #414551;
+            margin-bottom: 0px;
+            span{
+                font-weight: 900;
+            }
+        }
+        .card-text{
+            color: #414551;
+            font-size: 14px;
+            overflow: hidden;
+            font-style: oblique;
+            &.less{
+                max-height: 40px;
+            }
+        }
+        .hidden-show{
+            text-decoration: none;
+            margin-top: -10px;
+            display: block;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+    }
+}

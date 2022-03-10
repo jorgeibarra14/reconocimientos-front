@@ -1,0 +1,8 @@
+<nav aria-label="breadcrumb" [class]="(hasCart)?'mt-5 mt-md-0':''">
+    <ol class="breadcrumb mt-4 mb-4">
+        <li class="breadcrumb-item" [class]="(isLast)?'active':''" *ngFor="let l of links; last as isLast">
+            <a [routerLink]="l.url" *ngIf="!isLast">{{ l.name }}</a> <i class="fas fa-arrow-right" *ngIf="!isLast"></i>
+            <span *ngIf="isLast">{{ l.name }}</span>
+        </li>
+    </ol>
+</nav>

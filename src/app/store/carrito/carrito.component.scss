@@ -1,0 +1,219 @@
+#menu-cart{
+    // position: fixed;
+    // right: 0;
+    transition: 0.2s;
+    background: transparent !important;
+    // z-index: 9;
+    a{
+        text-transform: uppercase;
+        font-size: 14px;
+        font-weight: bold;
+    }
+    .badge{
+        color: white !important;
+        background-color: #004b70;
+        position: absolute;
+        bottom: 10px;
+        right: 15px;
+        border-radius: 50px;
+    }
+    .alert{
+        max-width: 200px;
+        margin: auto;
+        text-align: center;
+        font-size: 14px;
+        position: fixed;
+        top: 5px;
+        right: 5px;
+    }
+    .mis-pedidos{
+        border-radius: .3rem 0px 0px .3rem;
+    }
+    .carrito{
+        border-radius: 0px .3rem .3rem 0px;
+    }
+    .show_in_mobile{
+        display: none;
+    }
+}
+.modal{
+    .modal-header{
+        background: url('../../../assets/img/banners/bolsa.png');
+        height: 100px;
+        background-position: center left;
+        background-size: cover;
+        background-repeat: no-repeat;
+        h1{
+            color: white;
+            font-weight: bold;
+            margin-left: 100px;
+        }
+        button{
+            font-size: 40px;
+            margin-right: 10px;
+        }
+    }
+    .btn-checkout{
+        // background-color: #0b3b59;
+        background-color: #00a4e1;
+        color: white;
+        // border-radius: 20px;
+        font-weight: bold;
+    }
+    .modal-body{
+        .product{
+            box-shadow: 3px 3px 5px 6px #ccc;
+            border-radius: 30px;
+            .img{
+                img{
+                    max-width: 100px;
+                }
+            }
+            .content{
+                background: linear-gradient(to bottom, #004b70, #263858);
+                border-radius: 0px 30px 30px 0px;
+                .title{
+                    font-weight: 700;
+                    display: block;
+                    color: white;
+                }
+                .group-btn-qty{
+                    background: white !important;
+                    display: inline-block;
+                    border-radius: 10px;
+                    margin-top: 10px;
+                    .btn-qty{
+                        font-size: 12px;
+                        font-weight: bold;
+                        background: none !important;
+                        color: #0b3b59 !important;
+                        border-radius: 0px;
+                        &.minus{
+                            border-right: 1px solid #0b3b59;
+                            margin-right: 40px;
+                        }
+                        &.plus{
+                            border-left: 1px solid #0b3b59;
+                            margin-left: 40px;
+                        }
+                    }
+                }
+                .remove{
+                    display: inline-block;
+                    margin-left: 10px;
+                    a{
+                        font-size: 12px;
+                        line-height: 16px;
+                        color: red;
+                        img{
+                            max-width: 25px;
+                        }
+                    }
+                }
+                .price{
+                    font-size: 24px;
+                    color: white;
+                    img{
+                        width: 45px;
+                        height: 45px;
+                        margin-right: 10px;
+                    }
+                }
+           }
+        }
+        .subtotal{
+            padding-top: 30px;
+            text-align: right;
+        }
+        .subtotal-price{
+            padding-top: 30px;
+            font-weight: 900;
+        }
+        .form-envio{
+            background: linear-gradient(to bottom, #004b70, #263858);
+            border-radius: 15px;
+            .puntos_disponibles{
+                p{
+                    color: white;
+                    text-transform: uppercase;
+                    span{
+                        font-weight: 900;
+                    }
+                }
+            }
+            h1{
+                color: white;
+                font-weight: bold;
+                text-transform: uppercase;
+            }
+            .boton-enviar{
+                display: flex;
+                align-items: center;
+                button{
+                    background-color: #3cd42e;
+                    color: white;
+                    font-weight: bold;
+                    font-size: 30px;
+                    margin: auto;
+                    border-radius: 25px;
+                    padding-left: 30px;
+                    padding-right: 30px;
+                    &:hover{
+                        background-color: white;
+                        color: #00496e;
+                    }
+                }
+            }
+            .sin-bytes-suficientes{
+                color: yellow;
+                text-align: center;
+            }
+        }
+    }
+}
+@media(max-width: 767.9px){
+    #menu-cart{
+        .badge{
+            top: 0px;
+            right: -8px;
+        }
+        .show_in_mobile{
+            display: block;
+            position: absolute;
+            right: 11px;
+            top: 11px;
+        }
+        .hide_in_mobile{
+            display: none;
+        }
+    }
+    .modal{
+        .modal-header{
+            button{
+                color: white;
+            }
+        }
+    }
+}
+@media(max-width: 530px){
+    .modal{
+        .modal-body{
+            .btn-qty{
+                // width: 100%;
+                &.minus{
+                    margin-right: 10px !important;
+                }
+                &.plus{
+                    margin-left: 10px !important;
+                }
+            }
+            .qty{
+                // display: block;
+                text-align: center;
+            }
+            .group-btn-qty{
+                // display: block !important;
+            }
+        }
+    }
+}

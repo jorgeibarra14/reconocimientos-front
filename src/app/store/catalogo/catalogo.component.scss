@@ -1,0 +1,149 @@
+.header{
+    background: url('../../../assets/img/banners/tienda.png');
+    height: 130px;
+    background-position: center left;
+    background-size: cover;
+    background-repeat: no-repeat;
+    h1{
+        color: white;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+}
+.container-productos{
+    min-height: calc(100vh - 310px);
+}
+.todos-productos{
+    .title{
+        font-size: 28px;
+        line-height: 36px;
+        font-weight: 600;
+    }
+    .line{
+        width: 100%;
+        height: 2px;
+        margin-top: 32px;
+        background-color: #e5e5e5;
+        .green{
+            width: 136px;
+            height: 100%;
+            background-color: #3CD52E;
+        }
+    }
+}
+.sidebar{
+    .puntos-disponibles{
+        background-color: #e9e9ec;
+        border-radius: 15px;
+        .title{
+            color: #004168;
+            font-size: 30px;
+            line-height: 1;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        .puntos{
+            background: url('../../../assets/img/inicio/Estrella_Plata.png') #004168;
+            border-radius: 15px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            span{
+                color: white;
+                font-size: 50px;
+                font-weight: 900;
+                line-height: 1;
+                text-shadow: 5px 5px 5px black;
+                z-index: 2;
+                position: relative;
+            }
+            &:after{
+                content: '';
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                border-radius: 15px;
+                background-color: rgba(0,0,0,0.25);
+                z-index: 1;
+            }
+        }
+    }
+    .categorias-div{
+        background: linear-gradient(to bottom, #004b70, #263858);
+        border-radius: 15px;
+        .categorias{
+            .list-group-item{
+                background: transparent !important;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                &.current, &:hover{
+                    .img{
+                        background: #3CD52E !important;
+                    }
+                    a{
+                        color: #3CD52E !important;
+                    }
+                } 
+            }
+            .img{
+                display: inline-block;
+                background: white;
+                padding: 5px;
+                border-radius: 50%;
+                img{
+                    width: 35px;
+                    height: 35px;
+                }
+            }
+            a{
+                padding-left: 8px;
+                color: white;
+                font-size: 22px;
+                text-decoration: none;
+            }
+        }
+    }
+}
+.banner-footer{
+    border-radius: 16px;
+    background-color: #fff;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 35%);
+    padding: 48px;
+    margin-bottom: 120px;
+    align-items: center;
+    i{
+        padding: 18px 20px;
+        background: #3CD52E;
+        color: white;
+        margin-right: 24px;
+        border-radius: 50%;
+        font-size: 28px;
+    }
+}
+@media (max-width: 767.98px){
+    .todos-productos{
+        .title{
+            text-align: center;
+        }
+        .categorias{
+            display: grid;
+            justify-content: inherit;
+        }
+    }
+    .banner-footer{
+        text-align: center;
+        i{
+            margin: auto;
+            margin-bottom: 10px;
+        }
+    }
+}
+@media (max-width: 576px){
+    .header{
+        h1{
+            text-align: center;
+        }
+    }
+}

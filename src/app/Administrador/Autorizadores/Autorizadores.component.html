@@ -1,0 +1,117 @@
+<ho1a-Admin-Menu></ho1a-Admin-Menu>
+
+<div class="container-fluid pt-4 bg-principal">
+    <div class="row">
+        <div class="col-md-12">
+            <kendo-grid
+                [kendoGridBinding]="gridData"
+                [resizable]="true"
+                width="100%"
+                [filterable]="true"
+                [columnMenu]="true"
+                [loading]="loading"
+                [sortable]="{ allowUnsort: true, mode: 'multiple' }"
+                [pageable]="{ buttonCount: 10, pageSizes: [5,10,20,100] }"
+                [pageSize]="10">
+                <ng-template kendoGridToolbarTemplate>
+                    <div class="toolbalButtons">
+                        <!-- <button class="btn btn-primary agregar"  (click)="abrirNuevo()"
+                        style="color: white; height: 35px; min-width: 90px;"><i class="fa fa-plus ml-0 mt-0 fa-lg"></i>
+                        Agregar</button> -->
+                    <button class="btn btn-primary export-excel ml-3" kendoGridExcelCommand><i
+                            class="fa fa-file-excel-o ml-0 mt-0 fa-lg"></i> Exportar a
+                        Excel</button>
+                    </div>
+                </ng-template>
+                <kendo-grid-column
+                    field="uen"
+                    [title]="'UEN'"
+                    [width]="100"
+                    [headerStyle]="{'color': '#3C404C','line-height': '1em', 'font-weight': 'bold'}"
+                    [style]="{'background-color': '#FFF','color': '#000'}"
+                    [footerStyle]="{'background-color': '#0B3B59','color': '#fff'}">
+                </kendo-grid-column>
+                <kendo-grid-column
+                    field="area"
+                    [title]="'Área'"
+                    [width]="100"
+                    [headerStyle]="{'color': '#3C404C','line-height': '1em', 'font-weight': 'bold'}"
+                    [style]="{'background-color': '#FFF','color': '#000'}"
+                    [footerStyle]="{'background-color': '#0B3B59','color': '#fff'}">
+                </kendo-grid-column>
+                <kendo-grid-column
+                    field="region"
+                    [title]="'Región'"
+                    [width]="100"
+                    [headerStyle]="{'color': '#3C404C','line-height': '1em', 'font-weight': 'bold'}"
+                    [style]="{'background-color': '#FFF','color': '#000'}"
+                    [footerStyle]="{'background-color': '#0B3B59','color': '#fff'}">
+                </kendo-grid-column>
+                <kendo-grid-column 
+                    field="sistema"
+                    [title]="'Sistema'"
+                    [width]="100"
+                    [headerStyle]="{'color': '#3C404C','line-height': '1em', 'font-weight': 'bold'}"
+                    [style]="{'background-color': '#FFF','color': '#000'}"
+                    [footerStyle]="{'background-color': '#0B3B59','color': '#fff'}">
+                </kendo-grid-column>
+                <kendo-grid-column
+                    field="nombreempleadoautorizador"
+                    [title]="'Autorizador'"
+                    [width]="150"
+                    [headerStyle]="{'color': '#3C404C','line-height': '1em', 'font-weight': 'bold'}"
+                    [style]="{'background-color': '#FFF','color': '#000'}"
+                    [footerStyle]="{'background-color': '#0B3B59','color': '#fff'}">
+                </kendo-grid-column>
+                <kendo-grid-column
+                    [title]="'Acciones'"
+                    [width]="80"
+                    [headerStyle]="{'color': '#3C404C','line-height': '1em', 'font-weight': 'bold'}"
+                    [style]="{'background-color': '#FFF','color': '#000'}"
+                    [footerStyle]="{'background-color': '#0B3B59','color': '#fff'}">
+                    <ng-template kendoGridCellTemplate let-dataItem class="text-align:center">
+                        <button class="btn btn-primary btn-editar" (click)="abrirEditar(dataItem.id,dataItem.area, dataItem.region, dataItem.sistema, dataItem.nombreempleadoautorizador, dataItem.idempleadoautorizador,dataItem.uen, dataItem.activo)"><i class="fas fa-pencil-alt"></i> Editar</button>
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-messages
+                    groupPanelEmpty="Arrastre las columnas aquí para agrupar"
+                    pagerItems="registros"
+                    pagerFirstPage="Primer página"
+                    pagerNextPage="Página siguiente"
+                    pagerLastPage="Última página"
+                    pagerPage="Por página"
+                    pagerOf="de"
+                    pagerItemsPerPage="registros por página"
+                    pagerPreviousPage="Página anterior"
+                    noRecords="No hay registros para mostrar."
+                    filterContainsOperator="Contiene"
+                    filterEndsWithOperator="Termina con"
+                    filterEqOperator="Igual"
+                    filterNotEqOperator="No es igual"
+                    filterNotContainsOperator="No contiene"
+                    filterStartsWithOperator="Comienza con"
+                    filterIsNullOperator="Es nulo"
+                    filterIsNotNullOperator="No es nulo"
+                    filterIsEmptyOperator="Esta vacio"
+                    filterBooleanAll="Todos"
+                    filterIsTrue="Activo"
+                    filterIsFalse="Inactivo"
+                    filterIsNotEmptyOperator="No está vacío"
+                    sortAscending="Ascendente"
+                    sortDescending="Descendente"
+                    filter="Filtro"
+                    columns="Columnas"
+                    columnsApply="Aplicar"
+                    columnsReset="Limpiar"
+                    filterAndLogic="Y"
+                    filterOrLogic="O"
+                    filterFilterButton="Filtrar"
+                    filterClearButton="Limpiar">
+                </kendo-grid-messages>
+                <kendo-grid-excel [fileName]="'autorizadores'" [fetchData]="allData"></kendo-grid-excel>
+            </kendo-grid>
+        </div>
+    </div>
+</div>
+
+<ho1a-Loading *ngIf="loading"></ho1a-Loading>

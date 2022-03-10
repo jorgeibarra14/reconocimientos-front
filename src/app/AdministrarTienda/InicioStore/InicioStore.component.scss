@@ -1,0 +1,101 @@
+.bg-principal{
+    min-height: calc(100vh - 80px);
+    .btn-aprobar{
+        background: #3C404C !important;
+        border-color:  #3C404C !important;
+        color: white;
+        font-size: 14px;
+        i{
+            color: #FEC526;
+        }
+        &:hover{
+            border-width: 2px;
+            border-style: solid;
+            border-color: #3CD52E !important;
+        }
+    }
+    .btn-rechazar{
+        background-color: #D3D2D1 !important;
+        color: #3C404C !important;
+        border-color: #3C404C !important;
+        font-size: 14px;
+        i{
+            color: #FEC526;
+        }
+        &:hover{
+            border-width: 2px;
+            border-style: solid;
+            border-color: red !important;
+        }
+    }
+
+    .btn-detalles{
+        background: #3C404C !important;
+        border-color:  #3C404C !important;
+        color: white;
+        font-size: 14px;
+        i{
+            color: #FEC526;
+        }
+        &:hover{
+            border-width: 2px;
+            border-style: solid;
+            border-color: #FEC526 !important;
+        }
+    }
+
+    .aprobado{
+        background: #3C404C !important;
+        border-color:  #3C404C !important;
+        color: white;
+        font-size: 14px;
+        i{
+            color: #FEC526;
+        }
+    }
+    .rechazado{
+        background-color: #D3D2D1 !important;
+        color: #3C404C !important;
+        border-color: #3C404C !important;
+        font-size: 14px;
+        i{
+            color: #FEC526;
+        }      
+    }
+}
+table{
+    text-align: center;
+}
+#button-div{
+    display: inline-block;
+    .btn{
+        #text-aceptar{
+            display: none;
+            color: black;
+            margin-top:-35px;
+            margin-left: -22px;
+            position: absolute;
+            background: white;
+            border: 1px solid black;
+            padding: 5px;
+            border-radius: 10px;
+        }
+        #text-rechazar{
+            display: none;
+            color: black;
+            margin-top: -35px;
+            margin-left: -30px;
+            position: absolute;
+            background: white;
+            border: 1px solid black;
+            padding: 5px;
+            border-radius: 10px;
+        }
+        &:hover{
+            #text-rechazar, #text-aceptar{
+                display: block;
+                z-index: 1;
+            }
+        }
+    }
+}

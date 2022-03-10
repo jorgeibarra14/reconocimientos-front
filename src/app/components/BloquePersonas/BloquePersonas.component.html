@@ -1,0 +1,20 @@
+<div class="card flex-row">
+    <div class="card-header border-0 mr-3">
+        <!-- <img loading="lazy" src='{{ persona.img }}' class="rounded-circle"> -->
+        <app-avatar-icon
+            size="xl"
+            type="rounded-circle"
+            bg_color="#00a3df"
+            text_color="white"
+            [name]="persona.nombre"
+            loading="lazy"
+        ></app-avatar-icon>
+    </div>
+    <div class="card-body">
+        <h4 class="card-title">{{ persona.nombre }}</h4>
+        <p class="competencia" *ngIf="type == 'mis-reconocimientos'">Te reconoció por <span>{{ persona.competencia }}</span></p>
+        <p class="competencia" *ngIf="type == 'reconocer-a-otros'">Reconocido por <span>{{ persona.competencia }}</span></p>
+        <p #textMotivo class="card-text" [class]="{ less: hidden }">{{ persona.motivo }}</p>
+        <a *ngIf="show" class="hidden-show" href="javascript:void(0);" (click)="hidden = !hidden">{{hidden ? 'Ver más...' : 'Ocultar'}}</a>
+    </div>
+</div>

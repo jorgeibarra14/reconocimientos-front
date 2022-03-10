@@ -1,0 +1,171 @@
+<nav id="menu-cart" class="navbar navbar-expand-md navbar-light bg-light mr-4">
+    <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav" *ngIf="!loading">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="javascript:void(0);" routerLink="/Inicio">Inicio</a>
+            </li>
+            <li class="nav-item" *ngIf="esUsuarioNormal">
+                <a class="nav-link" href="javascript:void(0);" routerLink="/mis-reconocimientos" >Mis reconocimientos</a>
+            </li>
+            <li class="nav-item" *ngIf="esUsuarioNormal">
+                <a class="nav-link" href="javascript:void(0);" routerLink="/reconocer">Reconocer a otros</a>
+            </li>
+            <li class="nav-item" *ngIf="!esUsuarioNormal">
+                <a class="nav-link" href="javascript:void(0);">Mis reconocimientos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="javascript:void(0);" routerLink="/store">Tienda</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="javascript:void(0);" routerLink="/store/mis-pedidos">Mis pedidos</a>
+            </li>
+            <li class="nav-item hide_in_mobile">
+                <a class="nav-link carrito" href="javascript:void(0);" data-toggle="modal" data-target="#cartModal" id="btnCartModal">
+                    <img src="../../../assets/img/bytecoin/icon-cart.png" class="img-fluid" style="width: 20px;">
+                    <span class="badge ml-2" *ngIf="cantidadItems > 0">{{ cantidadItems }}</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- <div class="alert alert-success alert-cart animate__animated animate__fadeIn" role="alert" *ngIf="alertSuccess">
+        Se añadió el producto.
+    </div>
+    <div class="alert alert-danger alert-cart animate__animated animate__fadeIn" role="alert" *ngIf="alertDanger">
+        {{ textoDanger }}
+    </div> -->
+    <div class="show_in_mobile">
+        <a class="carrito" href="javascript:void(0);" data-toggle="modal" data-target="#cartModal" id="btnCartModal">
+            <img src="../../../assets/img/bytecoin/icon-cart.png" class="img-fluid" style="width: 20px;">
+            <span class="badge ml-2" *ngIf="cantidadItems > 0">{{ cantidadItems }}</span>
+        </a>
+    </div>
+</nav>
+<!-- 
+<div  #menuCart >
+    <button class="btn btn-light btn-lg mis-pedidos">
+        Mis pedidos
+    </button>
+    <button class="btn btn-light btn-lg carrito" data-toggle="modal" data-target="#cartModal" id="btnCartModal">
+        <img src="../../../assets/img/bytecoin/icon-cart.png" class="img-fluid" style="width: 25px;">
+        <span class="badge ml-2" *ngIf="cantidadItems > 0">{{ cantidadItems }}</span>
+    </button>
+    <div class="alert alert-success alert-cart animate__animated animate__fadeIn" role="alert" *ngIf="alertSuccess">
+        Se añadió el producto.
+    </div>
+    <div class="alert alert-danger alert-cart animate__animated animate__fadeIn" role="alert" *ngIf="alertDanger">
+        {{ textoDanger }}
+    </div>
+</div> -->
+<!-- Modal -->
+<div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1>Bolsa</h1>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <table class="table table-image">
+                            <tbody>
+                                <tr *ngIf="itemsCart.length == 0">
+                                    <td colspan="3">
+                                        <div class="alert alert-secondary text-center" role="alert">
+                                            No tienes productos
+                                        </div>                                          
+                                    </td>
+                                </tr>
+                                <tr *ngFor="let item of itemsCart" class="product">
+                                    <td class="mw-25 img">
+                                        <img [src]="item.img" onerror="this.src='../../../assets/img/demo/notavailable.png'" class="img-fluid img-thumbnail">
+                                    </td>
+                                    <td class="mw-75 content">
+                                        <div class="title">{{ item.nombre }}</div>
+                                        <div class="price">
+                                            <img src="../../../assets/img/bytecoin/currency-byte.png" class="img-fluid">
+                                            {{ item.precio }}
+                                        </div>
+                                        <div class="group-btn-qty">
+                                            <button class="btn btn-qty minus" (click)="cambioQty(item.id, item.qty - 1)"><i class="fas fa-minus"></i></button>
+                                            <span class="qty">{{ item.qty }}</span>
+                                            <button class="btn btn-qty plus" (click)="cambioQty(item.id, item.qty + 1)"><i class="fas fa-plus"></i></button>
+                                        </div>
+                                        <div class="remove"><a href="javascript:void(0);" (click)="eliminarItemDelCarrito(item.id)">
+                                            <img src="../../../assets/img/bytecoin/delete.png" class="img-fluid">
+                                        </a></div>
+                                    </td>
+                                </tr>
+                                <tr *ngIf="itemsCart.length > 0">
+                                    <td class="w-25 subtotal">Subtotal</td>
+                                    <td class="w-75 subtotal-price">{{ subtotal }} bytes</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-envio pt-4 pb-4">
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <h1>Envío</h1>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 puntos_disponibles">
+                                    <div class="form-group pr-3 pl-3">
+                                        <p class="m-0">Bytes disponibles: <span>{{ puntosDisponibles }}</span></p>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group pr-3 pl-3">
+                                        <input type="text" class="form-control" placeholder="NOMBRE COMPLETO" [value]="datosUser.nombreCompleto" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group pr-3 pl-3">
+                                        <input type="text" class="form-control" placeholder="PUESTO" [value]="datosUser.puesto" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group pr-3 pl-3">
+                                        <input type="text" class="form-control" placeholder="ÁREA" [value]="datosUser.area" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group pr-3 pl-3">
+                                        <input type="text" class="form-control" placeholder="CIUDAD" [value]="datosUser.sistema" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 boton-enviar" *ngIf="itemsCart.length > 0 && puntosDisponibles >= subtotal">
+                                    <button class="btn btn-large btn-animation" (click)="guardarPedido()">
+                                        <div class="spinner-border" role="status" *ngIf="loading">
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
+                                        <span *ngIf="!loading">Pedir</span>
+                                    </button>
+                                </div>
+                                <div class="col-md-12 sin-bytes-suficientes" *ngIf="itemsCart.length > 0 && puntosDisponibles < subtotal">
+                                    <p>No tienes suficientes bytes para hacer el pedido.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <!-- <button *ngIf="itemsCart.length > 0" type="button" class="btn btn-block btn-checkout btn-animation">
+                    <div class="spinner-border" role="status" *ngIf="loading">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                    <span *ngIf="!loading">Proceder al pago</span>
+                </button> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<ho1a-Loading *ngIf="loading"></ho1a-Loading>

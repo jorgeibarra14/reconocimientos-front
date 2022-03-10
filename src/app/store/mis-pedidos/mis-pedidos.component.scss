@@ -1,0 +1,19 @@
+.header{
+    background: url('../../../assets/img/banners/generico.png');
+    height: 130px;
+    background-position: center left;
+    background-size: cover;
+    background-repeat: no-repeat;
+    h1{
+        color: white;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+}
+@media (max-width: 576px){
+    .header{
+        h1{
+            text-align: center;
+        }
+    }
+}

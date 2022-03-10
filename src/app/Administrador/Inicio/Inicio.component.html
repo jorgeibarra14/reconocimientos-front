@@ -1,0 +1,82 @@
+<ho1a-Admin-Menu></ho1a-Admin-Menu>
+
+<div class="container-fluid pt-4 bg-principal">
+    <div class="row">
+        <div class="col-md-12">
+            <kendo-grid [kendoGridBinding]="gridData" [resizable]="true" width="100%" [filterable]="true"
+                [columnMenu]="true" [loading]="loading" [sortable]="{ allowUnsort: true, mode: 'multiple' }"
+                [pageable]="{ buttonCount: 5, pageSizes: [5,10,20,100] }" [pageSize]="5">
+                <kendo-grid-column field="enviadoPor" [title]="'Enviado por'" width="15%"
+                    [headerStyle]="{'color': '#3C404C','line-height': '1em', 'font-weight': 'bold'}"
+                    [style]="{'background-color': '#FFF','color': '#000'}"
+                    [footerStyle]="{'background-color': '#0B3B59','color': '#fff'}">
+                </kendo-grid-column>
+                <kendo-grid-column field="reconoceA" [title]="'Reconoce a'" width="15%"
+                    [headerStyle]="{'color': '#3C404C','line-height': '1em', 'font-weight': 'bold'}"
+                    [style]="{'background-color': '#FFF','color': '#000'}"
+                    [footerStyle]="{'background-color': '#0B3B59','color': '#fff'}">
+                </kendo-grid-column>
+                <kendo-grid-column field="competencia" [title]="'Competencia'" width="15%"
+                    [headerStyle]="{'color': '#3C404C','line-height': '1em', 'font-weight': 'bold'}"
+                    [style]="{'background-color': '#FFF','color': '#000'}"
+                    [footerStyle]="{'background-color': '#0B3B59','color': '#fff'}">
+                </kendo-grid-column>
+                <kendo-grid-column field="motivo" [title]="'Motivo'" width="15%"
+                    [headerStyle]="{'color': '#3C404C','line-height': '1em', 'font-weight': 'bold'}"
+                    [style]="{'background-color': '#FFF','color': '#000'}"
+                    [footerStyle]="{'background-color': '#0B3B59','color': '#fff'}">
+                </kendo-grid-column>
+                <kendo-grid-column field="logro" [title]="'Logro'" width="15%"
+                    [headerStyle]="{'color': '#3C404C','line-height': '1em', 'font-weight': 'bold'}"
+                    [style]="{'background-color': '#FFF','color': '#000'}"
+                    [footerStyle]="{'background-color': '#0B3B59','color': '#fff'}">
+                </kendo-grid-column>
+                <kendo-grid-column field="autorizador" [title]="'Autorizador'" width="15%"
+                    [headerStyle]="{'color': '#3C404C','line-height': '1em', 'font-weight': 'bold'}"
+                    [style]="{'background-color': '#FFF','color': '#000'}"
+                    [footerStyle]="{'background-color': '#0B3B59','color': '#fff'}">
+                </kendo-grid-column>
+                <kendo-grid-column [title]="'Acciones'" width="20%"
+                    [headerStyle]="{'color': '#3C404C','line-height': '1em', 'font-weight': 'bold'}"
+                    [style]="{'background-color': '#FFF','color': '#000'}"
+                    [footerStyle]="{'background-color': '#0B3B59','color': '#fff'}">
+                    <ng-template kendoGridCellTemplate let-dataItem class="text-align:center">              
+                        <div id="button-div">
+                            <button type="button" class="btn btn-success btn-sm ml-1 mt-1 rounded btn-aprobar"
+                                style="width: 95px; height: 35px;"
+                                (click)="aceptar(dataItem.id, dataItem.id_empleado_envia, dataItem.id_empleado_recibe, dataItem.enviadoPor)"
+                                [disabled]="loading">
+                                <i class="fa fa-check ml-0 mt-0 fa-lg"></i> Aprobar
+                                <!-- <div id="text-aceptar">Aprobar</div> -->
+                            </button>
+                        </div>
+                        <div id="button-div">
+                            <button type="button" class="btn btn-danger btn-sm ml-1 mt-1 rounded btn-rechazar"
+                                style="width: 97px; height: 35px;"
+                                (click)="rechazar(dataItem.id, dataItem.id_empleado_envia, dataItem.id_empleado_recibe, dataItem.reconoceA)"
+                                [disabled]="loading">
+                                <i class="fa fa-times ml-0 mt-0 fa-lg"></i> Rechazar
+                                <!-- <div id="text-rechazar">Rechazar</div> -->
+                            </button>
+                        </div>
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-messages groupPanelEmpty="Arrastre las columnas aquí para agrupar" pagerItems="registros"
+                    pagerFirstPage="Primer página" pagerNextPage="Página siguiente" pagerLastPage="Última página"
+                    pagerPage="Por página" pagerOf="de" pagerItemsPerPage="registros por página"
+                    pagerPreviousPage="Página anterior" noRecords="No hay registros para mostrar."
+                    filterContainsOperator="Contiene" filterEndsWithOperator="Termina con" filterEqOperator="Igual"
+                    filterNotEqOperator="No es igual" filterNotContainsOperator="No contiene"
+                    filterStartsWithOperator="Comienza con" filterIsNullOperator="Es nulo"
+                    filterIsNotNullOperator="No es nulo" filterIsEmptyOperator="Esta vacio" filterBooleanAll="Todos"
+                    filterIsTrue="Activo" filterIsFalse="Inactivo" filterIsNotEmptyOperator="No está vacío"
+                    sortAscending="Ascendente" sortDescending="Descendente" filter="Filtro" columns="Columnas"
+                    columnsApply="Aplicar" columnsReset="Limpiar" filterAndLogic="Y" filterOrLogic="O"
+                    filterFilterButton="Filtrar" filterClearButton="Limpiar">
+                </kendo-grid-messages>
+            </kendo-grid>
+        </div>
+    </div>
+</div>
+
+<ho1a-Loading *ngIf="loading"></ho1a-Loading>

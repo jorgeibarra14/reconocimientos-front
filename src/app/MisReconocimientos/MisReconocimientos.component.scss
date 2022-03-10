@@ -1,0 +1,150 @@
+.header{
+    background: url('../../assets/img/banners/mis-reconocimientos.png');
+    height: 150px;
+    background-position: center left;
+    background-size: cover;
+    background-repeat: no-repeat;
+    h1{
+        color: white;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 32px;
+        border-bottom: none;
+    }
+    .descripcion{
+        color: white;
+        font-size: 22px;
+        span{
+            color: #3cd52e;
+        }
+    }
+}
+.bg-principal{
+    &>.row{
+        min-height: calc(100vh - 100px);
+    }
+    h1{
+        color: #3c404c;
+        font-weight: 900;
+        font-size: 28px;
+        border-bottom: 1px solid #0B3B59;
+        text-transform: uppercase;
+    }
+    .img-c-rango{
+        padding: 10px;
+        margin-left: 10px;
+        margin-right: 10px;
+        color: #0B3B59;
+        text-transform: uppercase;
+        // font-weight: bold;
+        font-size: 18px;
+        text-align: left;
+        .barra-progreso{
+            .total{
+                color: #3c404c;
+                font-weight: bold;
+                font-size: 26px;
+            }
+            .progress{
+                height: 50px;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                border-radius: 25px;
+                .progress-bar{
+                    background-color: #3cd52e !important;
+                }
+            }
+            p{
+                color: #3c404c;
+                text-transform: uppercase;
+                font-size: 12px;
+                margin-top: 10px;
+                span{
+                    font-weight: 900;
+                }
+            }
+        }
+        .img{
+            background: radial-gradient(ellipse at center, #03496e 0%, #24395a 100%);
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            padding: 20px;
+            img{
+                
+            }
+        }
+    }
+}
+.sidebar{
+    .valores{
+        background: linear-gradient(to bottom, #004b70, #263858);
+        border-radius: 15px;
+    }
+    h1{
+        color: white;
+        font-weight: 900;
+        font-size: 36px;
+        border-bottom: 1px solid white;
+        text-transform: uppercase;
+    }
+}
+.borrar-seleccion{
+    font-size: 12px;
+}
+.competencias{
+    .col{
+        max-width: 150px !important;
+    }
+}
+.personas{
+    margin-top: 35px;
+}
+
+//Media
+@media (max-width: 992.5px){
+    .bg-principal{
+        background-position-x: -100px;
+    }
+}
+@media (max-width: 767.5px){
+    .bg-principal{
+        background: none;
+    }
+}
+@media (max-width: 576px){
+    .header{
+        background-position: center !important;
+        h1{
+            text-align: center;
+            font-size: 26px;
+        }
+        .descripcion{
+            text-align: center;
+        }
+    }
+}
+.img-c-valor{
+    padding: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    color: white;
+    text-transform: uppercase;
+    // font-weight: bold;
+    font-size: 18px;
+    text-align: left;
+    img{
+        width: 88px;
+        height: 88px;
+        max-width: 88px !important;
+        max-width: 88px !important;
+        background-color: white;
+        border-radius: 50px;
+      }
+    // &:hover {
+    //     color: #00a4e0;
+    // }
+    // &:hover img{
+    //     background-color: #00a4e0;
+    // }
+}

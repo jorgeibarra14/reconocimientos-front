@@ -1,0 +1,56 @@
+<app-carrito-store></app-carrito-store>
+
+<div class="header">
+    <div class="container" style="height: 100%;">
+        <div class="row align-items-center" style="height: 100%;">
+            <div class="col-md-12">
+                <h1>Tienda</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 col-lg-8 order-1 order-md-0 container-productos">
+            <div class="row mt-5 mb-5">
+                <div class="col-6 col-md-4 col-lg-3 pr-0 pl-0" *ngFor="let p of productos">
+                    <app-store-product-grid [producto]="p"></app-store-product-grid>
+                </div>
+            </div>
+        </div>
+        <!-- SIDEBAR -->
+        <div class="col-md-4 col-lg-4 sidebar p-5 order-0 order-md-1">
+            <div class="row puntos-disponibles mt-3">
+                <div class="col-lg-9 pt-4 pb-4 my-auto">
+                    <span class="title">Bytes disponibles</span>
+                </div>
+                <div class="col-lg-3 text-center pt-4 pb-4 puntos pl-0 pr-0">
+                    <span>{{ puntosDisponibles }}</span>
+                </div>
+            </div>
+            <div class="row categorias-div mt-3">
+                <div class="col-md-12">
+                    <div class="p-4" *ngIf="categorias.length > 0">
+                        <ul class="list-group categorias">
+                            <li class="list-group-item" [class]="(tituloCat == 'Todos los productos')?'current':''">
+                                <div class="img">
+                                    <img src="../../../assets/img/demo/tienda-icon.png" onerror="this.src='../../../assets/img/demo/notavailable.png'" class="img-fluid">
+                                </div>
+                                <a href="javascript:void(0);"  routerLink="/store">Todos los productos</a>
+                            </li>
+                            <li class="list-group-item" *ngFor="let cat of categorias" [class]="(tituloCat == cat.nombre)?'current':''">
+                                <div class="img">
+                                    <img [src]="cat.img" onerror="this.src='../../../assets/img/demo/notavailable.png'" class="img-fluid">
+                                </div>
+                                <a href="javascript:void(0);" [routerLink]="'/store/'+cat.id">{{ cat.nombre }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ./SIDEBAR -->
+    </div>
+</div>
+
+<ho1a-Loading *ngIf="loading"></ho1a-Loading>

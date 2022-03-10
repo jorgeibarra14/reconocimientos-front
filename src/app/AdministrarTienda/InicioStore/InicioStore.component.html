@@ -1,0 +1,132 @@
+<ho1a-Admin-MenuTienda></ho1a-Admin-MenuTienda>
+<div class="container-fluid pt-4 bg-principal">
+    <div class="row">
+        <div class="col-md-12">
+            <kendo-grid [kendoGridBinding]="gridData" [resizable]="true" width="100%" [filterable]="true"
+                [columnMenu]="true" [loading]="loading" [sortable]="{ allowUnsort: true, mode: 'multiple' }"
+                [kendoGridExpandDetailsBy]="expandDetailsBy" [(expandedDetailKeys)]="expandedDetailKeys"
+                [pageable]="{ buttonCount: 5, pageSizes: [5,10,20,100] }" [pageSize]="5">
+                <kendo-grid-column field="nombre_solicitante" [title]="'Pedido por'"
+                    [headerStyle]="{'color': '#3C404C','line-height': '1em', 'font-weight': 'bold'}"
+                    [style]="{'background-color': '#FFF','color': '#000'}"
+                    [footerStyle]="{'background-color': '#0B3B59','color': '#fff'}">
+                </kendo-grid-column>
+                <kendo-grid-column field="area_solicitante" [title]="'Área'"
+                    [headerStyle]="{'color': '#3C404C','line-height': '1em', 'font-weight': 'bold'}"
+                    [style]="{'background-color': '#FFF','color': '#000'}"
+                    [footerStyle]="{'background-color': '#0B3B59','color': '#fff'}">
+                </kendo-grid-column>
+                <kendo-grid-column field="puesto_solicitante" [title]="'Puesto'"
+                    [headerStyle]="{'color': '#3C404C','line-height': '1em', 'font-weight': 'bold'}"
+                    [style]="{'background-color': '#FFF','color': '#000'}"
+                    [footerStyle]="{'background-color': '#0B3B59','color': '#fff'}">
+                </kendo-grid-column>
+                <kendo-grid-column field="sistema_solicitante" [title]="'Sistema'"
+                    [headerStyle]="{'color': '#3C404C','line-height': '1em', 'font-weight': 'bold'}"
+                    [style]="{'background-color': '#FFF','color': '#000'}"
+                    [footerStyle]="{'background-color': '#0B3B59','color': '#fff'}">
+                </kendo-grid-column>
+                <kendo-grid-column field="nombre_autorizador" [title]="'Autorizador'"
+                    [headerStyle]="{'color': '#3C404C','line-height': '1em', 'font-weight': 'bold'}"
+                    [style]="{'background-color': '#FFF','color': '#000'}"
+                    [footerStyle]="{'background-color': '#0B3B59','color': '#fff'}">
+                </kendo-grid-column>
+                <kendo-grid-column [title]="'Acciones'" [width]="200"
+                    [headerStyle]="{'color': '#3C404C','line-height': '1em', 'font-weight': 'bold','text-align': 'center'}"
+                    [style]="{'background-color': '#FFF','color': '#000','text-align': 'center'}"
+                    [footerStyle]="{'background-color': '#0B3B59','color': '#fff'}">
+                    <ng-template kendoGridCellTemplate let-dataItem class="text-align:center">
+                        <div id="button-div" *ngIf="!resuelto(dataItem.comentario_resolucion, dataItem.fecha_resolucion)">
+                            <button type="button" class="btn btn-success btn-sm ml-1 mt-1 rounded btn-aprobar"
+                                style="width: 95px; height: 35px;"
+                                (click)="aceptar(dataItem.id)"
+                                [disabled]="loading">
+                                <i class="fa fa-check ml-0 mt-0 fa-lg"></i> Aprobar
+                            </button>
+                        </div>
+                        <div id="button-div"  *ngIf="!resuelto(dataItem.comentario_resolucion, dataItem.fecha_resolucion)">
+                            <button type="button" class="btn btn-danger btn-sm ml-1 mt-1 rounded btn-rechazar"
+                                style="width: 97px; height: 35px;"
+                                (click)="rechazar(dataItem.id)"
+                                [disabled]="loading">
+                                <i class="fa fa-times ml-0 mt-0 fa-lg"></i> Rechazar
+                            </button>
+                        </div>
+                        <div class="aprobado" *ngIf="resuelto(dataItem.comentario_resolucion, dataItem.fecha_resolucion) && dataItem.aprobado" style="height: 45px;">
+                            <i class="fa fa-check ml-0 mt-1 fa-lg"></i><p> PEDIDO APROBADO</p>
+                        </div>
+                        <div class="rechazado" *ngIf="resuelto(dataItem.comentario_resolucion, dataItem.fecha_resolucion) && !dataItem.aprobado" style="height: 45px;">
+                            <i class="fa fa-times ml-0 mt-1 fa-lg" style="color: #FEC526;"></i><p> PEDIDO RECHAZADO</p>
+                        </div>
+                    </ng-template>
+                </kendo-grid-column>
+                <ng-template kendoGridDetailTemplate let-dataItem>
+                    <section *ngIf="dataItem.productos">
+                        <p><strong>Pedido id:</strong> {{ dataItem.id }} </p>
+                        <p><strong>Estatus del pedido:</strong> {{ dataItem.estatusPedido.estado }} </p>
+                    </section>
+                    <section *ngIf="resuelto(dataItem.comentario_resolucion, dataItem.fecha_resolucion)">
+                        <p><strong>Fecha de resolución:</strong> {{ dataItem.fecha_resolucion | date:"longDate" }} </p>
+                        <p><strong>Comentario de resolución:</strong> {{ dataItem.comentario_resolucion}} </p>
+                    </section>
+                    <section>
+                        <kendo-grid [kendoGridBinding]="dataItem.productos" [sortable]="true">
+                            <kendo-grid-column field="producto_nombre" [title]="'Producto'" [width]="60"
+                                [headerStyle]="{'color': '#3C404C','line-height': '1em', 'font-weight': 'bold'}"
+                                [style]="{'background-color': '#FFF','color': '#000'}"
+                                [footerStyle]="{'background-color': '#0B3B59','color': '#fff'}">
+                            </kendo-grid-column>
+                            <kendo-grid-column field="producto_costo" [title]="'Costo'" [width]="60"
+                                [headerStyle]="{'color': '#3C404C','line-height': '1em', 'font-weight': 'bold'}"
+                                [style]="{'background-color': '#FFF','color': '#000'}"
+                                [footerStyle]="{'background-color': '#0B3B59','color': '#fff'}">
+                            </kendo-grid-column>
+                            <kendo-grid-column field="cantidad" [title]="'Cantidad solicitada'" [width]="60"
+                                [headerStyle]="{'color': '#3C404C','line-height': '1em', 'font-weight': 'bold'}"
+                                [style]="{'background-color': '#FFF','color': '#000'}"
+                                [footerStyle]="{'background-color': '#0B3B59','color': '#fff'}">
+                            </kendo-grid-column>
+                            <kendo-grid-column [title]="'Imagen'" [width]="50"
+                                [headerStyle]="{'color': '#3C404C','line-height': '1em', 'font-weight': 'bold'}"
+                                [style]="{'background-color': '#FFF','color': '#000'}"
+                                [footerStyle]="{'background-color': '#0B3B59','color': '#fff'}">
+                                <ng-template kendoGridCellTemplate let-dataItem>
+                                    <img [src]="dataItem.producto_imagen" class="img-fluid" style="max-width: 50px;">
+                                </ng-template>
+                            </kendo-grid-column>
+                            <kendo-grid-messages groupPanelEmpty="Arrastre las columnas aquí para agrupar"
+                                pagerItems="registros" pagerFirstPage="Primer página" pagerNextPage="Página siguiente"
+                                pagerLastPage="Última página" pagerPage="Por página" pagerOf="de"
+                                pagerItemsPerPage="registros por página" pagerPreviousPage="Página anterior"
+                                noRecords="No hay registros para mostrar." filterContainsOperator="Contiene"
+                                filterEndsWithOperator="Termina con" filterEqOperator="Igual"
+                                filterNotEqOperator="No es igual" filterNotContainsOperator="No contiene"
+                                filterStartsWithOperator="Comienza con" filterIsNullOperator="Es nulo"
+                                filterIsNotNullOperator="No es nulo" filterIsEmptyOperator="Esta vacio"
+                                filterBooleanAll="Todos" filterIsTrue="Activo" filterIsFalse="Inactivo"
+                                filterIsNotEmptyOperator="No está vacío" sortAscending="Ascendente"
+                                sortDescending="Descendente" filter="Filtro" columns="Columnas" columnsApply="Aplicar"
+                                columnsReset="Limpiar" filterAndLogic="Y" filterOrLogic="O" filterFilterButton="Filtrar"
+                                filterClearButton="Limpiar">
+                            </kendo-grid-messages>
+                        </kendo-grid>
+                    </section>
+                </ng-template>
+                <kendo-grid-messages groupPanelEmpty="Arrastre las columnas aquí para agrupar" pagerItems="registros"
+                    pagerFirstPage="Primer página" pagerNextPage="Página siguiente" pagerLastPage="Última página"
+                    pagerPage="Por página" pagerOf="de" pagerItemsPerPage="registros por página"
+                    pagerPreviousPage="Página anterior" noRecords="No hay registros para mostrar."
+                    filterContainsOperator="Contiene" filterEndsWithOperator="Termina con" filterEqOperator="Igual"
+                    filterNotEqOperator="No es igual" filterNotContainsOperator="No contiene"
+                    filterStartsWithOperator="Comienza con" filterIsNullOperator="Es nulo"
+                    filterIsNotNullOperator="No es nulo" filterIsEmptyOperator="Esta vacio" filterBooleanAll="Todos"
+                    filterIsTrue="Activo" filterIsFalse="Inactivo" filterIsNotEmptyOperator="No está vacío"
+                    sortAscending="Ascendente" sortDescending="Descendente" filter="Filtro" columns="Columnas"
+                    columnsApply="Aplicar" columnsReset="Limpiar" filterAndLogic="Y" filterOrLogic="O"
+                    filterFilterButton="Filtrar" filterClearButton="Limpiar" detailExpand="Mostrar detalles del pedido" detailCollapse="Ocultar detalles del pedido">
+                </kendo-grid-messages>
+            </kendo-grid>
+        </div>
+    </div>
+</div>
+<ho1a-Loading *ngIf="loading"></ho1a-Loading>

@@ -1,0 +1,64 @@
+<nav class="navbar navbar-expand-md navbar-dark gris ">
+  <a class="navbar-brand" routerLink="/Inicio">
+    <img class="img-fluid" [src]="company.logo" alt="" />
+  </a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse"
+    data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+    aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse fondocollapse zonaDerecha" id="navbarNavAltMarkup">
+    <div class="col">
+      <ul class="navbar-nav nav-flex-icons listaIconos justify-content-end">
+        <!-- <li class="nav-item mr-2 mt-auto mb-auto ayuda">
+          <a class="nav-link pb-0 pt-0" style="margin-top: 5px;" href="https://www.polcapmca.com/CherwellPortal/MesaInterna?_=3018601e" target="_blank"><i class="fas fa-life-ring"></i></a>
+          <div id="text-ayuda">Mesa de ayuda</div>
+        </li> -->
+        <li class="nav-item dropdown mr-2 mt-auto mb-auto notificaciones">
+          <a class="nav-link pb-0 pt-0" href="javascript:void(0);" id="notificacionsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" (click)="verNotificaciones()">
+            <i class="fas fa-1x fa-bell"></i><span *ngIf='show' class="badge badge-pill badge-warning">{{ notificaciones.conteoNoLeidos }}</span>
+          </a>
+          <div id="text-notificaciones">Notificaciones</div>
+          <div class="dropdown-menu" aria-labelledby="notificacionsDropdown">
+            <a class="dropdown-item" href="javascript:void(0);" *ngFor="let item of notificaciones.notificaciones">
+              <a style="color:currentcolor;text-decoration:none;display:block;" routerLink="/mis-reconocimientos" *ngIf="item.titulo=='Te reconocieron'">
+                <span style="font-size: 12px">{{item.titulo}}</span>
+                <p>{{item.descripcion}}</p>
+              </a>
+              <div *ngIf="item.titulo!='Te reconocieron'" style="cursor:default;">
+                <span style="font-size: 12px">{{item.titulo}}</span>
+                <p>{{item.descripcion}}</p>
+              </div>
+            </a>
+            <a class="dropdown-item" href="javascript:void(0);" *ngIf="notificaciones.notificaciones.length == 0">No tienes notificaciones.</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown mr-2 mt-auto mb-auto">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{ user.Nombre }}
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a *ngIf="accesoAdmin" class="dropdown-item" routerLink="/admin">Administración</a>
+            <a *ngIf="accesoAdmin" class="dropdown-item" routerLink="/admin-store">Administración Tienda</a>
+            <a class="dropdown-item" href="javascript:void(0);" (click)="cerrarSesion()">Cerrar sesión</a>
+          </div>
+        </li>
+        <li class="nav-item img-profile mt-auto mb-auto d-none d-md-block">
+          <!-- <img src="../../../assets/img/user-profile.png" class="rounded-circle"> -->
+          <!-- <img src="user.Foto" class="rounded-circle"> -->
+          <!-- <app-avatar-icon
+              size="l"
+              type="rounded-circle"
+              bg_color="#00a3df"
+              text_color="white"
+              [name]="user.Nombre"
+              loading="lazy"
+          ></app-avatar-icon> -->
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+

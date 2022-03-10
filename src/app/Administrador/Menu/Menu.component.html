@@ -1,0 +1,24 @@
+<div class="container mt-3" *ngIf="accesoAdmin">
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="nav nav-pills nav-fill">
+                <li class="nav-item">
+                    <a class="nav-link" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact:
+                        true}" routerLink="/admin">Reconocimientos por aprobar</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact:
+                        true}" routerLink="/admin/competencias">Competencias</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact:
+                        true}" routerLink="/admin/autorizadores">Autorizadores</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact:
+                        true}" routerLink="/admin/puntos">Puntos</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

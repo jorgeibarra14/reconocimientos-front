@@ -1,0 +1,83 @@
+<app-carrito-store [itemAddCart]="productoAddCart"></app-carrito-store>
+
+<div class="header">
+    <div class="container" style="height: 100%;">
+        <div class="row align-items-center" style="height: 100%;">
+            <div class="col-md-12">
+                <h1>Tienda</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <app-store-migas [links]="migas" [hasCart]="true"></app-store-migas>
+        </div>
+    </div>
+    <div class="row producto">
+        <div class="col-md-6 my-auto order-md-0 order-1">
+            <h1>{{ producto.nombre }}</h1>
+            <div class="descripcion mb-3 mt-3">{{ producto.descripcion }}</div>
+            <div class="precio mt-2 mb-5">
+                <img src="../../../assets/img/bytecoin/currency-byte.png" class="img-fluid">
+                {{ producto.costo }}
+            </div>
+            <div class="qty-cart" *ngIf="producto.stock > 0">
+                <span id="title">Cantidad</span>
+                <div class="group-btn-qty">
+                    <button class="btn btn-qty minus" (click)="cambioQty(cantidad - 1)"><i class="fas fa-minus"></i></button>
+                    <span>{{ cantidad }}</span>
+                    <button class="btn btn-qty plus" (click)="cambioQty(cantidad + 1)"><i class="fas fa-plus"></i></button>
+                </div>
+                <button class="btn btn-animation btn-add-cart ml-4" (click)="anadirAlCarrito()">
+                    <div class="spinner-border" role="status" *ngIf="loading">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                    <span *ngIf="!loading">Añadir al carrito</span>
+                </button>
+                <span class="ultima_pieza" *ngIf="producto.stock == 1">¡Última pieza!</span>
+            </div>
+            <div class="sin-stock" *ngIf="producto.stock <= 0">
+                No disponible
+            </div>
+        </div>
+        <div class="col-md-6 order-md-1 order-0">
+            <img [src]="producto.imagen" onerror="this.src='../../../assets/img/demo/notavailable.png'" class="img-fluid animatedRec animate__animated">
+        </div>
+        <div class="col-md-12 order-2 mt-5 mt-lg-0">
+            <div class="instrucciones-title">
+                <h5>Instrucciones</h5>
+                <div class="line"><div class="green"></div></div>
+            </div>
+            <div class="instrucciones-text">
+                The rich text element allows you to create and format headings, paragraphs, blockquotes, images, and video all in one place instead of having to add and format them individually. Just double-click and easily create content. A rich text element can be used with static or dynamic content. For static content, just drop it into any page and begin editing. For dynamic content, add a rich text field to any collection and then connect a rich text element to that field in the settings panel. Voila!
+            </div>
+        </div>
+    </div>
+    <div class="row mb-3 productos-relacionados">
+        <div class="col-md-6">
+            <h3 class="title">Productos relacionados</h3>
+        </div>
+        <div class="col-md-6 text-center text-md-right">
+            <a href="javascript:void(0);" routerLink="/store">Ver todos los productos <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="col-md-12">
+            <div class="line"><div class="green"></div></div>
+        </div>
+        <ng-container *ngFor="let p of productos">
+            <div class="col-6 col-md-4 col-lg-3 pr-0 pl-0" *ngIf="productoId != p.id">
+                <app-store-product-grid [producto]="p"></app-store-product-grid>
+            </div>
+        </ng-container>
+        <div class="col-md-12 mt-5" *ngIf="productos.length <= 1 && !loading">
+            No hay productos relacionados.
+        </div>
+    </div>
+    <div class="row banner-footer animatedRec animate__animated">
+        <i class="fab fa-telegram-plane"></i> <h4>¡Reconocemos el esfuerzo de tu trabajo!</h4>
+    </div>
+</div>
+
+<ho1a-Loading *ngIf="loading"></ho1a-Loading>

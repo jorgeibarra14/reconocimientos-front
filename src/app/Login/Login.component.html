@@ -1,0 +1,53 @@
+
+<div class="row fondo">
+
+  <div class="col-12 logo">
+    <img width="40%" src="../../assets/img/logoTransBlanco.png" alt="" />
+  </div>
+
+
+<div class="col-12 titulo">
+  <h1>Liderazgo y desarrollo</h1>
+</div>
+
+<div class="form">
+<h3>Reconocimiento</h3>
+<h4>Ingresa tus credenciales</h4>
+<input placeholder="Correo electrónico" formControlName="email" autocomplete="new-password">
+
+<input placeholder="Contraseña" type="password">
+<div class="icon icon-show" ></div>
+
+<button>INGRESAR</button>
+
+<a routerLink="/Inicio">¿Olvidaste tu contraseña?</a>
+</div>
+
+
+
+<!-- 
+        <form [formGroup]="form" (ngSubmit)="loginUser()" autocomplete="new-password">
+          <div class="input-login">
+              <div class="icon">
+                  <i class="material-icons">person</i>
+              </div>
+              <input placeholder="Correo electrónico" formControlName="email" autocomplete="new-password">
+          </div>
+          <br />
+          <div class="input-login">
+              <div class="icon">
+                  <i class="material-icons">lock</i>
+              </div>
+              <input [type]="hide ? 'password' : 'text'" placeholder="Contraseña" formControlName="password" autocomplete="new-password">
+              <div class="icon icon-show" (click)="togglePassword()">
+                <i *ngIf="hide" class="material-icons">visibility</i>
+                <i *ngIf="!hide" class="material-icons">visibility_off</i>
+            </div>
+          </div>
+          <a routerLink="/auth/recovery">
+              <p class="text-13px text-end margin-top-10px margin-bottom-10px cursor-pointer" style="color: whitesmoke;">¿Olvidaste tu contraseña?</p>
+          </a>
+          <button class="btn btn-login btn-block" style="margin-bottom: 0 !important;" [disabled]="form.invalid">
+              Ingresar
+          </button>
+      </form>  -->

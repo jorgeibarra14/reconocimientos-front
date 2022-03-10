@@ -1,0 +1,88 @@
+<ho1a-Admin-MenuTienda></ho1a-Admin-MenuTienda>
+
+<div class="container-fluid pt-4 bg-principal">
+    <div class="row">
+        <div class="col-md-12">
+            <kendo-grid [kendoGridBinding]="gridData" [resizable]="true" width="100%" [filterable]="true"
+                [columnMenu]="true" [loading]="loading" [sortable]="{ allowUnsort: true, mode: 'multiple' }"
+                [pageable]="{ buttonCount: 10, pageSizes: [5,10,20,100] }" [pageSize]="10">
+                <ng-template kendoGridToolbarTemplate>
+                    <div class="toolbalButtons">
+                        <button class="btn agregar" type="button" (click)="abrirNuevo()"
+                            style="color: white; height: 35px; min-width: 90px;"><i class="fa fa-plus ml-0 mt-0 fa-lg"></i>
+                            Agregar</button>
+                            <button class="btn btn-success export-excel ml-3" kendoGridExcelCommand><i
+                                class="fa fa-file-excel-o ml-0 mt-0 fa-lg"></i> Exportar a
+                            Excel</button>
+                    </div>
+                </ng-template>
+                <kendo-grid-column field="nombre" [title]="'Producto'" [width]="100"
+                    [headerStyle]="{'color': '#3C404C','line-height': '1em', 'font-weight': 'bold'}"
+                    [style]="{'background-color': '#FFF','color': '#000'}"
+                    [footerStyle]="{'background-color': '#0B3B59','color': '#fff'}">
+                </kendo-grid-column>
+                <kendo-grid-column field="descripcion" [title]="'Descripción'" [width]="220"
+                    [headerStyle]="{'color': '#3C404C','line-height': '1em', 'font-weight': 'bold'}"
+                    [style]="{'background-color': '#FFF','color': '#000'}"
+                    [footerStyle]="{'background-color': '#0B3B59','color': '#fff'}">
+                </kendo-grid-column>
+                <kendo-grid-column field="costo" [title]="'Costo'" [width]="50"
+                    [headerStyle]="{'color': '#3C404C','line-height': '1em', 'font-weight': 'bold'}"
+                    [style]="{'background-color': '#FFF','color': '#000'}"
+                    [footerStyle]="{'background-color': '#0B3B59','color': '#fff'}">
+                </kendo-grid-column>
+                <kendo-grid-column field="stock" [title]="'Stock'" [width]="50"
+                    [headerStyle]="{'color': '#3C404C','line-height': '1em', 'font-weight': 'bold'}"
+                    [style]="{'background-color': '#FFF','color': '#000'}"
+                    [footerStyle]="{'background-color': '#0B3B59','color': '#fff'}">
+                </kendo-grid-column>
+                <kendo-grid-column field="categoria.nombre" [title]="'Categoria'" [width]="60"
+                    [headerStyle]="{'color': '#3C404C','line-height': '1em', 'font-weight': 'bold'}"
+                    [style]="{'background-color': '#FFF','color': '#000'}"
+                    [footerStyle]="{'background-color': '#0B3B59','color': '#fff'}">
+                </kendo-grid-column>
+                <kendo-grid-column [title]="'Imagen'" [width]="50"
+                    [headerStyle]="{'color': '#3C404C','line-height': '1em', 'font-weight': 'bold'}"
+                    [style]="{'background-color': '#FFF','color': '#000'}"
+                    [footerStyle]="{'background-color': '#0B3B59','color': '#fff'}">
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        <img [src]="dataItem.imagen" class="img-fluid" style="max-width: 50px;">
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column [title]="'Acciones'" [width]="120"
+                    [headerStyle]="{'color': '#3C404C','line-height': '1em', 'font-weight': 'bold'}"
+                    [style]="{'background-color': '#FFF','color': '#000'}"
+                    [footerStyle]="{'background-color': '#0B3B59','color': '#fff'}">
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        <div style="text-align: center;">
+                            <button class="btn btn-primary btn-editar ml-1 mr-1 mt-1 mb-1"
+                                (click)="abrirEditar(dataItem.nombre, dataItem.descripcion, dataItem.costo,dataItem.stock,dataItem.categoria_id, dataItem.imagen, dataItem.id)"
+                                style="color: white; height: 35px; min-width: 90px;"><i class="fas fa-pencil-alt ml-0 mt-0 fa-lg"></i>
+                                Editar</button>
+                            <button class="btn btn-primary btn-eliminar ml-1 mr-1 mt-1 mb-1"
+                                (click)="borrarProducto(dataItem.id)"
+                                style="color: white; height: 35px; min-width: 90px;"><i class="fa fa-trash-o ml-0 mt-0 fa-lg"
+                                    aria-hidden="true"></i> Eliminar</button>
+                        </div>
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-messages groupPanelEmpty="Arrastre las columnas aquí para agrupar" pagerItems="registros"
+                    pagerFirstPage="Primer página" pagerNextPage="Página siguiente" pagerLastPage="Última página"
+                    pagerPage="Por página" pagerOf="de" pagerItemsPerPage="registros por página"
+                    pagerPreviousPage="Página anterior" noRecords="No hay registros para mostrar."
+                    filterContainsOperator="Contiene" filterEndsWithOperator="Termina con" filterEqOperator="Igual"
+                    filterNotEqOperator="No es igual" filterNotContainsOperator="No contiene"
+                    filterStartsWithOperator="Comienza con" filterIsNullOperator="Es nulo"
+                    filterIsNotNullOperator="No es nulo" filterIsEmptyOperator="Esta vacio" filterBooleanAll="Todos"
+                    filterIsTrue="Activo" filterIsFalse="Inactivo" filterIsNotEmptyOperator="No está vacío"
+                    sortAscending="Ascendente" sortDescending="Descendente" filter="Filtro" columns="Columnas"
+                    columnsApply="Aplicar" columnsReset="Limpiar" filterAndLogic="Y" filterOrLogic="O"
+                    filterFilterButton="Filtrar" filterClearButton="Limpiar">
+                </kendo-grid-messages>
+                <kendo-grid-excel [fileName]="'competencias'" [fetchData]="allData"></kendo-grid-excel>
+            </kendo-grid>
+        </div>
+    </div>
+</div>
+
+<ho1a-Loading *ngIf="loading"></ho1a-Loading>

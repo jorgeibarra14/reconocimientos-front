@@ -1,0 +1,29 @@
+.breadcrumb{
+    background: none !important;
+    // border: 2px solid #e5e5e5;
+    // border-radius: 24px;
+    .breadcrumb-item{
+        font-size: 12px;
+        line-height: 16px;
+        color: #999;
+        text-decoration: none;
+        padding-left: 0px;
+        a{
+            color: #0B3B59 !important;
+        }
+        .fas{
+            padding-left: .5rem;
+            padding-right: .5rem;
+            margin: auto;
+        }
+    }
+}
+.breadcrumb-item+.breadcrumb-item::before{
+    content: "" !important;
+    padding-right: 0px;
+}
+@media (max-width: 767.5px) {
+    nav.mt-5{
+        margin-top: 4rem!important;
+    }    
+}

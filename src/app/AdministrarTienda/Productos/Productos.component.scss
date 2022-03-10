@@ -1,0 +1,65 @@
+.bg-principal{
+    min-height: calc(100vh - 80px);
+    .toolbalButtons{
+        display: block;
+        width: 100%;
+        text-align: right;
+        .agregar{
+            background: #3C404C !important;
+            border-color:  #3C404C !important;
+            color: white;
+            font-size: 14px;
+            i{
+                color: #FEC526;
+            }
+            &:hover{
+                border-width: 2px;
+                border-style: solid;
+                border-color: #FEC526 !important;
+            }
+        }
+        .export-excel{
+            background: #D3D2D1 !important;
+            border-color:  #3C404C !important;
+            color: #3C404C;
+            font-size: 14px;
+            i{
+                color: #FEC526;
+            }
+            &:hover{
+                border-width: 2px;
+                border-style: solid;
+                border-color: #3CD52E !important;
+            }
+        }
+    }
+    .btn-editar{
+        background: #3C404C !important;
+        border-color:  #3C404C !important;
+        color: white;
+        font-size: 14px;
+        i{
+            color: #FEC526;
+        }
+        &:hover{
+            border-width: 2px;
+            border-style: solid;
+            border-color: #FEC526 !important;
+        }
+    }
+    
+    .btn-eliminar{
+        background-color: #D3D2D1 !important;
+        color: #3C404C !important;
+        border-color: #3C404C !important;
+        font-size: 14px;
+        i{
+            color: #FEC526;
+        }
+        &:hover{
+            border-width: 2px;
+            border-style: solid;
+            border-color: red !important;
+        }
+    }
+}

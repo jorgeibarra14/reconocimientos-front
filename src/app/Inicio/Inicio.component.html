@@ -1,0 +1,92 @@
+<app-carrito-store></app-carrito-store>
+
+<div class="header">
+  <div class="container" style="height: 100%;">
+    <div class="row align-items-end" style="height: 100%;">
+      <div class="col-md-12 text-right">
+        <h1>¡Viviendo las Competencias de ho1a MetroCarrier!</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <!-- SIDEBAR -->
+    <div class="col-md-4 col-lg-4 sidebar p-5">
+      <div class="row puntos-disponibles mt-3">
+        <div class="col-lg-9 pt-4 pb-4 my-auto">
+          <span class="title">Bytes disponibles</span>
+        </div>
+        <div class="col-lg-3 text-center pt-4 pb-4 puntos pl-0 pr-0">
+            <span>{{ puntosDisponibles }}</span>
+        </div>
+      </div>
+      <div class="row enlaces mt-3 p-4">
+        <div class="col-md-12">
+          <div class="img-c row" href="javascript:void(0);" routerLink="/mis-reconocimientos"> 
+            <img src="../assets/img/inicio/Moneda.png" class="img-fluid">
+            <span class="titulo mt-3 ml-2">Mis Reconocimientos</span>
+          </div>
+          <div class="img-c row" href="javascript:void(0);" routerLink="/reconocer"> 
+            <img src="../assets/img/inicio/mano_con_moneda.png" class="img-fluid">
+            <span class="titulo mt-3 ml-2">Reconocer a Otros</span>
+          </div>
+          <div class="img-c row" href="javascript:void(0);" routerLink="/store"> 
+            <img src="../assets/img/inicio/tienda.png" class="img-fluid">
+            <span class="titulo mt-3 ml-2">Tienda</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ./SIDEBAR -->
+    <!-- CONTENT -->
+    <div class="col-md-8 col-lg-8 content">
+      <div class="row">
+        <div class="col-md-12 mt-3">
+          <h1>TOP 5</h1>
+        </div>
+        <div class="col-md-12 mt-5 mb-5">
+          <div class="row" *ngIf="ejecutivos.length > 0">
+            <div class="col-lg-4 col-md-5 mb-5 mb-md-0">
+              <div class="bg-byteAvatar mb-3">
+                <app-avatar-icon
+                  size="inicio"
+                  type="rounded-circle"
+                  bg_color="#00a3df"
+                  text_color="white"
+                  [name]="ejecutivoTop1.nombre"
+                ></app-avatar-icon>
+              </div>
+              <div class="nombre">{{ ejecutivoTop1.nombre }}</div>
+              <div class="puesto">{{ ejecutivoTop1.puesto }}</div>
+              <div class="ciudad">{{ ejecutivoTop1.ciudad }}</div>
+            </div>
+            <div class="col-lg-8 col-md-7">
+              <div class="list-item-award" *ngFor="let ejecutivo of ejecutivosTop2Al4">
+                <div class="img-star">
+                  <img class="img-fluid" src="../../assets/img/inicio/Estrella_Plata.png" *ngIf="ejecutivo.top == 2">
+                  <img class="img-fluid" src="../../assets/img/inicio/Estrella_Bronce.png" *ngIf="ejecutivo.top == 3">
+                  <img class="img-fluid" src="../../assets/img/inicio/Estrella_Azul.png" *ngIf="ejecutivo.top != 2 && ejecutivo.top != 3">
+                </div>
+                <div class="nombre">{{ ejecutivo.nombre }}</div>
+                <div class="puesto">{{ ejecutivo.puesto }}</div>
+                <div class="ciudad">{{ ejecutivo.ciudad }}</div>
+              </div>
+            </div>
+          </div>
+          <div class="row" *ngIf="ejecutivos.length <= 0">
+            <div class="col-md-12">
+              <div class="alert alert-secondary" role="alert">
+                No hay información para mostrar.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.CONTENT -->
+  </div>
+</div>
+
+<ho1a-Loading *ngIf="loading"></ho1a-Loading>
