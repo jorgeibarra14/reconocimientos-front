@@ -1,10 +1,10 @@
 <app-carrito-store></app-carrito-store>
-
+<img [src]="banner" class="banner" alt="">
 <div class="header">
   <div class="container" style="height: 100%;">
     <div class="row align-items-end" style="height: 100%;">
       <div class="col-md-12 text-right">
-        <h1>¡Viviendo las Competencias de ho1a MetroCarrier!</h1>
+        <h1>¡Viviendo las Competencias de {{company.name}}!</h1>
       </div>
     </div>
   </div>
@@ -16,7 +16,7 @@
     <div class="col-md-4 col-lg-4 sidebar p-5">
       <div class="row puntos-disponibles mt-3">
         <div class="col-lg-9 pt-4 pb-4 my-auto">
-          <span class="title">Bytes disponibles</span>
+          <span class="title">{{unidadValor}} disponibles</span>
         </div>
         <div class="col-lg-3 text-center pt-4 pb-4 puntos pl-0 pr-0">
             <span>{{ puntosDisponibles }}</span>
@@ -24,15 +24,15 @@
       </div>
       <div class="row enlaces mt-3 p-4">
         <div class="col-md-12">
-          <div class="img-c row" href="javascript:void(0);" routerLink="/mis-reconocimientos"> 
+          <div class="img-c row" href="javascript:void(0);" routerLink="/mis-reconocimientos">
             <img src="../assets/img/inicio/Moneda.png" class="img-fluid">
-            <span class="titulo mt-3 ml-2">Mis Reconocimientos</span>
+            <span class="titulo mt-3 ml-2">Mis {{accionPlural}}</span>
           </div>
-          <div class="img-c row" href="javascript:void(0);" routerLink="/reconocer"> 
+          <div class="img-c row" href="javascript:void(0);" routerLink="/reconocer">
             <img src="../assets/img/inicio/mano_con_moneda.png" class="img-fluid">
-            <span class="titulo mt-3 ml-2">Reconocer a Otros</span>
+            <span class="titulo mt-3 ml-2">{{accionSingular}} a Otros</span>
           </div>
-          <div class="img-c row" href="javascript:void(0);" routerLink="/store"> 
+          <div class="img-c row" href="javascript:void(0);" routerLink="/store">
             <img src="../assets/img/inicio/tienda.png" class="img-fluid">
             <span class="titulo mt-3 ml-2">Tienda</span>
           </div>

@@ -58,8 +58,8 @@ import { DatePipe } from "@angular/common";
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatTableModule } from '@angular/material/table' 
-import { MatIconModule } from '@angular/material/icon' 
+import { MatTableModule } from '@angular/material/table'
+import { MatIconModule } from '@angular/material/icon'
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 import { MatSortModule } from '@angular/material/sort'
 import { MatSelectModule } from '@angular/material/select';
@@ -112,7 +112,8 @@ registerLocaleData(localeEsAr);
     MisPedidosComponent,
     RolesUsuariosComponent,
     ModalEditarRolesUsuarios,
-    ModalEditarRoles
+    ModalEditarRoles,
+    AvatarComponent
   ],
   imports: [
     BrowserModule,

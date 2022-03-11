@@ -9,6 +9,8 @@ import { PedidosService } from "src/app/services/pedidos.service";
 import { Producto } from "../../shared/Models/producto";
 
 import Swal from 'sweetalert2';
+import { ColaboradoresService } from 'src/app/services/colaboradores.service';
+import { ConfigService } from 'src/app/services/config.service';
 
 @Component({
   selector: 'app-carrito-store',
@@ -48,6 +50,17 @@ export class CarritoStoreComponent implements OnInit, OnChanges, AfterViewInit  
   loading: boolean = false;
   // currentRoute: string = '';
 
+  company: any = {
+    color: "",
+    isoLogo: "",
+    logo: "",
+    name: "",
+    prefix: ""
+  };
+  unidadValor = "";
+  accionSingular = '';
+  accionPlural = '';
+
   constructor(
     // private renderer: Renderer2,
     // private router: Router,
@@ -55,10 +68,32 @@ export class CarritoStoreComponent implements OnInit, OnChanges, AfterViewInit  
     private productoService: ProductoService,
     private reconocimientoService: ReconocimientosService,
     private authService: AuthService,
-    private pedidosService: PedidosService
+    private pedidosService: PedidosService,
+    private colaboradorService: ColaboradoresService,
+    private configService: ConfigService
   ) {
     this.user = this.authService.getCookieUser();
     this.idEmpleadoLogeado = this.user.Id;
+
+    if(this.user != undefined) {
+      this.colaboradorService.getUserCompany(this.user.Id).subscribe(r => {
+        this.company = r;
+      });
+    }
+
+    this.configService.getConfig(this.user.AppId).subscribe((r: any) => {
+      r.forEach(element => {
+        if(element.key == 'unidad_valor') {
+          this.unidadValor = element.value;
+        }
+        if(element.key == 'accion_plural') {
+          this.accionPlural = element.value;
+        }
+        if(element.key == 'accion_singular') {
+          this.accionSingular = element.value;
+        }
+      });
+    });
     //Demo
     // localStorage.setItem('cart', JSON.stringify(this.demoItemsCart));
   }

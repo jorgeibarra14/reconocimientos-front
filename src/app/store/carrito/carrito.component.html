@@ -9,13 +9,13 @@
                 <a class="nav-link" href="javascript:void(0);" routerLink="/Inicio">Inicio</a>
             </li>
             <li class="nav-item" *ngIf="esUsuarioNormal">
-                <a class="nav-link" href="javascript:void(0);" routerLink="/mis-reconocimientos" >Mis reconocimientos</a>
+                <a class="nav-link" href="javascript:void(0);" routerLink="/mis-reconocimientos" >Mis {{accionPlural}}</a>
             </li>
             <li class="nav-item" *ngIf="esUsuarioNormal">
-                <a class="nav-link" href="javascript:void(0);" routerLink="/reconocer">Reconocer a otros</a>
+                <a class="nav-link" href="javascript:void(0);" routerLink="/reconocer">{{accionSingular}} a otros</a>
             </li>
             <li class="nav-item" *ngIf="!esUsuarioNormal">
-                <a class="nav-link" href="javascript:void(0);">Mis reconocimientos</a>
+                <a class="nav-link" href="javascript:void(0);">Mis {{accionPlural}}</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="javascript:void(0);" routerLink="/store">Tienda</a>
@@ -44,7 +44,7 @@
         </a>
     </div>
 </nav>
-<!-- 
+<!--
 <div  #menuCart >
     <button class="btn btn-light btn-lg mis-pedidos">
         Mis pedidos
@@ -77,7 +77,7 @@
                                     <td colspan="3">
                                         <div class="alert alert-secondary text-center" role="alert">
                                             No tienes productos
-                                        </div>                                          
+                                        </div>
                                     </td>
                                 </tr>
                                 <tr *ngFor="let item of itemsCart" class="product">
@@ -102,7 +102,7 @@
                                 </tr>
                                 <tr *ngIf="itemsCart.length > 0">
                                     <td class="w-25 subtotal">Subtotal</td>
-                                    <td class="w-75 subtotal-price">{{ subtotal }} bytes</td>
+                                    <td class="w-75 subtotal-price">{{ subtotal }} {{unidadValor}}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -117,7 +117,7 @@
                             <div class="row">
                                 <div class="col-md-12 puntos_disponibles">
                                     <div class="form-group pr-3 pl-3">
-                                        <p class="m-0">Bytes disponibles: <span>{{ puntosDisponibles }}</span></p>
+                                        <p class="m-0">{{unidadValor}} disponibles: <span>{{ puntosDisponibles }}</span></p>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -148,8 +148,8 @@
                                         <span *ngIf="!loading">Pedir</span>
                                     </button>
                                 </div>
-                                <div class="col-md-12 sin-bytes-suficientes" *ngIf="itemsCart.length > 0 && puntosDisponibles < subtotal">
-                                    <p>No tienes suficientes bytes para hacer el pedido.</p>
+                                <div class="col-md-12 sin-Válvulas-suficientes" *ngIf="itemsCart.length > 0 && puntosDisponibles < subtotal">
+                                    <p>No tienes suficientes {{unidadValor}} para hacer el pedido.</p>
                                 </div>
                             </div>
                         </div>

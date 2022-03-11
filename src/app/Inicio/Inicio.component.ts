@@ -1,3 +1,5 @@
+import { ConfigService } from './../services/config.service';
+import { ColaboradoresService } from './../services/colaboradores.service';
 import { Component, OnInit } from '@angular/core';
 // import { Router } from '@angular/router';
 import { ReconocimientosService } from '../services/reconocimientos.service';
@@ -36,16 +38,51 @@ export class InicioComponent implements OnInit {
   };
   ejecutivosTop2Al4: any[] = [];
   puntosDisponibles: Number = 0;
-
+  company: any = {
+    color: "",
+    isoLogo: "",
+    logo: "",
+    name: "",
+    prefix: ""
+  };
+  unidadValor = "";
+  accionSingular = '';
+  accionPlural = '';
+  banner = '';
   constructor(
     // private router: Router,
     private reconocimientosService: ReconocimientosService,
     // private reconocimientosService: ReconocimientosService,
-    private authService: AuthService
+    private authService: AuthService,
+    private colaboradorService: ColaboradoresService,
+    private configService: ConfigService
     ) {
-      this.user = this.authService.getCookieUser();   
-      this.idEmpleadoLogeado = this.user.Id ; 
+      this.user = this.authService.getCookieUser();
+      this.idEmpleadoLogeado = this.user.Id ;
       this.activo = true;
+
+      if(this.user != undefined) {
+        this.colaboradorService.getUserCompany(this.user.Id).subscribe(r => {
+          this.company = r;
+        });
+      }
+
+      this.configService.getConfig(this.user.AppId).subscribe((r: any) => {
+        r.forEach(element => {
+          if(element.key == 'unidad_valor') {
+            this.unidadValor = element.value;
+          }
+          if(element.key == 'accion_plural') {
+            this.accionPlural = element.value;
+          }
+          if(element.key == 'accion_singular') {
+            this.accionSingular = element.value;
+          }
+          if(element.key == 'banner_inicio') {
+            this.banner = element.value;
+          }
+        });
+      });
   }
 
   ngOnInit() {
