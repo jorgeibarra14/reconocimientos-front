@@ -111,4 +111,8 @@ export class InicioComponent implements OnInit {
       }
     });
   }
+
+  backgroundImage(url: string) {
+    return `background-image: url("${url}")`;
+  }
 }

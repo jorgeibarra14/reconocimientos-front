@@ -37,7 +37,7 @@
         </li>
         <li class="nav-item dropdown mr-2 mt-auto mb-auto">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            {{ user.Nombre }}
+            <span style="color: black;">{{ user.Nombre }}</span>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <a *ngIf="accesoAdmin" class="dropdown-item" routerLink="/admin">Administración</a>
@@ -51,7 +51,7 @@
           <app-avatar-icon
               size="l"
               type="rounded-circle"
-              bg_color="#00a3df"
+              bg_color="#19456E"
               text_color="white"
               [name]="user.Nombre"
               loading="lazy"
