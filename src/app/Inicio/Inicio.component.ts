@@ -15,7 +15,7 @@ export class InicioComponent implements OnInit {
 
   // puntosAcumulados: number = -1;
   // puntosDisponibles: number = -1;
-  idEmpleadoLogeado:Number;
+  idEmpleadoLogeado: string;
   activo:Boolean;
   loading: boolean = false;
   user: any = {
@@ -24,13 +24,13 @@ export class InicioComponent implements OnInit {
     Foto:""
   };
   //Pruebas
-  ejecutivos: any[] = [
-    { top: 1, nombre: "Nombre Ejecutivo 1", puesto: "Puesto Ejecutivo", ciudad: "Ciudad" },
-    { top: 2, nombre: "Nombre Ejecutivo 2", puesto: "Puesto Ejecutivo", ciudad: "Ciudad" },
-    { top: 3, nombre: "Nombre Ejecutivo 3", puesto: "Puesto Ejecutivo", ciudad: "Ciudad" },
-    { top: 4, nombre: "Nombre Ejecutivo 4", puesto: "Puesto Ejecutivo", ciudad: "Ciudad" },
-    { top: 5, nombre: "Nombre Ejecutivo 5", puesto: "Puesto Ejecutivo", ciudad: "Ciudad" },
-  ];
+  ejecutivos: any[] = [];
+  //   { top: 1, nombre: "Nombre Ejecutivo 1", puesto: "Puesto Ejecutivo", ciudad: "Ciudad" },
+  //   { top: 2, nombre: "Nombre Ejecutivo 2", puesto: "Puesto Ejecutivo", ciudad: "Ciudad" },
+  //   { top: 3, nombre: "Nombre Ejecutivo 3", puesto: "Puesto Ejecutivo", ciudad: "Ciudad" },
+  //   { top: 4, nombre: "Nombre Ejecutivo 4", puesto: "Puesto Ejecutivo", ciudad: "Ciudad" },
+  //   { top: 5, nombre: "Nombre Ejecutivo 5", puesto: "Puesto Ejecutivo", ciudad: "Ciudad" },
+  // ];
   ejecutivoTop1: any = {
     nombre: "",
     puesto: "",
@@ -83,6 +83,26 @@ export class InicioComponent implements OnInit {
           }
         });
       });
+
+      this.reconocimientosService.getTopReconocidos().subscribe(r => {
+        this.ejecutivos = r;
+        r.forEach((ej) => {
+          if(ej.top == 1){
+            this.ejecutivoTop1 = ej;
+          }else{
+            this.ejecutivosTop2Al4.push(ej);
+            this.ejecutivosTop2Al4.sort(function(a, b): number{
+              if(a.top > b.top ){
+                return 1;
+              }
+              if(a.top < b.top ){
+                return -1;
+              }
+              return 0;
+            });
+          }
+        });
+      });
   }
 
   ngOnInit() {
@@ -94,22 +114,7 @@ export class InicioComponent implements OnInit {
     /**
      * FALTA EL SERVICIO DE GET_EJECUTIVOS
      */
-    this.ejecutivos.forEach((ej) => {
-      if(ej.top == 1){
-        this.ejecutivoTop1 = ej;
-      }else{
-        this.ejecutivosTop2Al4.push(ej);
-        this.ejecutivosTop2Al4.sort(function(a, b): number{
-          if(a.top > b.top ){
-            return 1;
-          }
-          if(a.top < b.top ){
-            return -1;
-          }
-          return 0;
-        });
-      }
-    });
+
   }
 
   backgroundImage(url: string) {

@@ -28,7 +28,7 @@ export class MisReconocimientosComponent implements OnInit {
     nivelActual: any = { nivel: 1, img: "" };
     nivelSig: any = { nivel: 1, img: "" };
 
-    idEmpleadoLogeado: number;
+    idEmpleadoLogeado: string;
     puestoEmpleadoLogeado: string;
     activo: boolean;
     loading: boolean = true;

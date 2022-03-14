@@ -25,6 +25,6 @@ export class ColaboradoresService {
     return this.http.get<any>(`${API}/Colaboradores/ObtenerColaboradoresPorNombre?Nombre=` + nombre);
   }
   getUserCompany(id: string) {
-    return this.http.get<any>(`${APIItGov}/user/company/${id}`);
+    return this.http.get<any>(`${APIItGov}/companies/user/${id}`);
   }
 }

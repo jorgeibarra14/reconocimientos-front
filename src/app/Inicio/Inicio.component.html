@@ -55,12 +55,12 @@
                   type="rounded-circle"
                   bg_color="#00a3df"
                   text_color="white"
-                  [name]="ejecutivoTop1.nombre"
+                  [name]="ejecutivoTop1.nombreCompleto"
                 ></app-avatar-icon>
               </div>
-              <div class="nombre">{{ ejecutivoTop1.nombre }}</div>
+              <div class="nombre">{{ ejecutivoTop1.nombreCompleto }}</div>
               <div class="puesto">{{ ejecutivoTop1.puesto }}</div>
-              <div class="ciudad">{{ ejecutivoTop1.ciudad }}</div>
+              <div class="ciudad">{{ ejecutivoTop1.area }}</div>
             </div>
             <div class="col-lg-8 col-md-7">
               <div class="list-item-award" *ngFor="let ejecutivo of ejecutivosTop2Al4">
@@ -69,9 +69,9 @@
                   <img class="img-fluid" src="../../assets/img/inicio/Estrella_Bronce.png" *ngIf="ejecutivo.top == 3">
                   <img class="img-fluid" src="../../assets/img/inicio/Estrella_Azul.png" *ngIf="ejecutivo.top != 2 && ejecutivo.top != 3">
                 </div>
-                <div class="nombre">{{ ejecutivo.nombre }}</div>
+                <div class="nombre">{{ ejecutivo.nombreCompleto }}</div>
                 <div class="puesto">{{ ejecutivo.puesto }}</div>
-                <div class="ciudad">{{ ejecutivo.ciudad }}</div>
+                <div class="ciudad">{{ ejecutivo.area }}</div>
               </div>
             </div>
           </div>

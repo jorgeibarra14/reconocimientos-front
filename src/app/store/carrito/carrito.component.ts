@@ -27,7 +27,7 @@ export class CarritoStoreComponent implements OnInit, OnChanges, AfterViewInit  
     Id: 0,
     Foto:"",
   };
-  idEmpleadoLogeado: number;
+  idEmpleadoLogeado: string;
   datosUser: any = {
     nombreCompleto: "",
     puesto: "",

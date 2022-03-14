@@ -16,7 +16,7 @@ export class PuntosService {
     // console.log("Puntos Service");
   }
 
-  getPuntosDisponibles(pIdEmpleadoLogeado: Number, pActivo: Boolean): Observable<any> {
+  getPuntosDisponibles(pIdEmpleadoLogeado: string, pActivo: Boolean): Observable<any> {
     // console.log("Metodo getPuntosDisponibles()");
     this.urlService = `${API}/Puntos/ObtenerPuntosDisponibles?id_empleado=` + pIdEmpleadoLogeado + `&activo=` + pActivo + ``;
     return this.http.get<any>(this.urlService);

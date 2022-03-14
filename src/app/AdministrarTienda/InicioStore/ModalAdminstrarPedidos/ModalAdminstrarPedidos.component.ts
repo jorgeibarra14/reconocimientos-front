@@ -46,7 +46,7 @@ export class ModalAdminstrarPedidosComponent implements OnInit {
     ngOnInit() {
         console.log(this.data.reconocimientoId);
         if (this.data.tipo == 0) {
-            this.puntoservice.getPuntosDisponibles(Number(this.data.idEmpleadoEnvia), this.activo).subscribe(resp =>
+            this.puntoservice.getPuntosDisponibles(this.data.idEmpleadoEnvia, this.activo).subscribe(resp =>
                 this.puntosDisponibles = resp);
         }
     }

@@ -17,7 +17,7 @@ export class ReconocerAOtrosComponent implements OnInit {
     filtroPersonas : any[];
     buscado:boolean = false;
 
-    idEmpleadoLogeado: number;
+    idEmpleadoLogeado: string;
     puestoEmpleadoLogeado: string;
     activo: boolean;
     loading: boolean = true;

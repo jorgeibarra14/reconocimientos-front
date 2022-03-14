@@ -13,40 +13,39 @@ export class ReconocimientosService {
 
   constructor( private http: HttpClient ) { }
 
-  getPuntosAcumulados(pIdEmpleadoLogeado: Number, pActivo: Boolean): Observable<any> {
+  getPuntosAcumulados(pIdEmpleadoLogeado: string, pActivo: Boolean): Observable<any> {
     // console.log("Reconocimientos.service - getPuntosAcumulados()");
     this.urlService = `${API}/Reconocimiento/ObtenerPuntosAcumulados?id_empleado_recibe=` +
       pIdEmpleadoLogeado + `&activo=` + pActivo + ``;
     return this.http.get<any>(this.urlService);
   }
-  getMisReconocimientos(pIdEmpleadoLogeado: Number, pActivo: Boolean, pPuestoEmpleadoLogeado: string): Observable<any> {
+  getMisReconocimientos(pIdEmpleadoLogeado: string, pActivo: Boolean, pPuestoEmpleadoLogeado: string): Observable<any> {
     // console.log("Reconocimientos.service - getMisReconocimientos()");
     return this.http.get<any>(`${API}/Reconocimiento/ObtenerMisReconocimientos?id_empleado_recibe=` +
       pIdEmpleadoLogeado + `&activo=` + pActivo + `&nombrePuesto=` + pPuestoEmpleadoLogeado + ``);
   }
 
-  getMisReconocimientosComp(pIdEmpleadoLogeado: Number, pNombreCompetencia: string, pActivo: Boolean): Observable<any> {
+  getMisReconocimientosComp(pIdEmpleadoLogeado: string, pNombreCompetencia: string, pActivo: Boolean): Observable<any> {
     // console.log("Reconocimientos.service - getMisReconocimientosComp()");
     return this.http.get<any>(`${API}/Reconocimiento/ObtenerMisReconocimientosComp?id_empleado_recibe=` + pIdEmpleadoLogeado +
       `&nombreCompetencia=` + pNombreCompetencia + `&activo=` + pActivo + ``);
   }
 
-  getReconocimientosEntregados(pIdEmpleadoLogeado: Number, pActivo: Boolean, pPuestoEmpleadoLogeado: string): Observable<any> {
+  getReconocimientosEntregados(pIdEmpleadoLogeado: string, pActivo: Boolean, pPuestoEmpleadoLogeado: string): Observable<any> {
     // console.log("Reconocimientos.service - getReconocimientosEntregados()");
     return this.http.get<any>(`${API}/Reconocimiento/ObtenerReconocimientosEntregados?id_empleado_envia=` +
       pIdEmpleadoLogeado + `&activo=` + pActivo + `&nombrePuesto=` + pPuestoEmpleadoLogeado + ``);
   }
 
-  getReconocimientosEntregadosComp(pIdEmpleadoLogeado: Number, pNombreCompetencia: string, pActivo: Boolean): Observable<any> {
+  getReconocimientosEntregadosComp(pIdEmpleadoLogeado: string, pNombreCompetencia: string, pActivo: Boolean): Observable<any> {
     // console.log("Reconocimientos.service - getReconocimientosEntregadosComp()");
     return this.http.get<any>(`${API}/Reconocimiento/ObtenerReconocimientosEntregadosComp?id_empleado_envia=` +
       pIdEmpleadoLogeado + `&nombreCompetencia=` + pNombreCompetencia + `&activo=` + pActivo + ``);
   }
 
-  getEmpleadosPorNombre(pNombre: string,idEmpleadoLogeado: Number): Observable<any> {
+  getEmpleadosPorNombre(pNombre: string, idEmpleadoLogeado: string, companyId: number): Observable<any> {
     // console.log("Reconocimientos.service - getEmpleadosNombre()");
-    return this.http.get<any>(`${API}/Reconocimiento/ObtenerEmpleadosReconocer?Nombre=` + 
-    pNombre + `&id_empleado_envia=` + idEmpleadoLogeado + ` `);
+    return this.http.get<any>(`${API}/Autorizadores/ObtenerInformacionODS/${idEmpleadoLogeado}/${companyId}`);
   }
 
   getEmpleadosPorId(pId: string): Observable<any> {
@@ -59,7 +58,7 @@ export class ReconocimientosService {
     return this.http.post<any>(`${API}/Reconocimiento/Reconocer`, value);
   }
 
-  getReconocimientosPorAutorizar(pIdEmpleadoLogeado: Number, pActivo: Boolean): Observable<any> {
+  getReconocimientosPorAutorizar(pIdEmpleadoLogeado: string, pActivo: Boolean): Observable<any> {
     // console.log("Reconocimientos.service - getReconocimientosEntregados()");
     return this.http.get<any>(`${API}/Reconocimiento/ObtenerReconocimientosPorAutorizar?id_empleado_autorizador=` +
       pIdEmpleadoLogeado + `&activo=` + pActivo + ``);
@@ -75,10 +74,14 @@ export class ReconocimientosService {
     return this.http.post<any>(`${API}/Reconocimiento/AprobarReconocimiento`, value);
   }
 
-  getReconocimientoEntregado(pIdEmpleadoLogeado: Number, pIdEmpleadorecibe: string, pActivo: Boolean): Observable<any> {
+  getReconocimientoEntregado(pIdEmpleadoLogeado: string, pIdEmpleadorecibe: string, pActivo: Boolean): Observable<any> {
     // console.log("Reconocimientos.service - getReconocimientoEntregado()");
     this.urlService = `${API}/Reconocimiento/ValidarReconociminetoEntregado?pId_empleado_recibe=` + pIdEmpleadorecibe + 
     `&id_empleado_envia=` + pIdEmpleadoLogeado + `&activo=` + pActivo + ``;
     return this.http.get<any>(this.urlService);
+  }
+
+  getTopReconocidos() {
+    return this.http.get<any>(`${API}/Reconocimiento/ObtenerTopReconocidos`);
   }
 }

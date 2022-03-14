@@ -13,7 +13,7 @@ export class ConfigService {
 constructor(private http: HttpClient) { }
 
 getConfig(appId: number) {
-  return this.http.get(`${APIItGov}/applications/config/${appId}`);
+  return this.http.get(`${APIItGov}/ApplicationsConfigurations/${appId}`);
 }
 
 }

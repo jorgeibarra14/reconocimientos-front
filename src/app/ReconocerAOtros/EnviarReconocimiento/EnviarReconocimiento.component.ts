@@ -8,6 +8,7 @@ import { AuthService } from "../../services/auth.service";
 import { stringify } from '@angular/compiler/src/util';
 import { valHooks } from 'jquery';
 import Swal from 'sweetalert2';
+import { ColaboradoresService } from 'src/app/services/colaboradores.service';
 
 @Component({
     selector: 'ho1a-EnviarReconocimiento',
@@ -28,21 +29,37 @@ export class EnviarReconocimientoComponent implements OnInit {
     control = new FormControl();
     empleadoSeleccionado: string;
     puntosDisponibles: number = 0;
-    idEmpleadoLogeado: number;
+    idEmpleadoLogeado: string;
     existeReconocimientoEntregado: number = 0;
 
     loading: boolean = true;
-
+    company: any = {
+        color: "",
+        isoLogo: "",
+        logo: "",
+        name: "",
+        prefix: ""
+      };
     constructor(
         private fb: FormBuilder,
         private competenciaService: CompetenciasService,
         private reconocimientosService: ReconocimientosService,
         private puntoservice: PuntosService,
         private datePipe: DatePipe,
-        private authService: AuthService
+        private authService: AuthService,
+        private colaboradorService: ColaboradoresService
     ) {
         this.activo = true;
         const user = this.authService.getCookieUser();
+        if(user != undefined) {
+            this.colaboradorService.getUserCompany(user.Id).subscribe(r => {
+                this.reconocimientosService.getEmpleadosPorNombre('', this.idEmpleadoLogeado, r.id)
+                    .subscribe(resp => {
+                        this.resultadoBusqueda = resp
+                        this.resultadoBusqueda2 = resp
+                    } );
+            });
+          }
         this.idEmpleadoLogeado = user.Id;
 
         this.formulario = this.fb.group({
@@ -55,12 +72,7 @@ export class EnviarReconocimientoComponent implements OnInit {
             fecha_registro: this.transformDate(Date.now())
         });
 
-        this.reconocimientosService.getEmpleadosPorNombre('as', this.idEmpleadoLogeado)
-        .subscribe(resp => {
-
-            this.resultadoBusqueda = resp
-            this.resultadoBusqueda2 = resp
-        } );
+        
     }
 
     ngOnInit() {

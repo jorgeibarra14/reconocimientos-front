@@ -22,7 +22,7 @@ export class CatalogoComponent implements OnInit {
     Id: 0,
     Foto:""
   };
-  idEmpleadoLogeado:Number;
+  idEmpleadoLogeado:string;
 
   tituloCat: any = "Todos los productos";
   idCat: number = 0;

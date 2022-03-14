@@ -15,7 +15,7 @@ import Swal from 'sweetalert2';
 })
 export class AdminInicioComponent implements OnInit {
 
-    idEmpleadoLogeado: Number;
+    idEmpleadoLogeado: string;
     activo: Boolean;
     error: string;
 
