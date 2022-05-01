@@ -124,7 +124,7 @@
                   (click)="nivelDefault()">
                   <option value="-1">--Selecciona--</option>
                   <option *ngFor="let competencia of competencias" value="{{competencia.id}}">{{
-                                        competencia.nombre }}</option>
+                                        competencia.name }}</option>
                 </select>
                 <div *ngIf="formulario.controls['id_competencia'].invalid" class="invalid-feedback">
                   <div *ngIf="formulario.controls['id_competencia'].errors.notAllow">
