@@ -62,7 +62,8 @@
         background-color: #e9e9ec;
         border-radius: 15px;
         .title{
-            color: #004b70;
+            color:#0B3B59
+;
             display: inline-grid;
             font-size: 26px;
             font-weight: bold;
@@ -72,7 +73,8 @@
         .img{
             display: inline-block;
             width: 100px;
-            background: #004b70;
+            background:#0B3B59
+;
             border-radius: 50%;
             height: 100px;
             padding: 20px 15px;
@@ -87,13 +89,13 @@
                 margin-top: 10px;
                 margin-bottom: 10px;
             }
-        }  
+        }
         // .col{
         //     display: inline-grid;
         //     align-items: center;
         //     margin-top: 10px;
         // }
-    
+
         // .img-inline-box{
         //     display: inline-grid;
         //     background-size: cover;
@@ -124,22 +126,24 @@
         //         opacity: 0.6;
         //     }
         //     &.box-1{
-        //         background-image: url('../../../assets/img/Iconos_Reconocimientos_Persona.png');         
+        //         background-image: url('../../../assets/img/Iconos_Reconocimientos_Persona.png');
         //     }
         //     &.box-2{
-        //         background-image: url('../../../assets/img/Iconos_Reconocimientos_Situación.png');  
+        //         background-image: url('../../../assets/img/Iconos_Reconocimientos_Situación.png');
         //     }
         //     &.box-3{
-        //         background-image: url('../../../assets/img/Iconos_Reconocimientos_Conducta.png');   
+        //         background-image: url('../../../assets/img/Iconos_Reconocimientos_Conducta.png');
         //     }
         //     &.box-4{
-        //         background-image: url('../../../assets/img/Iconos_Reconocimientos_Resultados.png');  
+        //         background-image: url('../../../assets/img/Iconos_Reconocimientos_Resultados.png');
         //     }
-        // } 
+        // }
     }
 }
 .formulario{
-    background: linear-gradient(to bottom, #004b70, #263858);
+    background: #0B3B59
+;
+
     margin-top: 50px;
     border-radius: 15px;
     .enviar{
@@ -199,9 +203,9 @@
         }
         .invalid-feedback{
             display: block !important;
-            // text-shadow: 1px 1px 1px yellow; 
-            color: yellow;   
-            font-weight: bold;  
+            // text-shadow: 1px 1px 1px yellow;
+            color: yellow;
+            font-weight: bold;
             font-size: 14px;
         }
         .loading-spinner{

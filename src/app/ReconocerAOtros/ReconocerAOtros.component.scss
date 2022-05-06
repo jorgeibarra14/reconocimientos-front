@@ -11,7 +11,7 @@
         font-size: 32px;
         border-bottom: none;
     }
-    
+
     .descripcion{
         color: white;
         font-size: 22px;
@@ -25,7 +25,9 @@
 }
 .sidebar{
     .valores{
-        background: linear-gradient(to bottom, #004b70, #263858);
+        background: #0B3B59
+;
+
         border-radius: 15px;
     }
     h1{
@@ -83,12 +85,12 @@
     margin-top: 35px;
     text-align: center;
     .reconocer{
-         background-color: #3cd52e;    
+         background-color: #3cd52e;
         color: white;
         font-weight: bold;
         font-size: 40px;
         &:hover{
-         background-color: #0B3B59; 
+         background-color: #0B3B59;
         }
     }
 }

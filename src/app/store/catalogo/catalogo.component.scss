@@ -71,7 +71,9 @@
         }
     }
     .categorias-div{
-        background: linear-gradient(to bottom, #004b70, #263858);
+        background: #0B3B59
+;
+
         border-radius: 15px;
         .categorias{
             .list-group-item{
@@ -85,7 +87,7 @@
                     a{
                         color: #3CD52E !important;
                     }
-                } 
+                }
             }
             .img{
                 display: inline-block;
