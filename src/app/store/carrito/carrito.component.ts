@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild, Renderer2, Input, OnChanges, SimpleChanges, AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, Renderer2, Input, OnChanges, SimpleChanges, AfterViewInit, ChangeDetectorRef, Testability } from '@angular/core';
 import { Router, Route } from '@angular/router';
 
 import { AuthService } from 'src/app/services/auth.service';
@@ -21,7 +21,7 @@ export class CarritoStoreComponent implements OnInit, OnChanges, AfterViewInit  
   @ViewChild('menuCart') menuCart: ElementRef;
   @Input() itemAddCart: any = {};
   itemsCartDiffer: any; // Variable clonada de itemsCart para saber si cambió su contenido
-
+  habilitarBoton = false;
   user: any = {
     Nombre: "",
     Id: 0,
@@ -32,7 +32,8 @@ export class CarritoStoreComponent implements OnInit, OnChanges, AfterViewInit  
     nombreCompleto: "",
     puesto: "",
     area: "",
-    sistema: ""
+    sistema: "",
+    celular: null
   };
   puntosDisponibles: number = 0;
   esUsuarioNormal: boolean = true;
@@ -104,7 +105,7 @@ export class CarritoStoreComponent implements OnInit, OnChanges, AfterViewInit  
           .subscribe(
             resp => {
               this.datosUser = resp[0];
-
+              this.datosUser.celular = null
               this.mostrarEnlaces();
               // console.log(this.datosUser);
               // this.loading = false;
@@ -338,15 +339,22 @@ export class CarritoStoreComponent implements OnInit, OnChanges, AfterViewInit  
       };
       productos.push(tmp);
     });
+    if (this.probarEntrada('^[0-9]*$',this.datosUser.celular)) {
+      this.habilitarBoton = true;
+    } else {
+      this.habilitarBoton = false;
+    }
+
     let envio = {
       "id_solicitante": this.idEmpleadoLogeado,
       "nombre_solicitante": this.datosUser.nombreCompleto,
       "puesto_solicitante": this.datosUser.puesto,
       "area_solicitante": this.datosUser.area,
       "sistema_solicitante": this.datosUser.sistema,
-      "productos": productos
+      "productos": productos,
+      "celularEmpleado": parseInt(this.datosUser.celular)
     }
-    // console.log(envio);
+    console.log(this.datosUser);
     this.pedidosService.addPedidos(envio)
         .subscribe(
           resp => {
@@ -387,6 +395,18 @@ export class CarritoStoreComponent implements OnInit, OnChanges, AfterViewInit  
             this.loading = false;
           }
         )
+  }
+  probarEntrada(regexp, cadena){
+    var subcadena;
+    var res = false;
+    if (regexp.test(cadena)) {
+      subcadena = ' contiene ';
+      res = true
+    } else {
+      subcadena = ' no contiene ';
+      res = false;
+    }
+    return res
   }
   //Validar link a mostrar
   mostrarEnlaces(){

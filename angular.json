@@ -136,5 +136,8 @@
       }
     }
   },
-  "defaultProject": "ReconocimientosApp"
+  "defaultProject": "ReconocimientosApp",
+  "cli": {
+    "analytics": "f4235102-a140-4f1f-9ce2-3716aab74355"
+  }
 }
