@@ -66,8 +66,8 @@
               <div class="list-item-award" *ngFor="let ejecutivo of ejecutivosTop2Al4">
                 <div class="img-star">
                   <img class="img-fluid" src="../../assets/img/inicio/Estrella_Plata.png" *ngIf="ejecutivo.top == 2">
-                  <img class="img-fluid" src="../../assets/img/inicio/Estrella_Bronce.png" *ngIf="ejecutivo.top == 3">
-                  <img class="img-fluid" src="../../assets/img/inicio/Estrella_Azul.png" *ngIf="ejecutivo.top != 2 && ejecutivo.top != 3">
+                  <img class="img-fluid" src="../../assets/img/inicio/Estrella_Plata.png" *ngIf="ejecutivo.top == 3">
+                  <img class="img-fluid" src="../../assets/img/inicio/Estrella_Plata.png" *ngIf="ejecutivo.top != 2 && ejecutivo.top != 3">
                 </div>
                 <div class="nombre">{{ ejecutivo.nombreCompleto }}</div>
                 <div class="puesto">{{ ejecutivo.puesto }}</div>
