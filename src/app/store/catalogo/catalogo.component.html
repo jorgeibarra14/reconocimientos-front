@@ -34,13 +34,17 @@
                         <ul class="list-group categorias">
                             <li class="list-group-item" [class]="(tituloCat == 'Todos los productos')?'current':''">
                                 <div class="img">
-                                    <img src="../../../assets/img/demo/tienda-icon.png" onerror="this.src='../../../assets/img/demo/notavailable.png'" class="img-fluid">
+                                    <div mat-card-avatar class="example-header-image"></div>
+
+                                    <!-- <img src="../../../assets/img/demo/tienda-icon.png" onerror="this.src='../../../assets/img/demo/notavailable.png'" class="img-fluid"> -->
                                 </div>
                                 <a href="javascript:void(0);"  routerLink="/store">Todos los productos</a>
                             </li>
                             <li class="list-group-item" *ngFor="let cat of categorias" [class]="(tituloCat == cat.nombre)?'current':''">
                                 <div class="img">
-                                    <img [src]="cat.img" onerror="this.src='../../../assets/img/demo/notavailable.png'" class="img-fluid">
+                                    <div mat-card-avatar class="example-header-image"></div>
+
+                                    <!-- <img [src]="cat.img" onerror="this.src='../../../assets/img/demo/notavailable.png'" class="img-fluid"> -->
                                 </div>
                                 <a href="javascript:void(0);" [routerLink]="'/store/'+cat.id">{{ cat.nombre }}</a>
                             </li>

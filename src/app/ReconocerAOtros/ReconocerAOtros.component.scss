@@ -23,6 +23,13 @@
 .bg-principal>.row{
     min-height: calc(100vh - 100px);
 }
+h1{
+    color: #3c404c;
+    font-weight: 900;
+    font-size: 28px;
+    border-bottom: 1px solid #0B3B59;
+    text-transform: uppercase;
+}
 .sidebar{
     .valores{
         background: #0B3B59

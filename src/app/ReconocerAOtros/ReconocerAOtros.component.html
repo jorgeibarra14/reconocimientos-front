@@ -11,12 +11,15 @@
 </div>
 <div class="container-fluid bg-principal">
     <div class="row">
-        <div class="col-md-9 order-1 order-md-0">
+        <div class="col-md-12 order-1 order-md-0">
             <div class="row">
                 <div class="col-md-12 boton-reconocer">
                     <div class="col-md-12 mt-2 mb-2">
-                        <a class="btn btn-large reconocer" routerLink='enviar-reconocimiento'>Aplaudir</a>
+                        <a class="btn btn-large reconocer" routerLink='enviar-reconocimiento'>Aplaudir a alguien</a>
                     </div>
+                </div>
+                <div class="col-md-12">
+                    <h1 class="mt-3 mb-3 pb-3">Aplausos otorgados</h1>
                 </div>
                 <div class="col-md-12 pt-4 competencias">
                     <div class="row justify-content-center">
@@ -47,60 +50,8 @@
                         </div>
                         <div *ngIf="competencias === undefined || competencias.length == 0"
                             class="col-md-12 text-center">
-                            <div class="alert alert-secondary" role="alert">Aún no has reconocido a alguien.</div>
+                            <div class="alert alert-secondary" role="alert">Aún no has aplaudido a alguien.</div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 sidebar order-0 order-md-1 pb-5 pt-5">
-            <div class="row valores pb-5">
-                <div class="col-md-12">
-                    <h1 style="padding: 10px; margin: 10px;">VALOR</h1>
-                </div>
-                <div class="img-c row">
-                    <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-                        <img src="../assets/img/mis_reconocimientos/Disquette.png" class="img-fluid ml-2">
-                    </div>
-                    <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 mt-3">
-                        <span style="display: block; margin-left: 20px; font-weight:normal;"class="titulo">50 Válvulas</span>
-                        <span style="display: block; margin-left: 20px;" class="titulo">$500 mxn</span>
-                    </div>
-                </div>
-                <div class="img-c row">
-                    <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-                        <img src="../assets/img/mis_reconocimientos/USB.png" class="img-fluid ml-2">
-                    </div>
-                    <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 mt-3">
-                        <span style="display: block; margin-left: 20px; font-weight:normal;"class="titulo">99 Válvulas</span>
-                        <span style="display: block; margin-left: 20px;" class="titulo">$990 mxn</span>
-                    </div>
-                </div>
-                <div class="img-c row">
-                    <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-                        <img src="../assets/img/mis_reconocimientos/Disco_duro.png" class="img-fluid ml-2">
-                    </div>
-                    <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 mt-3">
-                        <span style="display: block; margin-left: 20px; font-weight:normal;"class="titulo">499 Válvulas<br>(1 mega)</span>
-                        <span style="display: block; margin-left: 20px;" class="titulo">$4990 mxn</span>
-                    </div>
-                </div>
-                <div class="img-c row">
-                    <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-                        <img src="../assets/img/mis_reconocimientos/Servidor.png" class="img-fluid ml-2">
-                    </div>
-                    <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 mt-3">
-                        <span style="display: block; margin-left: 20px; font-weight:normal;"class="titulo">599 Válvulas<br>(5 megas)</span>
-                        <span style="display: block; margin-left: 20px;" class="titulo">$5990 mxn</span>
-                    </div>
-                </div>
-                <div class="img-c row">
-                    <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-                        <img src="../assets/img/mis_reconocimientos/Megacable_Data_Center.png" class="img-fluid ml-2">
-                    </div>
-                    <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 mt-3">
-                        <span style="display: block; margin-left: 20px; font-weight:normal;"class="titulo">+600 Válvulas<br>(1 tera)</span>
-                        <span style="display: block; margin-left: 20px;" class="titulo">+$6000 mxn</span>
                     </div>
                 </div>
             </div>
