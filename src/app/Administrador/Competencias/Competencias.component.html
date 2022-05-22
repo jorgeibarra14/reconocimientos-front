@@ -24,38 +24,45 @@
                     </div>
                 </ng-template>
                 <kendo-grid-column
-                    field="nombre"
-                    [title]="'Competencia'"
+                    field="concepto"
+                    [title]="'Concepto'"
                     [width]="100"
                     [headerStyle]="{'color': '#3C404C','line-height': '1em', 'font-weight': 'bold'}"
                     [style]="{'background-color': '#FFF','color': '#000'}"
                     [footerStyle]="{'background-color': '#0B3B59','color': '#fff'}">
                 </kendo-grid-column>
+                
                 <kendo-grid-column
-                    field="descripcion"
-                    [title]="'Descripción'"
+                    field="nombre"
+                    [title]="'Empleado'"
                     [width]="220"
                     [headerStyle]="{'color': '#3C404C','line-height': '1em', 'font-weight': 'bold'}"
                     [style]="{'background-color': '#FFF','color': '#000'}"
                     [footerStyle]="{'background-color': '#0B3B59','color': '#fff'}">
                 </kendo-grid-column>
                 <kendo-grid-column
-                    field="nivel"
-                    [title]="'Nivel'"
-                    [width]="50"
+                    field="puesto"
+                    [title]="'Puesto'"
+                    [width]="220"
+                    [headerStyle]="{'color': '#3C404C','line-height': '1em', 'font-weight': 'bold'}"
+                    [style]="{'background-color': '#FFF','color': '#000'}"
+                    [footerStyle]="{'background-color': '#0B3B59','color': '#fff'}">
+                </kendo-grid-column>
+                <kendo-grid-column
+                    field="otorga"
+                    [title]="'Otorga'"
+                    [width]="220"
                     [headerStyle]="{'color': '#3C404C','line-height': '1em', 'font-weight': 'bold'}"
                     [style]="{'background-color': '#FFF','color': '#000'}"
                     [footerStyle]="{'background-color': '#0B3B59','color': '#fff'}">
                 </kendo-grid-column>
                 <kendo-grid-column 
-                    [title]="'Imagen'"
-                    [width]="100"
+                    [title]="'Puntos'"
+                    field="puntos"
+                    [width]="50"
                     [headerStyle]="{'color': '#3C404C','line-height': '1em', 'font-weight': 'bold'}"
                     [style]="{'background-color': '#FFF','color': '#000'}"
                     [footerStyle]="{'background-color': '#0B3B59','color': '#fff'}">
-                    <ng-template kendoGridCellTemplate let-dataItem>
-                        <img [src]="dataItem.img" class="img-fluid" style="max-width: 50px;">
-                    </ng-template>
                 </kendo-grid-column>
                 <kendo-grid-column
                     [title]="'Acciones'"

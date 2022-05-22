@@ -5,6 +5,8 @@ import { AuthService } from "../../services/auth.service";
 import { CompetenciasService } from "../../services/competencias.service";
 
 import Swal from 'sweetalert2';
+import { ColaboradoresService } from 'src/app/services/colaboradores.service';
+import { ReconocimientosService } from 'src/app/services/reconocimientos.service';
 
 @Component({
     selector: 'ho1a-ModalAdminEditarCompetencias',
@@ -33,59 +35,57 @@ export class ModalAdminEditarCompetencias implements OnInit {
     nivelSeleccionado: string;
     tipo: boolean = false;
     titulo: string;
+    resultadoBusqueda: any;
+    idEmpleadoLogeado: any;
+    resultadoBusqueda2: any;
+    conceptos: any = [
+        {id: 1, descripcion: 'Carrera 1Km', puntos: 100},
+        {id: 2, descripcion: 'Concurso Innovacion', puntos: 150},
+        {id: 3, descripcion: 'Empleado del Mes', puntos: 200},
+    ];
 
     constructor(
         @Inject(MAT_DIALOG_DATA) public data: any,
         private dialogRef: MatDialogRef<ModalAdminEditarCompetencias>,
         private fb: FormBuilder,
+        private authService: AuthService,
+        private colaboradorService: ColaboradoresService,
+        private reconocimientosService: ReconocimientosService,
         private competenciasService: CompetenciasService
     ) {
         this.formulario = this.fb.group({
-            competencia: [this.data.nombre, [Validators.required, Validators.maxLength(50)]],
-            descripcion: [this.data.descripcion, [Validators.required, Validators.maxLength(1000)]],
-            // nivel: [{ value: '-1', disabled: true }, [Validators.required, this.nivelValidator.bind(this)]],
-            nivel: [{ value: '-1', disabled: true }],
-            archivo: [this.data.img, [Validators.required, this.vacioValidator.bind(this)]]
+            empleado: [, [Validators.required, Validators.min(1)]],
+            descripcion: [, [Validators.required, Validators.min(1)]],
+            concepto: [, [Validators.required, Validators.min(1)]],
+           
         });
-        this.file = this.data.img;
-        this.idCompetencia = this.data.id;
-        this.nivelSeleccionado = this.data.nivel;
+        
+        const user = this.authService.getCookieUser();
+        if(user != undefined) {
+            this.colaboradorService.getUserCompany(user.Id).subscribe(r => {
+                this.reconocimientosService.getEmpleadosPorNombre('', this.idEmpleadoLogeado, r.id)
+                    .subscribe(resp => {
+                        this.resultadoBusqueda = resp
+                        this.resultadoBusqueda2 = resp
+                    } );
+            });
+          }
+        this.idEmpleadoLogeado = user.Id;
 
     }
 
-    nivelValidator(control: FormControl) {
-        let value = control.value;
-        if (value && value != "-1" && this.data.tipo == 2) {
-            let result = this.niveles.find(el => el.descripcion != "--Selecciona--");
-            if (!result) {
-                return {
-                    notAllow: true
-                }
-            } else {
-                return null;
-            }
-        }
-        return { notAllow: true };
-    }
+    displayFn(user: any): string {
+        return user && user.nombreCompleto ? user.nombreCompleto : '';
+      }
 
-    vacioValidator(control: FormControl) {
-        let value = control.value;
-        if (value && value.length > 0 && value.trim() != "") {
-            return null;
-        }
-        return { vacio: true };
-    }
-
+    
     ngOnInit() {
         if (this.data.tipo == 1) {
-            this.formulario.controls['nivel'].disable();
-            this.tipo = false;
             this.titulo = "Editar competencia";
         }
         else {
-            this.formulario.controls['nivel'].enable();
-            this.tipo = true;
-            this.titulo = "Agregar competencia";
+
+            this.titulo = "Agregar puntos";
         }
     }
 

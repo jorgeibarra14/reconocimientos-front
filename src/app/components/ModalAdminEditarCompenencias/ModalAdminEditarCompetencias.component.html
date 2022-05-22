@@ -1,90 +1,47 @@
-<mat-dialog-title class="row">
-    <div class="col-md-10"></div>
-    <div class="col-md-2">
-        <button mat-dialog-close class="btn btn-cancelar btn-sm rounded mt-3" style="width: 35px; height: 35px; padding-left: 0px;
-        padding-right: 0px;" #buttonClose>
-            <i class="fas fa-window-close fa-lg"></i>
-        </button>
-    </div>
-</mat-dialog-title>
-<mat-dialog-content class="row">
-    <h2>
-        <div class="w-100">
-            {{titulo}}
-        </div>
-    </h2>
-    <form [formGroup]="formulario" novalidate>
-        <label class="col-md-12" for="competencia">Competencia</label>
-        <div>
-            <input type="text" class="form-control" id="competencia" formControlName="competencia">
-            <i class="fas fa-pencil-alt"></i>
-        </div>
-        <div *ngIf="formulario.controls['competencia'].invalid" class="invalid-feedback">
-            <div *ngIf="formulario.controls['competencia'].errors.required">
-                El campo es requerido.
-            </div>
-            <div *ngIf="formulario.controls['competencia'].errors.maxlength">
-                El texto es muy largo.
-            </div>
-        </div>
-        <label class="col-md-12" for="descripcion">Descripción</label>
-        <div>
-            <textarea class="form-control" id="descripcion" formControlName="descripcion"></textarea>
-            <i class="fas fa-pencil-alt"></i>
-        </div>
-        <div *ngIf="formulario.controls['descripcion'].invalid" class="invalid-feedback">
-            <div *ngIf="formulario.controls['descripcion'].errors.required">
-                El campo es requerido.
-            </div>
-            <div *ngIf="formulario.controls['descripcion'].errors.maxlength">
-                El texto es muy largo.
-            </div>
-        </div>
-        <label class="col-md-12" for="nivel" *ngIf="!tipo">Nivel</label>
-        <div *ngIf="!tipo">
-            <select class="form-control" id="nivel" formControlName="nivel">
-                <option value="-1">--Selecciona--</option>
-                <option *ngFor="let nivel of niveles" [selected]="nivel.descripcion === nivelSeleccionado">
-                    {{nivel.descripcion}}
-                </option>
-            </select>
-            <i class="fas fa-pencil-alt" *ngIf="tipo"></i>
-        </div>
-        <div *ngIf="formulario.controls['nivel'].invalid && !tipo" class="invalid-feedback">
-            <div *ngIf="formulario.controls['nivel'].errors.required">
-                El campo es requerido.
-            </div>
-        </div>
-        <div *ngIf="formulario.controls['nivel'].invalid && !tipo" class="invalid-feedback">
-            <div *ngIf="formulario.controls['nivel'].errors.notAllow">
-                Selecciona una opción correcta.
-            </div>
-        </div>
-        <label class="col-md-12" for="archivo">Archivo</label>
-        <div>
-            <input type="file" class="form-control-file" id="archivo" formControlName="archivo"
-                (change)="fileChanged($event)">
-            <i class="fas fa-pencil-alt"></i>
-        </div>
-        <div *ngIf="formulario.controls['archivo'].invalid && tipo" class="invalid-feedback">
-            <div *ngIf="formulario.controls['archivo'].errors.required">
-                El campo es requerido.
-            </div>
-        </div>
-    </form>
+<h2 mat-dialog-title>{{titulo}}</h2>
+<div mat-dialog-content>
+    <form [formGroup]="formulario">
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Empleado</mat-label>
+            <input type="text"
+                   placeholder="Buscar..."
+                   aria-label="Number"
+                   matInput
+                   [formControlName]="'empleado'"
+                   [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+              <mat-option *ngFor="let option of resultadoBusqueda" [value]="option">
+                {{option.nombreCompleto}}
+              </mat-option>
+            </mat-autocomplete>
+            <mat-error>El Empleado es obligatorio</mat-error>
+          </mat-form-field>
 
-    <div class="loading-spinner" *ngIf="enviado">
-        <div id="bg-loading"></div>
-        <div class="spinner-border" role="status">
-            <span class="sr-only">Loading...</span>
-        </div>
-    </div>
-</mat-dialog-content>
-<mat-dialog-actions align="end" *ngIf="!enviado">
-    <!-- <button mat-button mat-dialog-close class="btn btn-secondary" #buttonClose>Cancelar</button> -->
-    <!-- <button mat-button cdkFocusInitial class="btn btn-success ml-3" #buttonSend (click)="guardar()">Guardar</button> -->
-    <button cdkFocusInitial class="btn btn-guardar ml-1 mr-1 mt-1 mb-1"
-    style="color: white; height: 35px; min-width: 110px; font-size: 14px;" #buttonSend (click)="guardar()"><i
-        class="fas fa-save ml-0 mt-0 fa-lg"></i>
-    Guardar</button>
-</mat-dialog-actions>
+          <mat-form-field appearance="outline">
+            <mat-label>Concepto</mat-label>
+            <mat-select [formControlName]="'concepto'" name="concepto">
+              <mat-option *ngFor="let c of conceptos" [value]="c.id">
+                {{c.descripcion}} - {{c.puntos}} Pts
+              </mat-option>
+            </mat-select>
+            <mat-error>El concepto es obligatorio</mat-error>
+
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Descripcion</mat-label>
+            <textarea type="text"
+                   placeholder="Descripcion"
+                   aria-label="Number"
+                   rows="4"
+                   matInput
+                   [formControlName]="'descripcion'"></textarea>
+                   <mat-error>La descripcion es obligatoria</mat-error>
+
+          </mat-form-field>
+    </form>
+</div>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button mat-raised-button color="primary" [mat-dialog-close]="true" cdkFocusInitial>Agregar</button>
+  </mat-dialog-actions>

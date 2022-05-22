@@ -1,20 +1,14 @@
 
-<mat-dialog-title class="row">
-    <div class="col-md-10"></div>
-    <div class="col-md-2">
-        <button (click)="btnCancelar()" class="btn btn-cancelar btn-sm rounded mt-3 mb-2" style="width: 35px; height: 35px; padding-left: 0px;
-        padding-right: 0px;" #buttonClose>
-            <i class="fas fa-window-close fa-lg"></i>
-        </button>
-    </div>
+<mat-dialog-title>
+    <h2 mat-dialog-title *ngIf="!data.tipo">Rechazar reconocimiento</h2>
+    <h2 mat-dialog-title *ngIf="data.tipo">Aprobar reconocimiento</h2>
 </mat-dialog-title>
 
-<h2 mat-dialog-title *ngIf="!data.tipo">Rechazar reconocimiento</h2>
-<h2 mat-dialog-title *ngIf="data.tipo">Aprobar reconocimiento</h2>
+
 <mat-dialog-content *ngIf="!data.tipo">
     <form [formGroup]="formulario" novalidate>
             <label class="col-md-12" for="observaciones">Observaciones Generalista de RH</label>
-            <textarea class="form-control" id="observaciones" placeholder="Ejemplo: No se justifica el reconocimiento con información cuantitativa"  [(ngModel)]="observacionEscrita"
+            <textarea mat-input class="form-control" id="observaciones" placeholder="Ejemplo: No se justifica el reconocimiento con información cuantitativa"  [(ngModel)]="observacionEscrita"
             formControlName="observaciones"></textarea>
             <div *ngIf="formulario.controls['observaciones'].invalid" class="invalid-feedback">
                 <div *ngIf="formulario.controls['observaciones'].errors.required">
@@ -42,14 +36,17 @@
     </div>
 </mat-dialog-content>
 <mat-dialog-actions align="end" *ngIf="!alertSucces">
+    <button mat-button mat-dialog-close>Cancelar</button>
     <button cdkFocusInitial class="btn btn-rechazar ml-1 mr-1 mt-1 mb-1"
-    style="color: white; height: 35px; min-width: 110px; font-size: 14px;" #buttonSend (click)="rechazar(buttonSend, buttonClose)" *ngIf="!data.tipo"><i
+        style="color: white; height: 35px; min-width: 110px; font-size: 14px;" #buttonSend (click)="rechazar(buttonSend, buttonClose)" *ngIf="!data.tipo"><i
         class="fa fa-times ml-0 mt-1 fa-lg"></i>
         Rechazar</button>
     <button cdkFocusInitial class="btn btn-guardar ml-1 mr-1 mt-1 mb-1"
     style="color: white; height: 35px; min-width: 110px; font-size: 14px;" #buttonSend (click)="aceptar(buttonSend, buttonClose)" *ngIf="data.tipo"><i
         class="fa fa-check ml-0 mt-1 fa-lg"></i>
         Aprobar</button>
+
+
     <!-- <button (click)="btnCancelar()" class="btn btn-secondary" #buttonClose>Cancelar</button> -->
     <!-- <button mat-button cdkFocusInitial class="btn btn-danger ml-3" #buttonSend (click)="rechazar(buttonSend, buttonClose)" *ngIf="!data.tipo">Rechazar</button>
     <button mat-button cdkFocusInitial class="btn btn-success ml-3" #buttonSend (click)="aceptar(buttonSend, buttonClose)" *ngIf="data.tipo">Aprobar</button> -->

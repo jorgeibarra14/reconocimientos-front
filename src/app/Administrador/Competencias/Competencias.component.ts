@@ -12,10 +12,11 @@ import { CompetenciasService } from "../../services/competencias.service";
 })
 export class AdminCompetenciasComponent implements OnInit {
     loading: boolean = false;
-    gridData: any = [];
+    gridData: any = [{nombre: 'JORGE ANTONIO IBARRA ORTIZ', puesto: 'DESARROLLADOR SR', concepto: 'Empleado del Mes', puntos: 200, otorga: 'ADMINISTRADOR APLAUSOS'}];
     idEmpleadoLogeado: Number;
     activo: Boolean;
     error: string;
+    
 
     constructor(
         private competenciasService: CompetenciasService,
@@ -35,7 +36,7 @@ export class AdminCompetenciasComponent implements OnInit {
         this.activo = true;
         this.loading = true;
         this.competenciasService.getAllCompetencias().subscribe(resp =>{
-            this.gridData = resp;
+            // this.gridData = resp;
             this.loading = false;
         }, error => this.error = error,
             () => {}

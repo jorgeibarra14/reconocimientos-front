@@ -18,13 +18,8 @@
 }
 
 html, body { height: 100%; }
-body { margin: 0; font-family: "Inter var", "Helvetica Neue", sans-serif; }
-.mat-dialog-container{
-    padding: 0px !important;
-}
-.mat-dialog-container .mat-dialog-content{
-    margin: 0px !important;
-}
+body { margin: 0; font-family: "Inter var", "Helvetica Neue", sans-serif !important; }
+
 
 table {
     width: 100%;
@@ -48,3 +43,6 @@ table {
 .btn-animation:hover, .btn:hover{
   transform: scale(1.05);
 }
+
+html, body { height: 100%; }
+/* body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */

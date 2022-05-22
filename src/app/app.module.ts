@@ -70,7 +70,7 @@ import { MisPedidosComponent } from './store/mis-pedidos/mis-pedidos.component';
 import { LOCALE_ID, } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import localeEsAr from '@angular/common/locales/es-AR';
-
+import { MaterialModule } from 'src/app/material.module'
 
 
 registerLocaleData(localeEsAr);
@@ -119,21 +119,12 @@ registerLocaleData(localeEsAr);
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    NoopAnimationsModule,
-    MatDialogModule,
     ReactiveFormsModule,
     HttpClientModule,
     DropDownsModule,
-    MatAutocompleteModule,
-    MatPaginatorModule ,
-    MatChipsModule,
+    MaterialModule,
     MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
-    MatTableModule,
-    MatIconModule,
     MatProgressSpinnerModule,
-    MatSortModule,
     GridModule,
     ExcelModule,
     BrowserAnimationsModule,
