@@ -24,7 +24,7 @@
                     </div>
                 </ng-template>
                 <kendo-grid-column
-                    field="concepto"
+                    field="concept"
                     [title]="'Concepto'"
                     [width]="100"
                     [headerStyle]="{'color': '#3C404C','line-height': '1em', 'font-weight': 'bold'}"
@@ -33,7 +33,7 @@
                 </kendo-grid-column>
                 
                 <kendo-grid-column
-                    field="nombre"
+                    field="employee"
                     [title]="'Empleado'"
                     [width]="220"
                     [headerStyle]="{'color': '#3C404C','line-height': '1em', 'font-weight': 'bold'}"
@@ -41,15 +41,15 @@
                     [footerStyle]="{'background-color': '#0B3B59','color': '#fff'}">
                 </kendo-grid-column>
                 <kendo-grid-column
-                    field="puesto"
-                    [title]="'Puesto'"
+                    field="justificacion"
+                    [title]="'Justificacion'"
                     [width]="220"
                     [headerStyle]="{'color': '#3C404C','line-height': '1em', 'font-weight': 'bold'}"
                     [style]="{'background-color': '#FFF','color': '#000'}"
                     [footerStyle]="{'background-color': '#0B3B59','color': '#fff'}">
                 </kendo-grid-column>
                 <kendo-grid-column
-                    field="otorga"
+                    field="employeeGiven"
                     [title]="'Otorga'"
                     [width]="220"
                     [headerStyle]="{'color': '#3C404C','line-height': '1em', 'font-weight': 'bold'}"
@@ -58,7 +58,7 @@
                 </kendo-grid-column>
                 <kendo-grid-column 
                     [title]="'Puntos'"
-                    field="puntos"
+                    field="points"
                     [width]="50"
                     [headerStyle]="{'color': '#3C404C','line-height': '1em', 'font-weight': 'bold'}"
                     [style]="{'background-color': '#FFF','color': '#000'}"
@@ -109,7 +109,7 @@
                     filterFilterButton="Filtrar"
                     filterClearButton="Limpiar">
                 </kendo-grid-messages>
-                <kendo-grid-excel [fileName]="'competencias'" [fetchData]="allData"></kendo-grid-excel>
+                <kendo-grid-excel [fileName]="'Puntos por conceptos'" [fetchData]="allData"></kendo-grid-excel>
             </kendo-grid>
         </div>
     </div>

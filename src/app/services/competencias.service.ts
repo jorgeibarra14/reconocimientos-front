@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 const API = environment.API;
+const ITGOVAPI = environment.APIItGov;
 
 @Injectable({
   providedIn: 'root'
@@ -31,5 +32,9 @@ export class CompetenciasService {
   }
   addCompetencia(envio: any): Observable<any>{
     return this.http.post<any>(`${API}/Competencia/AgregarCompetencia`, envio);
+  }
+
+  getConceptos() : Observable<any>{
+    return this.http.get<any>(`${ITGOVAPI}/EventsConcepts/getAll/4`);
   }
 }

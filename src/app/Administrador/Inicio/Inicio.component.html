@@ -4,49 +4,57 @@
     <div class="row">
         <div class="col-md-12">
             <kendo-grid [kendoGridBinding]="gridData" [resizable]="true" width="100%" [filterable]="true"
+            [rowClass]="rowCallback"
                 [columnMenu]="true" [loading]="loading" [sortable]="{ allowUnsort: true, mode: 'multiple' }"
                 [pageable]="{ buttonCount: 5, pageSizes: [5,10,20,100] }" [pageSize]="5">
                 <kendo-grid-column field="enviadoPor" [title]="'Enviado por'" width="15%"
+                class="statusColumn"
                     [headerStyle]="{'color': '#3C404C','line-height': '1em', 'font-weight': 'bold'}"
                     [style]="{'background-color': '#FFF','color': '#000'}"
                     [footerStyle]="{'background-color': '#0B3B59','color': '#fff'}">
                 </kendo-grid-column>
                 <kendo-grid-column field="reconoceA" [title]="'Reconoce a'" width="15%"
+                class="statusColumn"
                     [headerStyle]="{'color': '#3C404C','line-height': '1em', 'font-weight': 'bold'}"
                     [style]="{'background-color': '#FFF','color': '#000'}"
                     [footerStyle]="{'background-color': '#0B3B59','color': '#fff'}">
                 </kendo-grid-column>
                 <kendo-grid-column field="competencia" [title]="'Competencia'" width="15%"
+                class="statusColumn"
                     [headerStyle]="{'color': '#3C404C','line-height': '1em', 'font-weight': 'bold'}"
                     [style]="{'background-color': '#FFF','color': '#000'}"
                     [footerStyle]="{'background-color': '#0B3B59','color': '#fff'}">
                 </kendo-grid-column>
                 <kendo-grid-column field="motivo" [title]="'Motivo'" width="15%"
+                class="statusColumn"
                     [headerStyle]="{'color': '#3C404C','line-height': '1em', 'font-weight': 'bold'}"
                     [style]="{'background-color': '#FFF','color': '#000'}"
                     [footerStyle]="{'background-color': '#0B3B59','color': '#fff'}">
                 </kendo-grid-column>
                 <kendo-grid-column field="logro" [title]="'Logro'" width="15%"
+                class="statusColumn"
                     [headerStyle]="{'color': '#3C404C','line-height': '1em', 'font-weight': 'bold'}"
                     [style]="{'background-color': '#FFF','color': '#000'}"
                     [footerStyle]="{'background-color': '#0B3B59','color': '#fff'}">
                 </kendo-grid-column>
                 <kendo-grid-column field="autorizador" [title]="'Autorizador'" width="15%"
+                class="statusColumn"
                     [headerStyle]="{'color': '#3C404C','line-height': '1em', 'font-weight': 'bold'}"
                     [style]="{'background-color': '#FFF','color': '#000'}"
                     [footerStyle]="{'background-color': '#0B3B59','color': '#fff'}">
                 </kendo-grid-column>
                 <kendo-grid-column [title]="'Acciones'" width="20%"
+                class="statusColumn"
                     [headerStyle]="{'color': '#3C404C','line-height': '1em', 'font-weight': 'bold'}"
                     [style]="{'background-color': '#FFF','color': '#000'}"
                     [footerStyle]="{'background-color': '#0B3B59','color': '#fff'}">
                     <ng-template kendoGridCellTemplate let-dataItem class="text-align:center">              
                         <div id="button-div">
-                            <button type="button" class="btn btn-success btn-sm ml-1 mt-1 rounded btn-aprobar"
-                                style="width: 95px; height: 35px;"
+                            <button type="button" class="btn btn-success rounded btn-aprobar"
+                                
                                 (click)="aceptar(dataItem.id, dataItem.id_empleado_envia, dataItem.id_empleado_recibe, dataItem.enviadoPor)"
                                 [disabled]="loading">
-                                <i class="fa fa-check ml-0 mt-0 fa-lg"></i> Aprobar
+                                <i class="fa fa-check ml-0 mt-0 fa-lg"></i> {{dataItem.activo ? 'Aprobar' : 'Aprobar concepto'}}
                                 <!-- <div id="text-aceptar">Aprobar</div> -->
                             </button>
                         </div>

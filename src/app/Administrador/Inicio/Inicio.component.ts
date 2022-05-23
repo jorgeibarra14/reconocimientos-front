@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ModalAdminReconocimientosComponent } from 'src/app/components/ModalAdminReconocimientos/ModalAdminReconocimientos.component';
 import { ReconocimientosService } from '../../services/reconocimientos.service';
@@ -7,9 +7,11 @@ import { DatePipe } from "@angular/common";
 import { AuthService } from "../../services/auth.service";
 
 import Swal from 'sweetalert2';
+import { RowClassArgs } from '@progress/kendo-angular-grid';
 
 @Component({
     selector: 'ho1a-Admin-Inicio',
+    encapsulation: ViewEncapsulation.None,
     templateUrl: './Inicio.component.html',
     styleUrls: ['./Inicio.component.scss']
 })
@@ -44,6 +46,10 @@ export class AdminInicioComponent implements OnInit {
         );
     }
 
+    public rowCallback = (context: RowClassArgs) => {
+        return !context.dataItem.activo ?  {started: true} :  { started: false};
+
+       }
     rechazar(id: number, id_empleado_envia: number, id_empleado_recibe: number, reconoceA: string): void {
         const dialogRef = this.dialog.open(ModalAdminReconocimientosComponent, {
             width: '500px',

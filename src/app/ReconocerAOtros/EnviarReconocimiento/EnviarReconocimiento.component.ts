@@ -186,54 +186,17 @@ export class EnviarReconocimientoComponent implements OnInit {
                                     });
                                 });
                         });
-            // }
-            // else {
-            //     console.log("Rechazo por sistema");
-            //     this.enviado = false;
-            //     this.rechazoPorSistema = true;
-            //     setTimeout(() => {
-            //         this.rechazoPorSistema = false;
-            //     }, 8000);
-            // }
         } else {
             console.log("no enviado");
             this.enviado = false;
         }
     }
 
-    // onEmpleadoChange(nombreEmpleado: string) {
-    //     if (nombreEmpleado != undefined && nombreEmpleado != null && nombreEmpleado.trim().length > 0 ) {
-    //         this.buscandoEmpleados = true;
-    //         this.resultadoBusqueda = [];
-    //         if(this.buscandoEmpleadosSubscription){
-    //             // Si existe una petición actual,
-    //             // se cancela la petición y se ejecuta una nueva
-    //             this.buscandoEmpleadosSubscription.unsubscribe();
-    //         }
-    //         this.buscandoEmpleadosSubscription = this.reconocimientosService.getEmpleadosPorNombre(nombreEmpleado, this.idEmpleadoLogeado)
-    //             .subscribe(resp =>{
-    //                 this.resultadoBusqueda = resp;
-    //                 this.buscandoEmpleados = false;
-    //             });
-    //     }
-    //     if(nombreEmpleado != undefined && nombreEmpleado != null && nombreEmpleado.trim().length <= 1 && !this.buscandoEmpleados){
-    //         if(this.buscandoEmpleadosSubscription){
-    //             // Si existe una petición actual,
-    //             // se cancela la petición y se ejecuta una nueva
-    //             this.buscandoEmpleadosSubscription.unsubscribe();
-    //             this.resultadoBusqueda = [];
-    //         }
-    //     }
-    // }
+
 
     onEmpleadoChange(nombreEmpleado: string) {
       if (nombreEmpleado != undefined && nombreEmpleado != null) {
-          // this.resultadoBusqueda = [];
-          // this.reconocimientosService.getEmpleadosPorNombre(nombreEmpleado, this.idEmpleadoLogeado)
-          //     .subscribe(resp => {
 
-          //         this.resultadoBusqueda = resp
-          //     } );
           this.resultadoBusqueda = this.resultadoBusqueda2;
           let data: any[] =  this.resultadoBusqueda
           data = data.filter(e => {
@@ -242,8 +205,7 @@ export class EnviarReconocimientoComponent implements OnInit {
           console.log(this.competencias);
           this.resultadoBusqueda = data;
           console.log(this.empleadoSeleccionado);
-          // this.formulario.patchValue({id_empleado_recibe: this.empleadoSeleccionado.id })
-          // console.log(data);
+
       }
   }
 

@@ -10,7 +10,7 @@
                    [formControlName]="'empleado'"
                    [matAutocomplete]="auto">
             <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-              <mat-option *ngFor="let option of resultadoBusqueda" [value]="option">
+              <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
                 {{option.nombreCompleto}}
               </mat-option>
             </mat-autocomplete>
@@ -20,8 +20,8 @@
           <mat-form-field appearance="outline">
             <mat-label>Concepto</mat-label>
             <mat-select [formControlName]="'concepto'" name="concepto">
-              <mat-option *ngFor="let c of conceptos" [value]="c.id">
-                {{c.descripcion}} - {{c.puntos}} Pts
+              <mat-option *ngFor="let c of conceptos" [value]="c">
+                {{c.name}} - {{c.points}} Pts
               </mat-option>
             </mat-select>
             <mat-error>El concepto es obligatorio</mat-error>
@@ -29,19 +29,19 @@
           </mat-form-field>
 
           <mat-form-field class="example-full-width" appearance="outline">
-            <mat-label>Descripcion</mat-label>
+            <mat-label>Justificacion</mat-label>
             <textarea type="text"
-                   placeholder="Descripcion"
+                   placeholder="Agregar Justificacion"
                    aria-label="Number"
                    rows="4"
                    matInput
-                   [formControlName]="'descripcion'"></textarea>
-                   <mat-error>La descripcion es obligatoria</mat-error>
+                   [formControlName]="'justificacion'"></textarea>
+                   <mat-error>La Justificacion es obligatoria</mat-error>
 
           </mat-form-field>
     </form>
 </div>
 <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>Cancelar</button>
-    <button mat-raised-button color="primary" [mat-dialog-close]="true" cdkFocusInitial>Agregar</button>
+    <button mat-raised-button color="primary" [mat-dialog-close]="true" (click)="guardar()" cdkFocusInitial>Agregar</button>
   </mat-dialog-actions>

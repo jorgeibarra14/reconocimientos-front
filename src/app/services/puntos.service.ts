@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 const API = environment.API;
+const ITGOVAPI = environment.APIItGov;
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,19 @@ export class PuntosService {
   corteManualPuntos(): Observable<any> {
     // console.log("Metodo corteManualPuntos()");
     return this.http.get<any>(`${API}/Puntos/CorteManualDePuntos`);
+  }
+
+  agregarPuntos(data: any): Observable<any> {
+    return this.http.post<any>(`${API}/Puntos/CorteManualDePuntos`, data);
+  }
+
+  agregarPuntosTienda(data): Observable<any> {
+    return this.http.post<any>(`${API}/Puntos/agregarPuntosTienda`, data);
+  }
+
+  obtenerPuntosAsignadosPorConceptos(): Observable<any> {
+    return this.http.get<any>(`${ITGOVAPI}/EventsConcepts/getListPointsByConcept`);
+
   }
 
 }

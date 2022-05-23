@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ExcelExportData } from '@progress/kendo-angular-excel-export';
+import { PuntosService } from 'src/app/services/puntos.service';
 import { ModalAdminEditarCompetencias } from "../../components/ModalAdminEditarCompenencias/ModalAdminEditarCompetencias.component";
 
 import { AuthService } from "../../services/auth.service";
@@ -12,7 +13,7 @@ import { CompetenciasService } from "../../services/competencias.service";
 })
 export class AdminCompetenciasComponent implements OnInit {
     loading: boolean = false;
-    gridData: any = [{nombre: 'JORGE ANTONIO IBARRA ORTIZ', puesto: 'DESARROLLADOR SR', concepto: 'Empleado del Mes', puntos: 200, otorga: 'ADMINISTRADOR APLAUSOS'}];
+    gridData: any = [];
     idEmpleadoLogeado: Number;
     activo: Boolean;
     error: string;
@@ -21,6 +22,7 @@ export class AdminCompetenciasComponent implements OnInit {
     constructor(
         private competenciasService: CompetenciasService,
         private authService: AuthService,
+        private puntosService: PuntosService,
         public dialog: MatDialog,
     ) {
         const user = this.authService.getCookieUser();
@@ -30,18 +32,20 @@ export class AdminCompetenciasComponent implements OnInit {
     }
     ngOnInit(){
         this.getAllCompetencias();
+        
     }
 
     getAllCompetencias() {
         this.activo = true;
         this.loading = true;
-        this.competenciasService.getAllCompetencias().subscribe(resp =>{
-            // this.gridData = resp;
+        this.puntosService.obtenerPuntosAsignadosPorConceptos().subscribe(resp =>{
+            this.gridData = resp;
             this.loading = false;
         }, error => this.error = error,
             () => {}
         );
     }
+
 
     abrirEditar(nombre, descripcion, nivel, img, id){
         const dialogRef = this.dialog.open(ModalAdminEditarCompetencias, {

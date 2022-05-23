@@ -7,7 +7,9 @@ import { CompetenciasService } from "../../services/competencias.service";
 import Swal from 'sweetalert2';
 import { ColaboradoresService } from 'src/app/services/colaboradores.service';
 import { ReconocimientosService } from 'src/app/services/reconocimientos.service';
-
+import { PuntosService } from 'src/app/services/puntos.service';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
 @Component({
     selector: 'ho1a-ModalAdminEditarCompetencias',
     templateUrl: './ModalAdminEditarCompetencias.component.html',
@@ -35,14 +37,11 @@ export class ModalAdminEditarCompetencias implements OnInit {
     nivelSeleccionado: string;
     tipo: boolean = false;
     titulo: string;
-    resultadoBusqueda: any;
+    resultadoBusqueda: any = [];
     idEmpleadoLogeado: any;
     resultadoBusqueda2: any;
-    conceptos: any = [
-        {id: 1, descripcion: 'Carrera 1Km', puntos: 100},
-        {id: 2, descripcion: 'Concurso Innovacion', puntos: 150},
-        {id: 3, descripcion: 'Empleado del Mes', puntos: 200},
-    ];
+    conceptos: any = [];
+    filteredOptions: Observable<any[]>;
 
     constructor(
         @Inject(MAT_DIALOG_DATA) public data: any,
@@ -51,12 +50,14 @@ export class ModalAdminEditarCompetencias implements OnInit {
         private authService: AuthService,
         private colaboradorService: ColaboradoresService,
         private reconocimientosService: ReconocimientosService,
-        private competenciasService: CompetenciasService
-    ) {
+        private competenciasService: CompetenciasService,
+        private puntosService: PuntosService
+        ) {
+        this.getConceptos();
         this.formulario = this.fb.group({
-            empleado: [, [Validators.required, Validators.min(1)]],
-            descripcion: [, [Validators.required, Validators.min(1)]],
-            concepto: [, [Validators.required, Validators.min(1)]],
+            empleado: [, [Validators.required]],
+            justificacion: [, [Validators.required, Validators.minLength(1)]],
+            concepto: [, [Validators.required]],
            
         });
         
@@ -78,87 +79,123 @@ export class ModalAdminEditarCompetencias implements OnInit {
         return user && user.nombreCompleto ? user.nombreCompleto : '';
       }
 
+    getConceptos() {
+        
+        this.competenciasService.getConceptos().subscribe(r => {
+            this.conceptos = r;
+        });
+    }
     
     ngOnInit() {
-        if (this.data.tipo == 1) {
-            this.titulo = "Editar competencia";
-        }
-        else {
-
-            this.titulo = "Agregar puntos";
-        }
+       this.titulo = 'Agregar puntos por concepto';
+       this.filteredOptions = this.formulario.controls.empleado.valueChanges.pipe(
+            startWith(''),
+            map(name => (name ? this._filter(name): this.resultadoBusqueda.slice())),
+        );
     }
 
+    private _filter(value: string): string[] {
+        
+        const filterValue = value.toLowerCase();
+        return this.resultadoBusqueda.filter(option => option.nombreCompleto.toLowerCase().includes(filterValue));
+      }
+
     guardar() {
+        
         if (this.formulario.valid) {
-            this.enviado = true;
-            if (this.data.tipo == 1) {
-                let envioUpdate = {
-                    "id": Number(this.idCompetencia),
-                    "nombre": this.formulario.controls['competencia'].value,
-                    "descripcion": this.formulario.controls['descripcion'].value,
-                    "nivel": this.data.nivel,
-                    "img": this.file,
-                    "Activo": this.activo
-                };
-                this.competenciasService.actualizarCompetencia(envioUpdate)
-                    .subscribe(
-                        (val) => { },
-                        response => {
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Ocurrió un error',
-                                text: 'No se modifico la competencia.'
-                            });
-                            this.enviado = false;
-                        },
-                        () => {
-                            Swal.fire({
-                                title: 'Modificación exitosa!',
-                                text: 'La competencia se modifico correctamente.',
-                                icon: 'success',
-                                showCancelButton: false,
-                                confirmButtonText: 'OK'
-                            }).then((result) => {
-                                if (result.value) {
-                                    this.dialogRef.close();
-                                }
-                            });
-                        }
-                    );
-            } else {
-                let envioUpdate = {
-                    "nombre": this.formulario.controls['competencia'].value,
-                    "descripcion": this.formulario.controls['descripcion'].value,
-                    "nivel": this.formulario.value.nivel,
-                    "img": this.file
-                };
-                this.competenciasService.addCompetencia(envioUpdate)
-                    .subscribe(
-                        (val) => { },
-                        response => {
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Ocurrió un error',
-                                text: 'No se agrego la competencia.'
-                            });
-                            this.enviado = false;
-                        },
-                        () => {
-                            Swal.fire({
-                                title: 'Registro existoso',
-                                text: 'La competencia se agrego correctamente.',
-                                icon: 'success',
-                                showCancelButton: false,
-                                confirmButtonText: 'OK'
-                            }).then((result) => {
-                                if (result.value) {
-                                    this.dialogRef.close();
-                                }
-                            });
-                        }
-                    );
-            }
+            // this.enviado = true;
+            // if (this.data.tipo == 1) {
+            //     let envioUpdate = {
+            //         "id": Number(this.idCompetencia),
+            //         "nombre": this.formulario.controls['competencia'].value,
+            //         "descripcion": this.formulario.controls['descripcion'].value,
+            //         "nivel": this.data.nivel,
+            //         "img": this.file,
+            //         "Activo": this.activo
+            //     };
+
+            //     this.competenciasService.actualizarCompetencia(envioUpdate)
+            //         .subscribe(
+            //             (val) => { },
+            //             response => {
+            //                 Swal.fire({
+            //                     icon: 'error',
+            //                     title: 'Ocurrió un error',
+            //                     text: 'No se modifico la competencia.'
+            //                 });
+            //                 this.enviado = false;
+            //             },
+            //             () => {
+            //                 Swal.fire({
+            //                     title: 'Modificación exitosa!',
+            //                     text: 'La competencia se modifico correctamente.',
+            //                     icon: 'success',
+            //                     showCancelButton: false,
+            //                     confirmButtonText: 'OK'
+            //                 }).then((result) => {
+            //                     if (result.value) {
+            //                         this.dialogRef.close();
+            //                     }
+            //                 });
+            //             }
+            //         );
+            // } else {
+            //     let envioUpdate = {
+            //         "nombre": this.formulario.controls['competencia'].value,
+            //         "descripcion": this.formulario.controls['descripcion'].value,
+            //         "nivel": this.formulario.value.nivel,
+            //         "img": this.file
+            //     };
+            //     this.competenciasService.addCompetencia(envioUpdate)
+            //         .subscribe(
+            //             (val) => { },
+            //             response => {
+            //                 Swal.fire({
+            //                     icon: 'error',
+            //                     title: 'Ocurrió un error',
+            //                     text: 'No se agrego la competencia.'
+            //                 });
+            //                 this.enviado = false;
+            //             },
+            //             () => {
+            //                 Swal.fire({
+            //                     title: 'Registro existoso',
+            //                     text: 'La competencia se agrego correctamente.',
+            //                     icon: 'success',
+            //                     showCancelButton: false,
+            //                     confirmButtonText: 'OK'
+            //                 }).then((result) => {
+            //                     if (result.value) {
+            //                         this.dialogRef.close();
+            //                     }
+            //                 });
+            //             }
+            //         );
+            // }
+            let obj = {
+                idEmpleado : this.formulario.get('empleado').value.id,
+                justificacion: this.formulario.get('justificacion').value,
+                valor: this.formulario.get('concepto').value.points,
+                tipo: this.formulario.get('concepto').value.name,
+                conceptoId: this.formulario.get('concepto').value.id,
+                idEmpleadoOtorga: this.idEmpleadoLogeado
+
+            };
+
+            this.puntosService.agregarPuntosTienda(obj).subscribe( r => {
+                Swal.fire({
+                                        title: 'Exito!',
+                                        text: 'Se han otorgado los puntos al empleado',
+                                        icon: 'success',
+                                        showCancelButton: false,
+                                        confirmButtonText: 'OK'
+                                    }).then((result) => {
+                                        if (result.value) {
+                                            this.dialogRef.close();
+                                        }
+                                    });
+            });
+            
         } else {
             this.enviado = false;
         }
@@ -176,5 +213,18 @@ export class ModalAdminEditarCompetencias implements OnInit {
             //console.log(this.file);
         }
         fileReader.readAsDataURL(this.file);
+    }
+
+    onEmpleadoChange(e: any) {
+        if (e != undefined && e != null) {
+
+            this.resultadoBusqueda = this.resultadoBusqueda2;
+            let data: any[] =  this.resultadoBusqueda
+            data = data.filter(e => {
+                return e.nombreCompleto.toLowerCase().includes(e)
+            });
+            this.resultadoBusqueda = data;
+  
+        }
     }
 }
