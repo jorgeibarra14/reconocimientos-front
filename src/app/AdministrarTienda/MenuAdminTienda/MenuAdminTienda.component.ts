@@ -19,9 +19,12 @@ export class AdminMenuTiendaComponent implements OnInit {
         this.user = this.authService.getCookieUser();
         //Revisar si es admin
         this.usuariosRolesService.getUsuarioRol(this.user.Id).subscribe(resp=>{
-            if(resp == 3 || resp == 4){
+            if(resp == 1 || resp == 4){
                 this.accesoAdmin = true;
             }
         });
     }
+}
+
+export class AdminMenuStoreComponent {
 }

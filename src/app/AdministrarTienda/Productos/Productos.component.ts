@@ -38,8 +38,6 @@ export class AdminTiendProductosComponent implements OnInit {
     }
     ngOnInit() {
         this.productoService.getProductos().subscribe(resp => {
-            console.log("Productos:");
-            console.log(resp);
             this.gridData = resp;
             this.loading = false;
         }, error => this.error = error,
@@ -49,8 +47,6 @@ export class AdminTiendProductosComponent implements OnInit {
     }
     obtenerCategorias() {
         this.categoriasService.getCategorias().subscribe(resp => {
-            // console.log("Categorias pa enviar:");
-            // console.log(resp);
             this.categorias = resp;
         }, error => this.error = error,
             () => { }
@@ -80,7 +76,6 @@ export class AdminTiendProductosComponent implements OnInit {
     }
 
     refresh() {
-        console.log("Refresh");
         this.activo = true;
         this.loading = true;
 
