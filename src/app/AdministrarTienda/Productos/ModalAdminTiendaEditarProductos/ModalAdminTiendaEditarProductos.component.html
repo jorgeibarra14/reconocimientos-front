@@ -87,6 +87,19 @@
                 Selecciona una opción correcta.
             </div>
         </div>
+        <label class="col-md-12" for="producto">Notas:</label>
+        <div>
+          <input type="text" class="form-control" id="notas" formControlName="notas">
+          <i class="fas fa-pencil-alt" *ngIf="!tipo"></i>
+        </div>
+        <div *ngIf="formulario.controls['notas'].invalid" class="invalid-feedback">
+          <div *ngIf="formulario.controls['notas'].errors.required">
+            El campo es requerido.
+          </div>
+          <div *ngIf="formulario.controls['notas'].errors.maxlength">
+            El texto es muy largo.
+          </div>
+        </div>
         <label class="col-md-12" for="archivo">Archivo:</label>
         <div>
             <input type="file" class="form-control-file" id="archivo" formControlName="archivo"

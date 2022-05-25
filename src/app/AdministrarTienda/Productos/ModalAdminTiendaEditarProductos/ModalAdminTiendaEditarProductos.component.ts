@@ -20,6 +20,7 @@ export class ModalAdminTiendaEditarProductos implements OnInit {
     categoriaSeleccionada: string;
     tipo: boolean = false;
     titulo: string;
+    notas: string;
     categorias: any = [];
 
     constructor(
@@ -34,19 +35,18 @@ export class ModalAdminTiendaEditarProductos implements OnInit {
             costo: [this.data.costo, Validators.required],
             stock: [this.data.stock, Validators.required],
             archivo: [''],
+            notas: [''],
             categoria_id: [this.data.categoria_id, Validators.required]
         });
         this.categorias = this.data.categorias;
         this.file = this.data.img;
         this.idProducto = this.data.id;
         this.categoriaSeleccionada = this.data.categoria_id;
-        console.log("Categorias recibidas")
-        console.log(this.categorias);
     }
 
     vacioValidator(control: FormControl) {
         let value = control.value;
-        if (value && value.length > 0 && value.trim() != "") {
+        if (value && value.length > 0 && value.trim() !== '') {
             return null;
         }
         return { vacio: true };
@@ -75,7 +75,8 @@ export class ModalAdminTiendaEditarProductos implements OnInit {
                     "stock": Number(this.formulario.controls['stock'].value),
                     "imagen": this.file,
                     "categoria_id": Number(this.formulario.controls['categoria_id'].value),
-                    "Activo": this.activo
+                    "Activo": this.activo,
+                    "notas": this.formulario.controls['notas'].value
                 };
                 this.productoService.updateProductos(envioUpdate)
                     .subscribe(
@@ -114,7 +115,8 @@ export class ModalAdminTiendaEditarProductos implements OnInit {
                     "stock": Number(this.formulario.controls['stock'].value),
                     "imagen": this.file,
                     "categoria_id": Number(this.formulario.controls['categoria_id'].value),
-                    "Activo": this.activo
+                    "Activo": this.activo,
+                    "notas": this.formulario.controls['notas'].value
                 };
                 this.productoService.addProductos(envioAdd)
                     .subscribe(

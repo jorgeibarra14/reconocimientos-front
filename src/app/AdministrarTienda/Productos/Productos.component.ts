@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ExcelExportData } from '@progress/kendo-angular-excel-export';
 import { NumberPipe } from '@progress/kendo-angular-intl';
-import { ModalAdminTiendaEditarProductos } from "../../AdministrarTienda/Productos/ModalAdminTiendaEditarProductos/ModalAdminTiendaEditarProductos.component";
+import { ModalAdminTiendaEditarProductos } from '../../AdministrarTienda/Productos/ModalAdminTiendaEditarProductos/ModalAdminTiendaEditarProductos.component';
 import Swal from 'sweetalert2';
 import { AuthService } from "../../services/auth.service";
 import { ProductoService } from "../../services/producto.service";
@@ -39,6 +39,7 @@ export class AdminTiendProductosComponent implements OnInit {
     ngOnInit() {
         this.productoService.getProductos().subscribe(resp => {
             this.gridData = resp;
+            console.log(this.gridData);
             this.loading = false;
         }, error => this.error = error,
             () => { }
@@ -52,7 +53,7 @@ export class AdminTiendProductosComponent implements OnInit {
             () => { }
         );
     }
-    abrirEditar(nombre, descripcion, costo, stock, categoriaId, imagen, id) {
+    abrirEditar(nombre, descripcion, costo, stock, categoriaId, imagen, id, notas) {
         const dialogRef = this.dialog.open(ModalAdminTiendaEditarProductos, {
             width: '800px',
             data: {
@@ -64,12 +65,12 @@ export class AdminTiendProductosComponent implements OnInit {
                 img: imagen,
                 id: id,
                 tipo: 1,
-                categorias: this.categorias
+                categorias: this.categorias,
+                notas: notas
             }
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            console.log('The dialog was closed');
             this.loading = true;
             this.refresh();
         });
@@ -106,7 +107,8 @@ export class AdminTiendProductosComponent implements OnInit {
                 img: "",
                 id: "",
                 tipo: 2,
-                categorias: this.categorias
+                categorias: this.categorias,
+                notas: ""
             }
         });
 
