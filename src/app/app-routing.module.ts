@@ -8,7 +8,7 @@ import { ReconocerAOtrosComponent } from "./ReconocerAOtros/ReconocerAOtros.comp
 import { EnviarReconocimientoComponent } from "./ReconocerAOtros/EnviarReconocimiento/EnviarReconocimiento.component";
 import { AdminInicioComponent } from './Administrador/Inicio/Inicio.component';
 import { AdminAutorizadoresComponent } from "./Administrador/Autorizadores/Autorizadores.component";
-import { AdminCompetenciasComponent } from "./Administrador/Competencias/Competencias.component";
+import { AdminConceptosPuntosComponent } from "./Administrador/Competencias/Competencias.component";
 import { AdminPuntosComponent } from "./Administrador/Puntos/Puntos.component";
 import { ProductoStoreComponent } from './store/producto/producto.component';
 import { CatalogoComponent } from './store/catalogo/catalogo.component';
@@ -60,7 +60,7 @@ const routes: Routes = [
     path: 'admin', children: [
       { path: '', canActivate: [RhAdminGuard], component: AdminInicioComponent },
       { path: 'autorizadores', canActivate: [AdminGuard], component: AdminAutorizadoresComponent },
-      { path: 'competencias', canActivate: [AdminGuard], component: AdminCompetenciasComponent },
+      { path: 'competencias', canActivate: [AdminGuard], component: AdminConceptosPuntosComponent },
       { path: 'puntos', canActivate: [AdminGuard], component: AdminPuntosComponent }
     ]
   },

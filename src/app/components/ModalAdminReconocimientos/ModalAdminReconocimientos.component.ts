@@ -59,7 +59,8 @@ export class ModalAdminReconocimientosComponent implements OnInit {
             const user = this.authService.getCookieUser();
             let envio = {
                 "id": Number(this.data.reconocimientoId),
-                "aprobado": this.activo,
+                "aprobado": this.data.tipo == 3 ? false : this.activo,
+                "tipo": this.data.tipo,
                 "comentario_resolucion": this.observacionEscrita,//this.formulario.value.observaciones,
                 "fecha_resolucion": this.transformDate(Date.now())
             };
@@ -81,59 +82,59 @@ export class ModalAdminReconocimientosComponent implements OnInit {
                     },
                     () => {
                         console.log("Registro correcto");
+                            if(this.data.tipo != 2)
+                            this.notificacionesService.setNotificacion(this.data.reconocimientoId, this.data.idEmpleadoEnvia, 0, [this.data.reconoceA, this.observacionEscrita])
+                                .subscribe(
+                                    (val) => {
+                                        //console.log("Reconocimeintos aprobados = ", val);
+                                    },
+                                    response => {
+                                        console.log("Ocurrió un error:", response);
+                                        // this.alertFailed = true;
+                                        // if (true) {
+                                        //     setTimeout(() => {
+                                        //         this.alertFailed = false;
+                                        //     }, 3000);
+                                        // }
+                                        // this.enviado = false;
+                                    },
+                                    () => {
+                                        console.log("Notificacion guardada.");
+                                    });
 
-                        this.notificacionesService.setNotificacion(this.data.reconocimientoId, this.data.idEmpleadoEnvia, 0, [this.data.reconoceA, this.observacionEscrita])
-                            .subscribe(
-                                (val) => {
-                                    //console.log("Reconocimeintos aprobados = ", val);
-                                },
-                                response => {
-                                    console.log("Ocurrió un error:", response);
-                                    // this.alertFailed = true;
-                                    // if (true) {
-                                    //     setTimeout(() => {
-                                    //         this.alertFailed = false;
-                                    //     }, 3000);
-                                    // }
-                                    // this.enviado = false;
-                                },
-                                () => {
-                                    console.log("Notificacion guardada.");
-                                });
+                            this.notificacionesService.EnviarCorreoNotificacion(this.data.reconocimientoId, this.data.idEmpleadoEnvia, 0, 0, [this.data.reconoceA, this.observacionEscrita])
+                                .subscribe(
+                                    (val) => {
+                                        //console.log("Reconocimeintos aprobados = ", val);
+                                    },
+                                    response => {
+                                        console.log("Ocurrió un error:", response);
+                                        // this.alertFailed = true;
 
-                        this.notificacionesService.EnviarCorreoNotificacion(this.data.reconocimientoId, this.data.idEmpleadoEnvia, 0, 0, [this.data.reconoceA, this.observacionEscrita])
-                            .subscribe(
-                                (val) => {
-                                    //console.log("Reconocimeintos aprobados = ", val);
-                                },
-                                response => {
-                                    console.log("Ocurrió un error:", response);
-                                    // this.alertFailed = true;
+                                        // if (true) {
+                                        //     setTimeout(() => {
+                                        //         this.alertFailed = false;
+                                        //     }, 3000);
+                                        // }
 
-                                    // if (true) {
-                                    //     setTimeout(() => {
-                                    //         this.alertFailed = false;
-                                    //     }, 3000);
-                                    // }
+                                        // this.enviado = false;
+                                    },
+                                    () => {
+                                        console.log("correo de notificacion enviado.");
+                                    });
 
-                                    // this.enviado = false;
-                                },
-                                () => {
-                                    console.log("correo de notificacion enviado.");
-                                });
+                            this.aumentaPuntos();
+                            this.alertSucces = true;
+                            Swal.fire('Reconocimiento rechazado', ' La información se guardo correctamente.', 'success');
 
-                        this.aumentaPuntos();
-                        this.alertSucces = true;
-                        Swal.fire('Reconocimiento rechazado', ' La información se guardo correctamente.', 'success');
+                            this.enviado = false;
 
-                        this.enviado = false;
-
-                        // if (true) {
-                        //     setTimeout(() => {
-                                this.dialogRef.close();
-                    //         }, 3000);
-                    //     }
-                    });
+                            // if (true) {
+                            //     setTimeout(() => {
+                                    this.dialogRef.close();
+                        //         }, 3000);
+                        //     }
+                        });
         } else {
             console.log("no enviado");
             this.enviado = false;
@@ -149,6 +150,7 @@ export class ModalAdminReconocimientosComponent implements OnInit {
         let envio = {
             "id": Number(this.data.reconocimientoId),
             "aprobado": this.activo,
+            "tipo":this.data.tipo,
             "comentario_resolucion": comentarioResolucion,
             "fecha_resolucion": this.transformDate(Date.now())
         };
@@ -173,7 +175,7 @@ export class ModalAdminReconocimientosComponent implements OnInit {
                 },
                 () => {
                     console.log("Registro correcto");
-                    this.notificacionesService.setNotificacion(this.data.reconocimientoId, this.data.idEmpleadoRecibe, 1, [this.data.enviadoPor])
+                    this.notificacionesService.setNotificacion(this.data.reconocimientoId, this.data.idEmpleadoRecibe, this.data.tipo, [this.data.enviadoPor, this.data.concepto, this.data.motivo])
                         .subscribe(
                             (val) => {
                                 //console.log("Reconocimeintos aprobados = ", val);
@@ -190,22 +192,22 @@ export class ModalAdminReconocimientosComponent implements OnInit {
                                 console.log("Notificacion guardada.");
                             });
 
-                    this.notificacionesService.EnviarCorreoNotificacion(this.data.reconocimientoId, 0, this.data.idEmpleadoRecibe, 1, [this.data.enviadoPor])
-                        .subscribe(
-                            (val) => {
-                                //console.log("Reconocimeintos aprobados = ", val);
-                            },
-                            response => {
-                                console.log("Ocurrió un error:", response);
-                                // this.alertFailed = true;
-                                // setTimeout(() => {
-                                //     this.alertFailed = false;
-                                // }, 3000);
-                                // this.enviado = false;
-                            },
-                            () => {
-                                console.log("Correo de notificación enviado.");
-                            });
+                    // this.notificacionesService.EnviarCorreoNotificacion(this.data.reconocimientoId, 0, this.data.idEmpleadoRecibe, 1, [this.data.enviadoPor])
+                    //     .subscribe(
+                    //         (val) => {
+                    //             //console.log("Reconocimeintos aprobados = ", val);
+                    //         },
+                    //         response => {
+                    //             console.log("Ocurrió un error:", response);
+                    //             // this.alertFailed = true;
+                    //             // setTimeout(() => {
+                    //             //     this.alertFailed = false;
+                    //             // }, 3000);
+                    //             // this.enviado = false;
+                    //         },
+                    //         () => {
+                    //             console.log("Correo de notificación enviado.");
+                    //         });
 
                     this.alertSucces = true;
                     Swal.fire('Reconocimiento aprobado', ' La información se guardo correctamente.', 'success');

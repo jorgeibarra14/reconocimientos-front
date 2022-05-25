@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ExcelExportData } from '@progress/kendo-angular-excel-export';
+import { RowClassArgs } from '@progress/kendo-angular-grid';
 import { PuntosService } from 'src/app/services/puntos.service';
 import { ModalAdminEditarCompetencias } from "../../components/ModalAdminEditarCompenencias/ModalAdminEditarCompetencias.component";
 
 import { AuthService } from "../../services/auth.service";
 import { CompetenciasService } from "../../services/competencias.service";
 @Component({
-    selector: 'ho1a-Admin-Competencias',
-    templateUrl: './Competencias.component.html',
-    styleUrls: ['./Competencias.component.scss']
+    selector: 'ho1a-Admin-competencias',
+    templateUrl: './competencias.component.html',
+    styleUrls: ['./competencias.component.scss']
 })
-export class AdminCompetenciasComponent implements OnInit {
+export class AdminConceptosPuntosComponent implements OnInit {
     loading: boolean = false;
     gridData: any = [];
     idEmpleadoLogeado: Number;
@@ -20,7 +21,7 @@ export class AdminCompetenciasComponent implements OnInit {
     
 
     constructor(
-        private competenciasService: CompetenciasService,
+        private ConceptosPuntosService: CompetenciasService,
         private authService: AuthService,
         private puntosService: PuntosService,
         public dialog: MatDialog,
@@ -31,11 +32,15 @@ export class AdminCompetenciasComponent implements OnInit {
         this.allData = this.allData.bind(this);
     }
     ngOnInit(){
-        this.getAllCompetencias();
+        this.getAllConceptosPuntos();
         
     }
 
-    getAllCompetencias() {
+    public rowCallback = (context: RowClassArgs) => {
+        return context.dataItem.rechazado ?  {started: true} :  { started: false};
+    }
+
+    getAllConceptosPuntos() {
         this.activo = true;
         this.loading = true;
         this.puntosService.obtenerPuntosAsignadosPorConceptos().subscribe(resp =>{
@@ -61,7 +66,7 @@ export class AdminCompetenciasComponent implements OnInit {
         });
         dialogRef.afterClosed().subscribe(result => {
             this.loading = true;
-            this.getAllCompetencias();
+            this.getAllConceptosPuntos();
         });
     }
 
@@ -80,7 +85,7 @@ export class AdminCompetenciasComponent implements OnInit {
         dialogRef.afterClosed().subscribe(result => {
             // console.log('The dialog was closed');
             this.loading = true;
-            this.getAllCompetencias();
+            this.getAllConceptosPuntos();
         });
     }
     

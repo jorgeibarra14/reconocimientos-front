@@ -7,6 +7,7 @@
                 [kendoGridBinding]="gridData"
                 [resizable]="true"
                 width="100%"
+                [rowClass]="rowCallback"
                 [filterable]="true"
                 [columnMenu]="true"
                 [loading]="loading"
@@ -24,6 +25,7 @@
                     </div>
                 </ng-template>
                 <kendo-grid-column
+                class="statusColumn"
                     field="concept"
                     [title]="'Concepto'"
                     [width]="100"
@@ -33,6 +35,7 @@
                 </kendo-grid-column>
                 
                 <kendo-grid-column
+                class="statusColumn"
                     field="employee"
                     [title]="'Empleado'"
                     [width]="220"
@@ -41,14 +44,16 @@
                     [footerStyle]="{'background-color': '#0B3B59','color': '#fff'}">
                 </kendo-grid-column>
                 <kendo-grid-column
+                class="statusColumn"
                     field="justificacion"
-                    [title]="'Justificacion'"
+                    [title]="'Justificación'"
                     [width]="220"
                     [headerStyle]="{'color': '#3C404C','line-height': '1em', 'font-weight': 'bold'}"
                     [style]="{'background-color': '#FFF','color': '#000'}"
                     [footerStyle]="{'background-color': '#0B3B59','color': '#fff'}">
                 </kendo-grid-column>
                 <kendo-grid-column
+                class="statusColumn"
                     field="employeeGiven"
                     [title]="'Otorga'"
                     [width]="220"
@@ -57,6 +62,7 @@
                     [footerStyle]="{'background-color': '#0B3B59','color': '#fff'}">
                 </kendo-grid-column>
                 <kendo-grid-column 
+                class="statusColumn"
                     [title]="'Puntos'"
                     field="points"
                     [width]="50"
@@ -64,7 +70,16 @@
                     [style]="{'background-color': '#FFF','color': '#000'}"
                     [footerStyle]="{'background-color': '#0B3B59','color': '#fff'}">
                 </kendo-grid-column>
-                <kendo-grid-column
+                <kendo-grid-column 
+                class="statusColumn"
+                    [title]="'Motivo Rechazo'"
+                    field="conceptoRechazo"
+                    [width]="220"
+                    [headerStyle]="{'color': '#3C404C','line-height': '1em', 'font-weight': 'bold'}"
+                    [style]="{'background-color': '#FFF','color': '#000'}"
+                    [footerStyle]="{'background-color': '#0B3B59','color': '#fff'}">
+                </kendo-grid-column>
+                <!-- <kendo-grid-column
                     [title]="'Acciones'"
                     [width]="80"
                     [headerStyle]="{'color': '#3C404C','line-height': '1em', 'font-weight': 'bold'}"
@@ -73,7 +88,7 @@
                     <ng-template kendoGridCellTemplate let-dataItem class="text-align:center">
                         <button class="btn btn-primary btn-editar" (click)="abrirEditar(dataItem.nombre, dataItem.descripcion, dataItem.nivel, dataItem.img, dataItem.id)"><i class="fas fa-pencil-alt"></i> Editar</button>
                     </ng-template>
-                </kendo-grid-column>
+                </kendo-grid-column> -->
                 <kendo-grid-messages
                     groupPanelEmpty="Arrastre las columnas aquí para agrupar"
                     pagerItems="registros"

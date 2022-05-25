@@ -63,3 +63,7 @@
         }
     }
 }
+
+.statusColumn { color: black !important; }
+.started .statusColumn { background-color: red !important; }
+.stopped .statusColumn { background-color: red !important; }
