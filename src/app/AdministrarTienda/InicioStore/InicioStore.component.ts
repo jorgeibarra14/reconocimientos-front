@@ -19,9 +19,8 @@ export class AdminInicioStoreComponent implements OnInit {
     idEmpleadoLogeado: Number;
     activo: Boolean;
     error: string;
-
     loading: boolean = true;
-    gridData: any = "";
+    gridData: any = '';
     expandedDetailKeys: any[] = [];
 
     constructor(
@@ -48,9 +47,10 @@ export class AdminInicioStoreComponent implements OnInit {
         //     })
         this.obtenerPedidios();
     }
+
     expandDetailsBy = (dataItem: any): any => {
         return dataItem.id;
-    };
+    }
 
     rechazar(id: Number): void {
         const dialogRef = this.dialog.open(ModalAdminstrarPedidosComponent, {
@@ -82,6 +82,21 @@ export class AdminInicioStoreComponent implements OnInit {
         });
     }
 
+    cambiar_status(id: Number) {
+        const dialogRef = this.dialog.open(ModalAdminstrarPedidosComponent, {
+            width: '500px',
+            data: {
+                tipo: 3,
+                pedidoId: id
+            }
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            this.loading = true;
+            this.obtenerPedidios();
+        });
+    }
+
     transformDate(date) {
         return this.datePipe.transform(date, "yyyy-MM-dd");
     }
@@ -96,14 +111,10 @@ export class AdminInicioStoreComponent implements OnInit {
             }, err => {
                 console.log("Ocurrió un error en getPedidos");
                 this.loading = false;
-            })
+            });
     }
 
     resuelto(comentario_resolucion: string, fecha_resolucion: string): boolean {
-        if (comentario_resolucion !== null && fecha_resolucion !== null)  {
-            return true;
-        }else {
-            return false;
-        }
+      return (comentario_resolucion !== null && fecha_resolucion !== null);
     }
 }

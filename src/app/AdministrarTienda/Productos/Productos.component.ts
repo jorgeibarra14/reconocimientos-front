@@ -39,13 +39,13 @@ export class AdminTiendProductosComponent implements OnInit {
     ngOnInit() {
         this.productoService.getProductos().subscribe(resp => {
             this.gridData = resp;
-            console.log(this.gridData);
             this.loading = false;
         }, error => this.error = error,
             () => { }
         );
         this.obtenerCategorias();
     }
+
     obtenerCategorias() {
         this.categoriasService.getCategorias().subscribe(resp => {
             this.categorias = resp;
@@ -53,6 +53,7 @@ export class AdminTiendProductosComponent implements OnInit {
             () => { }
         );
     }
+
     abrirEditar(nombre, descripcion, costo, stock, categoriaId, imagen, id, notas) {
         const dialogRef = this.dialog.open(ModalAdminTiendaEditarProductos, {
             width: '800px',
@@ -99,16 +100,16 @@ export class AdminTiendProductosComponent implements OnInit {
         const dialogRef = this.dialog.open(ModalAdminTiendaEditarProductos, {
             width: '800px',
             data: {
-                nombre: "",
-                descripcion: "",
-                costo: "",
-                stock: "",
-                categoria_id: "",
-                img: "",
-                id: "",
+                nombre: '',
+                descripcion: '',
+                costo: '',
+                stock: '',
+                categoria_id: '',
+                img: '',
+                id: '',
                 tipo: 2,
                 categorias: this.categorias,
-                notas: ""
+                notas: ''
             }
         });
 
@@ -142,7 +143,6 @@ export class AdminTiendProductosComponent implements OnInit {
             }
         })
     }
-
 
     EliminarProducto(ID: number) {
         this.loading = true;

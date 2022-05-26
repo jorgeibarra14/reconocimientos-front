@@ -50,6 +50,7 @@ export class ModalAdminstrarPedidosComponent implements OnInit {
                 this.puntosDisponibles = resp);
         }
     }
+
     btnCancelar() {
         this.dialogRef.close();
     }
@@ -242,6 +243,64 @@ export class ModalAdminstrarPedidosComponent implements OnInit {
                     //         () => {
                     //             console.log("Correo de notificación enviado.");
                     //         });
+
+                    this.alertSucces = true;
+                    Swal.fire('Pedido aprobado', ' La información se guardo correctamente.', 'success');
+                    this.enviado = false;
+                    this.dialogRef.close();
+                });
+    }
+
+    cambiar(button, buttonClose) {
+        this.enviado = true;
+        this.activo = true;
+        const comentarioResolucion = "Pedido aprobado";
+        const user = this.authService.getCookieUser();
+
+        let envio = {
+            "id": Number(this.data.pedidoId),
+            "aprobado": this.activo,
+            "comentario_resolucion": comentarioResolucion,
+            "fecha_resolucion": this.transformDate(Date.now())
+        };
+        this.pedidosService.updatePedidos(envio)
+            .subscribe(
+                (val) => {
+                    console.log("Pedido aprobado = ", val);
+                },
+                response => {
+                    // console.log("Ocurrió un error:", response);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Ocurrió un error',
+                        text: 'Favor de contactar al administrador.'
+                    });
+
+                    this.enviado = false;
+                },
+                () => {
+                    //Actualizar estatus del pedido
+                    let envioEstatus = {
+                        "id_pedido": Number(this.data.pedidoId),
+                        "estado": "Autorizado"
+                    };
+                    this.estatusPedidoService.updatePedidosEstatusPedido(envioEstatus)
+                        .subscribe(
+                            (val) => {
+                                //console.log("Reconocimeintos aprobados = ", val);
+                            },
+                            response => {
+                                console.log("Ocurrió un error:", response);
+                                this.enviado = false;
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Ocurrió un error',
+                                    text: 'Favor de contactar al administrador.'
+                                });
+                            },
+                            () => {
+                                console.log("Estatus actualizado.");
+                            });
 
                     this.alertSucces = true;
                     Swal.fire('Pedido aprobado', ' La información se guardo correctamente.', 'success');

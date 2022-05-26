@@ -18,7 +18,6 @@ export class ModalAdminTiendaEditarCategoria implements OnInit {
     idCategoria: number = 0;
     enviado: boolean = false;
     activo: boolean = true;
-
     nivelSeleccionado: string;
     tipo: boolean = false;
     titulo: string;
@@ -152,9 +151,7 @@ export class ModalAdminTiendaEditarCategoria implements OnInit {
         let fileReader = new FileReader();
         fileReader.onload = (e) => {
             this.file = fileReader.result;
-            //console.log("this.file");
-            //console.log(this.file);
-        }
+        };
         fileReader.readAsDataURL(this.file);
     }
 

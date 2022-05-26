@@ -8,9 +8,9 @@
         </button>
     </div>
 </mat-dialog-title>
-
 <h2 mat-dialog-title *ngIf="!data.tipo">Rechazar pedido</h2>
-<h2 mat-dialog-title *ngIf="data.tipo">Aprobar pedido</h2>
+<h2 mat-dialog-title *ngIf="data.tipo !==3">Aprobar pedido</h2>
+<h2 mat-dialog-title *ngIf="data.tipo === 3">Cambiar estatus del pedido</h2>
 <mat-dialog-content *ngIf="!data.tipo">
     <form [formGroup]="formulario" novalidate>
             <label class="col-md-12" for="observaciones">Observaciones Generalista de RH</label>
@@ -32,8 +32,17 @@
         </div>
     </div>
 </mat-dialog-content>
-<mat-dialog-content *ngIf="data.tipo" class="text-center">
+<mat-dialog-content *ngIf="data.tipo !==3" class="text-center">
     ¿Estás seguro de aprobar el pedido?
+    <div class="loading-spinner" *ngIf="enviado">
+        <div id="bg-loading"></div>
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+</mat-dialog-content>
+<mat-dialog-content *ngIf="data.tipo === 3" class="text-center">
+    ¿Estás seguro de cambiar el estatud del pedido?
     <div class="loading-spinner" *ngIf="enviado">
         <div id="bg-loading"></div>
         <div class="spinner-border" role="status">
@@ -47,7 +56,14 @@
         class="fa fa-times ml-0 mt-1 fa-lg"></i>
         Rechazar</button>
     <button cdkFocusInitial class="btn btn-guardar ml-1 mr-1 mt-1 mb-1"
-    style="color: white; height: 35px; min-width: 110px; font-size: 14px;" #buttonSend (click)="aceptar(buttonSend, buttonClose)" *ngIf="data.tipo"><i
+    style="color: white; height: 35px; min-width: 110px; font-size: 14px;" #buttonSend (click)="aceptar(buttonSend, buttonClose)" *ngIf="data.tipo !== 3"><i
         class="fa fa-check ml-0 mt-1 fa-lg"></i>
         Aprobar</button>
+    <button cdkFocusInitial
+            class="btn btn-guardar ml-1 mr-1 mt-1 mb-1"
+            style="color: white; height: 35px; min-width: 110px; font-size: 14px;"
+            #buttonSend (click)="cambiar(buttonSend, buttonClose)"
+            *ngIf="data.tipo === 3">
+      <i class="fa fa-check ml-0 mt-1 fa-lg"></i>Cambiar
+    </button>
 </mat-dialog-actions>

@@ -38,20 +38,31 @@
                     [footerStyle]="{'background-color': '#0B3B59','color': '#fff'}">
                     <ng-template kendoGridCellTemplate let-dataItem class="text-align:center">
                         <div id="button-div" *ngIf="!resuelto(dataItem.comentario_resolucion, dataItem.fecha_resolucion)">
-                            <button type="button" class="btn btn-success btn-sm ml-1 mt-1 rounded btn-aprobar"
-                                style="width: 95px; height: 35px;"
-                                (click)="aceptar(dataItem.id)"
-                                [disabled]="loading">
-                                <i class="fa fa-check ml-0 mt-0 fa-lg"></i> Aprobar
-                            </button>
+                          <button mat-mini-fab
+                                  class="btn btn-success btn-sm ml-1 mt-1 rounded btn-aprobar"
+                                  (click)="aceptar(dataItem.id)"
+                                  [disabled]="loading"
+                                  matTooltip="Aprobar">
+                            <i class="fa fa-check ml-0 mt-0 fa-lg"></i>
+                          </button>
                         </div>
                         <div id="button-div"  *ngIf="!resuelto(dataItem.comentario_resolucion, dataItem.fecha_resolucion)">
-                            <button type="button" class="btn btn-danger btn-sm ml-1 mt-1 rounded btn-rechazar"
-                                style="width: 97px; height: 35px;"
-                                (click)="rechazar(dataItem.id)"
-                                [disabled]="loading">
-                                <i class="fa fa-times ml-0 mt-0 fa-lg"></i> Rechazar
-                            </button>
+                          <button mat-mini-fab
+                                  class="btn btn-danger btn-sm ml-1 mt-1 rounded btn-rechazar"
+                                  (click)="rechazar(dataItem.id)"
+                                  [disabled]="loading"
+                                  matTooltip="Rechazar">
+                            <i class="fa fa-times ml-0 mt-0 fa-lg"></i>
+                          </button>
+                        </div>
+                        <div id="button-div"  *ngIf="!resuelto(dataItem.comentario_resolucion, dataItem.fecha_resolucion) && !dataItem.aprobado">
+                          <button mat-mini-fab
+                                  class="btn btn-danger btn-sm ml-1 mt-1 rounded btn-cambio"
+                                  (click)="cambiar_status(dataItem.id)"
+                                  [disabled]="loading"
+                                  matTooltip="Cambiar Estatus">
+                            <i class="fa fa-exchange ml-0 mt-0 fa-lg"></i>
+                          </button>
                         </div>
                         <div class="aprobado" *ngIf="resuelto(dataItem.comentario_resolucion, dataItem.fecha_resolucion) && dataItem.aprobado" style="height: 45px;">
                             <i class="fa fa-check ml-0 mt-1 fa-lg"></i><p> PEDIDO APROBADO</p>

@@ -35,7 +35,7 @@ export class ModalAdminTiendaEditarProductos implements OnInit {
             costo: [this.data.costo, Validators.required],
             stock: [this.data.stock, Validators.required],
             archivo: [''],
-            notas: [''],
+            notas: [this.data.notas],
             categoria_id: [this.data.categoria_id, Validators.required]
         });
         this.categorias = this.data.categorias;
@@ -157,13 +157,12 @@ export class ModalAdminTiendaEditarProductos implements OnInit {
         this.file = e.target.files[0];
         this.uploadFile();
     }
+
     uploadFile() {
         let fileReader = new FileReader();
         fileReader.onload = (e) => {
             this.file = fileReader.result;
-            //console.log("this.file");
-            //console.log(this.file);
-        }
+        };
         fileReader.readAsDataURL(this.file);
     }
 }

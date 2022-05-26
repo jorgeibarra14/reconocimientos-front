@@ -22,7 +22,7 @@ export class ModalAdminEditarCompetencias implements OnInit {
     idCompetencia: number = 0;
     enviado: boolean = false;
     activo: boolean = true;
-    
+
     niveles = [
         { descripcion: 'NIVEL 1' },
         { descripcion: 'NIVEL 2' },
@@ -58,9 +58,9 @@ export class ModalAdminEditarCompetencias implements OnInit {
             empleado: [, [Validators.required]],
             justificacion: [, [Validators.required, Validators.minLength(1)]],
             concepto: [, [Validators.required]],
-           
+
         });
-        
+
         const user = this.authService.getCookieUser();
         if(user != undefined) {
             this.colaboradorService.getUserCompany(user.Id).subscribe(r => {
@@ -80,12 +80,12 @@ export class ModalAdminEditarCompetencias implements OnInit {
       }
 
     getConceptos() {
-        
+
         this.competenciasService.getConceptos().subscribe(r => {
             this.conceptos = r;
         });
     }
-    
+
     ngOnInit() {
        this.titulo = 'Agregar puntos por concepto';
        this.filteredOptions = this.formulario.controls.empleado.valueChanges.pipe(
@@ -95,13 +95,12 @@ export class ModalAdminEditarCompetencias implements OnInit {
     }
 
     private _filter(value: string): string[] {
-        
+
         const filterValue = value.toLowerCase();
         return this.resultadoBusqueda.filter(option => option.nombreCompleto.toLowerCase().includes(filterValue));
       }
 
     guardar() {
-        
         if (this.formulario.valid) {
             // this.enviado = true;
             // if (this.data.tipo == 1) {
@@ -178,7 +177,8 @@ export class ModalAdminEditarCompetencias implements OnInit {
                 valor: this.formulario.get('concepto').value.points,
                 tipo: this.formulario.get('concepto').value.name,
                 conceptoId: this.formulario.get('concepto').value.id,
-                idEmpleadoOtorga: this.idEmpleadoLogeado
+                idEmpleadoOtorga: this.idEmpleadoLogeado,
+                imagen: this.file
 
             };
 
@@ -195,7 +195,7 @@ export class ModalAdminEditarCompetencias implements OnInit {
                                         }
                                     });
             });
-            
+
         } else {
             this.enviado = false;
         }
@@ -209,9 +209,7 @@ export class ModalAdminEditarCompetencias implements OnInit {
         let fileReader = new FileReader();
         fileReader.onload = (e) => {
             this.file = fileReader.result;
-            //console.log("this.file");
-            //console.log(this.file);
-        }
+        };
         fileReader.readAsDataURL(this.file);
     }
 
@@ -224,7 +222,7 @@ export class ModalAdminEditarCompetencias implements OnInit {
                 return e.nombreCompleto.toLowerCase().includes(e)
             });
             this.resultadoBusqueda = data;
-  
+
         }
     }
 }
