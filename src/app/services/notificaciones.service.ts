@@ -18,10 +18,13 @@ export class NotificacionesService {
         var titulo, descripcion;
         if(tipo == 0){ //Rechazado
             titulo = "Denegado";
-            descripcion = "Te han rechazado el reconocimiento enviado a "+args[0]+". Razón: "+args[1];
-        }else{
-            titulo = "Te reconocieron";
-            descripcion = args[0] + " te ha reconocido";
+            descripcion = "Te han rechazado el aplauso enviado a "+args[0]+". Razón: "+args[1];
+        }else if(tipo == 1){
+            titulo = "Te aplaudieron";
+            descripcion = args[0] + " te ha aplaudido";
+        } else {
+            titulo = "Has obtenido una recompensa por el concepto de " + args[1];
+            descripcion = args[2];
         }
         let envio = {
             "id_reconocimiento": Number(idReconocimiento),

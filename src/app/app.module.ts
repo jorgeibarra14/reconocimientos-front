@@ -32,7 +32,7 @@ import { ModalAdminEditarCompetencias } from "./components/ModalAdminEditarCompe
 import { ModalAdminEditarPuntos } from "./components/ModalAdminEditarPuntos/ModalAdminEditarPuntos.component";
 import { ModalAdminAutorizadores } from "./components/ModalAdminAutorizadores/ModalAdminAutorizadores.component";
 import { AdminAutorizadoresComponent } from "./Administrador/Autorizadores/Autorizadores.component";
-import { AdminCompetenciasComponent } from "./Administrador/Competencias/Competencias.component";
+import { AdminConceptosPuntosComponent } from "./Administrador/Competencias/Competencias.component";
 import { AdminPuntosComponent } from "./Administrador/Puntos/Puntos.component";
 import { RolesUsuariosComponent } from './Administrador/rolesUsuarios/rolesUsuarios.component';
 import { ModalEditarRolesUsuarios } from './Administrador/rolesUsuarios/modalEditarRolesUsuarios/modalEditarRolesUsuarios.component';
@@ -95,7 +95,7 @@ registerLocaleData(localeEsAr);
     ModalAdminEditarPuntos,
     ModalAdminAutorizadores,
     AdminAutorizadoresComponent,
-    AdminCompetenciasComponent,
+    AdminConceptosPuntosComponent,
     AdminMenuTiendaComponent,
     AdminInicioStoreComponent,
     AdminTiendaCategoriasComponent,

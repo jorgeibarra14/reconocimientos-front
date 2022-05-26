@@ -52,7 +52,7 @@ export class AdminInicioComponent implements OnInit {
        }
     rechazar(id: number, id_empleado_envia: number, id_empleado_recibe: number, reconoceA: string): void {
         const dialogRef = this.dialog.open(ModalAdminReconocimientosComponent, {
-            width: '500px',
+            // width: '500px',
             data: {
                 tipo: 0,
                 reconocimientoId: id,
@@ -71,13 +71,57 @@ export class AdminInicioComponent implements OnInit {
 
     aceptar(id: Number, id_empleado_envia: number, id_empleado_recibe: number, enviadoPor: string, event: any) {
         const dialogRef = this.dialog.open(ModalAdminReconocimientosComponent, {
-            width: '500px',
+            // width: '500px',
             data: {
                 tipo: 1,
                 reconocimientoId: id,
                 idEmpleadoEnvia: id_empleado_envia,
                 idEmpleadoRecibe: id_empleado_recibe,
                 enviadoPor: enviadoPor
+            }
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            console.log('The dialog was closed');
+            //console.log(result);
+            this.loading = true;
+            this.refresh(result);
+        });
+    }
+
+    aprobarConcepto(data: any) {
+        const dialogRef = this.dialog.open(ModalAdminReconocimientosComponent, {
+            // width: '500px',
+            data: {
+                tipo: 2,
+                reconocimientoId: data.id,
+                idEmpleadoEnvia: data.id_empleado_envia,
+                idEmpleadoRecibe: data.id_empleado_recibe,
+                enviadoPor: data.enviadoPor,
+                concepto: data.competencia,
+                motivo: data.motivo
+            }
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            console.log('The dialog was closed');
+            //console.log(result);
+            this.loading = true;
+            this.refresh(result);
+        });
+    }
+
+    rechazarConcepto(data: any) {
+        const dialogRef = this.dialog.open(ModalAdminReconocimientosComponent, {
+            // width: '500px',
+            data: {
+                tipo: 3,
+                reconocimientoId: data.id,
+                idEmpleadoEnvia: data.id_empleado_envia,
+                idEmpleadoRecibe: data.id_empleado_recibe,
+                enviadoPor: data.enviadoPor,
+                concepto: data.competencia,
+                motivo: data.motivo
             }
         });
 

@@ -50,22 +50,45 @@
                     [footerStyle]="{'background-color': '#0B3B59','color': '#fff'}">
                     <ng-template kendoGridCellTemplate let-dataItem class="text-align:center">              
                         <div id="button-div">
-                            <button type="button" class="btn btn-success rounded btn-aprobar"
+                            
+                            <div *ngIf="!dataItem.activo">
+                                <button mat-button  class="btn btn-success rounded btn-aprobar"
+                                    
+                                    (click)="aprobarConcepto(dataItem)"
+                                    [disabled]="loading">
+                                    <i class="fa fa-check ml-0 mt-0 fa-lg"></i> Aprobar Concepto
+                                    <!-- <div id="text-aceptar">Aprobar</div> -->
+                                </button>
+
+                                <button type="button" class="btn btn-danger btn-sm ml-1 mt-1 rounded btn-rechazar"
                                 
-                                (click)="aceptar(dataItem.id, dataItem.id_empleado_envia, dataItem.id_empleado_recibe, dataItem.enviadoPor)"
-                                [disabled]="loading">
-                                <i class="fa fa-check ml-0 mt-0 fa-lg"></i> {{dataItem.activo ? 'Aprobar' : 'Aprobar concepto'}}
-                                <!-- <div id="text-aceptar">Aprobar</div> -->
-                            </button>
+                                    (click)="rechazarConcepto(dataItem)"
+                                    [disabled]="loading">
+                                    <i class="fa fa-times ml-0 mt-0 fa-lg"></i> Rechazar
+                                    <!-- <div id="text-rechazar">Rechazar</div> -->
+                                </button>
+                            </div>
+
+                            <div *ngIf="dataItem.activo">
+                                <button type="button" class="btn btn-success rounded btn-aprobar"
+                                
+                                    (click)="aceptar(dataItem.id, dataItem.id_empleado_envia, dataItem.id_empleado_recibe, dataItem.enviadoPor)"
+                                    [disabled]="loading">
+                                    <i class="fa fa-check ml-0 mt-0 fa-lg"></i> Aprobar aplauso
+                                    <!-- <div id="text-aceptar">Aprobar</div> -->
+                                </button>
+                                <button type="button" class="btn btn-danger btn-sm ml-1 mt-1 rounded btn-rechazar"
+                                
+                                    (click)="rechazar(dataItem.id, dataItem.id_empleado_envia, dataItem.id_empleado_recibe, dataItem.reconoceA)"
+                                    [disabled]="loading">
+                                    <i class="fa fa-times ml-0 mt-0 fa-lg"></i> Rechazar
+                                    <!-- <div id="text-rechazar">Rechazar</div> -->
+                                </button>
+                            </div>
+
                         </div>
                         <div id="button-div">
-                            <button type="button" class="btn btn-danger btn-sm ml-1 mt-1 rounded btn-rechazar"
-                                style="width: 97px; height: 35px;"
-                                (click)="rechazar(dataItem.id, dataItem.id_empleado_envia, dataItem.id_empleado_recibe, dataItem.reconoceA)"
-                                [disabled]="loading">
-                                <i class="fa fa-times ml-0 mt-0 fa-lg"></i> Rechazar
-                                <!-- <div id="text-rechazar">Rechazar</div> -->
-                            </button>
+
                         </div>
                     </ng-template>
                 </kendo-grid-column>
