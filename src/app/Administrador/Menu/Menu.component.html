@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-12">
             <ul class="nav nav-pills nav-fill">
-                <li class="nav-item">
+                <li class="nav-item"  *ngIf="!showAck">
                     <a class="nav-link" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact:
                         true}" routerLink="/admin">Reconocimientos por aprobar</a>
                 </li>

@@ -24,8 +24,10 @@
                 <a class="nav-link" href="javascript:void(0);" routerLink="/store/mis-pedidos">Mis pedidos</a>
             </li>
             <li class="nav-item hide_in_mobile">
-                <a class="nav-link carrito" href="javascript:void(0);" data-toggle="modal" data-target="#cartModal" id="btnCartModal">
-                    <img src="../../../assets/img/bytecoin/icon-cart.png" class="img-fluid" style="width: 20px;">
+                <a class="nav-link carrito" style="color: #19456E;" href="javascript:void(0);" data-toggle="modal" data-target="#cartModal" id="btnCartModal">
+                    <!-- <img src="../../../assets/img/bytecoin/icon-cart.png" class="img-fluid" style="width: 20px;"> -->
+                    <!-- <i class="fas fa-1x fa-bag-shopping" style="color: #19456E;"></i> -->
+                    <i class="fas fa-2x fa-shopping-bag"></i>
                     <span class="badge ml-2" *ngIf="cantidadItems > 0">{{ cantidadItems }}</span>
                 </a>
             </li>

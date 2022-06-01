@@ -10,6 +10,8 @@ import { AuthService } from "../../services/auth.service";
 export class AdminMenuComponent implements OnInit {
     user: any;
     accesoAdmin: boolean = false;
+    showStoreAuth= false;
+    showAckAuth= false;
 
     constructor(
         private usuariosRolesService: UsuariosRolesService,
@@ -17,6 +19,9 @@ export class AdminMenuComponent implements OnInit {
     ){}
     ngOnInit(){
         this.user = this.authService.getCookieUser();
+        this.showAckAuth = this.user.IsAdminAck == 'True' ? true : false;
+        debugger
+        // this.showStoreAuth = this.user.IsAdminStore == 'True' ? true : false;
         //Revisar si es admin
         this.usuariosRolesService.getUsuarioRol(this.user.Id).subscribe(resp=>{
             if(resp == 1 || resp == 4){

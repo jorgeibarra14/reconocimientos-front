@@ -52,38 +52,46 @@
                         <div id="button-div">
                             
                             <div *ngIf="!dataItem.activo">
-                                <button mat-button  class="btn btn-success rounded btn-aprobar"
+                                <!-- <button mat-button  class="btn btn-success rounded btn-aprobar"
                                     
                                     (click)="aprobarConcepto(dataItem)"
                                     [disabled]="loading">
                                     <i class="fa fa-check ml-0 mt-0 fa-lg"></i> Aprobar Concepto
-                                    <!-- <div id="text-aceptar">Aprobar</div> -->
+                                </button> -->
+
+                                <button (click)="aprobarConcepto(dataItem)" 
+                                matTooltip="Aprobar concepto"
+                                [disabled]="loading" mat-mini-fab color="primary" aria-label="Example icon button with a bookmark icon">
+                                    <mat-icon>check</mat-icon>
                                 </button>
 
-                                <button type="button" class="btn btn-danger btn-sm ml-1 mt-1 rounded btn-rechazar"
+                                <button (click)="rechazarConcepto(dataItem)" 
+                                matTooltip="Rechazar concepto"
+                                [disabled]="loading" mat-mini-fab color="warn" aria-label="Example icon button with a bookmark icon">
+                                    <mat-icon>close</mat-icon>
+                                </button>
+                                <!-- <button type="button" class="btn btn-danger btn-sm ml-1 mt-1 rounded btn-rechazar"
                                 
                                     (click)="rechazarConcepto(dataItem)"
                                     [disabled]="loading">
                                     <i class="fa fa-times ml-0 mt-0 fa-lg"></i> Rechazar
-                                    <!-- <div id="text-rechazar">Rechazar</div> -->
-                                </button>
+                                </button> -->
                             </div>
 
                             <div *ngIf="dataItem.activo">
-                                <button type="button" class="btn btn-success rounded btn-aprobar"
-                                
-                                    (click)="aceptar(dataItem.id, dataItem.id_empleado_envia, dataItem.id_empleado_recibe, dataItem.enviadoPor)"
-                                    [disabled]="loading">
-                                    <i class="fa fa-check ml-0 mt-0 fa-lg"></i> Aprobar aplauso
-                                    <!-- <div id="text-aceptar">Aprobar</div> -->
+
+                                <button (click)="aceptar(dataItem.id, dataItem.id_empleado_envia, dataItem.id_empleado_recibe, dataItem.enviadoPor)" 
+                                matTooltip="Aprobar aplauso"
+                                [disabled]="loading" mat-mini-fab color="primary" aria-label="Example icon button with a bookmark icon">
+                                    <mat-icon>check</mat-icon>
                                 </button>
-                                <button type="button" class="btn btn-danger btn-sm ml-1 mt-1 rounded btn-rechazar"
-                                
-                                    (click)="rechazar(dataItem.id, dataItem.id_empleado_envia, dataItem.id_empleado_recibe, dataItem.reconoceA)"
-                                    [disabled]="loading">
-                                    <i class="fa fa-times ml-0 mt-0 fa-lg"></i> Rechazar
-                                    <!-- <div id="text-rechazar">Rechazar</div> -->
+
+                                <button (click)="rechazar(dataItem.id, dataItem.id_empleado_envia, dataItem.id_empleado_recibe, dataItem.reconoceA)" 
+                                matTooltip="Rechazar aplauso"
+                                [disabled]="loading" elevation="0" mat-mini-fab color="warn" aria-label="Example icon button with a bookmark icon">
+                                    <mat-icon>close</mat-icon>
                                 </button>
+
                             </div>
 
                         </div>

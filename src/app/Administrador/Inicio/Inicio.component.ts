@@ -31,6 +31,7 @@ export class AdminInicioComponent implements OnInit {
         private authService: AuthService
     ) {
         const user = this.authService.getCookieUser();
+        
         this.idEmpleadoLogeado = user.Id;
         this.activo = true;
     }
