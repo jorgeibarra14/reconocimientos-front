@@ -42,7 +42,7 @@
     </div>
 </mat-dialog-content>
 <mat-dialog-content *ngIf="data.tipo === 3" class="text-center">
-    ¿Estás seguro de cambiar el estatud del pedido?
+    ¿Estás seguro de cambiar el estatus del pedido?
     <div class="loading-spinner" *ngIf="enviado">
         <div id="bg-loading"></div>
         <div class="spinner-border" role="status">
@@ -52,17 +52,17 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end" *ngIf="!alertSucces">
     <button cdkFocusInitial class="btn btn-rechazar ml-1 mr-1 mt-1 mb-1"
-    style="color: white; height: 35px; min-width: 110px; font-size: 14px;" #buttonSend (click)="rechazar(buttonSend, buttonClose)" *ngIf="!data.tipo"><i
+    style="color: white; height: 35px; min-width: 110px; font-size: 14px;" #buttonSend (click)="cambiar(buttonSend, buttonClose, 2)" *ngIf="!data.tipo"><i
         class="fa fa-times ml-0 mt-1 fa-lg"></i>
         Rechazar</button>
     <button cdkFocusInitial class="btn btn-guardar ml-1 mr-1 mt-1 mb-1"
-    style="color: white; height: 35px; min-width: 110px; font-size: 14px;" #buttonSend (click)="aceptar(buttonSend, buttonClose)" *ngIf="data.tipo !== 3"><i
+    style="color: white; height: 35px; min-width: 110px; font-size: 14px;" #buttonSend (click)="cambiar(buttonSend, buttonClose, 1)" *ngIf="data.tipo !== 3"><i
         class="fa fa-check ml-0 mt-1 fa-lg"></i>
         Aprobar</button>
     <button cdkFocusInitial
             class="btn btn-guardar ml-1 mr-1 mt-1 mb-1"
             style="color: white; height: 35px; min-width: 110px; font-size: 14px;"
-            #buttonSend (click)="cambiar(buttonSend, buttonClose)"
+            #buttonSend (click)="cambiar(buttonSend, buttonClose, 3)"
             *ngIf="data.tipo === 3">
       <i class="fa fa-check ml-0 mt-1 fa-lg"></i>Cambiar
     </button>

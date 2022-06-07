@@ -6,7 +6,7 @@
             <kendo-grid [kendoGridBinding]="gridData" [resizable]="true" width="100%" [filterable]="true"
                 [columnMenu]="true" [loading]="loading" [sortable]="{ allowUnsort: true, mode: 'multiple' }"
                 [kendoGridExpandDetailsBy]="expandDetailsBy" [(expandedDetailKeys)]="expandedDetailKeys"
-                [pageable]="{ buttonCount: 5, pageSizes: [5,10,20,100] }" [pageSize]="5">
+                [pageable]="{ buttonCount: 10, pageSizes: [5,10,20,100] }" [pageSize]="10">
                 <kendo-grid-column field="nombre_solicitante" [title]="'Pedido por'"
                     [headerStyle]="{'color': '#3C404C','line-height': '1em', 'font-weight': 'bold'}"
                     [style]="{'background-color': '#FFF','color': '#000'}"
@@ -32,45 +32,49 @@
                     [style]="{'background-color': '#FFF','color': '#000'}"
                     [footerStyle]="{'background-color': '#0B3B59','color': '#fff'}">
                 </kendo-grid-column>
+                <kendo-grid-column field="estatus" [title]="'Estatus'" [width]="200"
+                                   [headerStyle]="{'color': '#3C404C','line-height': '1em', 'font-weight': 'bold','text-align': 'center'}"
+                                   [style]="{'background-color': '#FFF','color': '#000','text-align': 'center'}"
+                                   [footerStyle]="{'background-color': '#0B3B59','color': '#fff'}">
+                  <ng-template kendoGridCellTemplate let-dataItem class="text-align:center">
+                    <div class="aprobado" style="height: 45px;">
+                      <i :class="{{ dataItem.icon }}"></i><p style=""> {{ dataItem.estatus }}</p>
+                    </div>
+                  </ng-template>
+                </kendo-grid-column>
                 <kendo-grid-column [title]="'Acciones'" [width]="200"
                     [headerStyle]="{'color': '#3C404C','line-height': '1em', 'font-weight': 'bold','text-align': 'center'}"
                     [style]="{'background-color': '#FFF','color': '#000','text-align': 'center'}"
                     [footerStyle]="{'background-color': '#0B3B59','color': '#fff'}">
                     <ng-template kendoGridCellTemplate let-dataItem class="text-align:center">
-                        <div id="button-div" *ngIf="!resuelto(dataItem.comentario_resolucion, dataItem.fecha_resolucion)">
+                        <div id="button-div" *ngIf="!resuelto(dataItem.comentario_resolucion, dataItem.fecha_resolucion) && dataItem.estatus === 'Pendiente de autorización'">
                           <button mat-mini-fab
                                   class="btn btn-success btn-sm ml-1 mt-1 rounded btn-aprobar"
-                                  (click)="aceptar(dataItem.id)"
+                                  (click)="aceptar(dataItem.id_pedido)"
                                   [disabled]="loading"
                                   matTooltip="Aprobar">
                             <i class="fa fa-check ml-0 mt-0 fa-lg"></i>
                           </button>
                         </div>
-                        <div id="button-div"  *ngIf="!resuelto(dataItem.comentario_resolucion, dataItem.fecha_resolucion)">
+                        <div id="button-div"  *ngIf="!resuelto(dataItem.comentario_resolucion, dataItem.fecha_resolucion) && (dataItem.estatus === 'Pendiente de autorización')">
                           <button mat-mini-fab
                                   class="btn btn-danger btn-sm ml-1 mt-1 rounded btn-rechazar"
-                                  (click)="rechazar(dataItem.id)"
+                                  (click)="rechazar(dataItem.id_pedido)"
                                   [disabled]="loading"
                                   matTooltip="Rechazar">
                             <i class="fa fa-times ml-0 mt-0 fa-lg"></i>
                           </button>
                         </div>
-                        <div id="button-div"  *ngIf="!resuelto(dataItem.comentario_resolucion, dataItem.fecha_resolucion) && !dataItem.aprobado">
+                        <div id="button-div"  *ngIf="resuelto(dataItem.comentario_resolucion, dataItem.fecha_resolucion) && dataItem.estatus === 'Autorizado'">
                           <button mat-mini-fab
                                   class="btn btn-danger btn-sm ml-1 mt-1 rounded btn-cambio"
-                                  (click)="cambiar_status(dataItem.id)"
+                                  (click)="cambiar_status(dataItem.id_pedido)"
                                   [disabled]="loading"
                                   matTooltip="Cambiar Estatus">
                             <i class="fa fa-exchange ml-0 mt-0 fa-lg"></i>
                           </button>
                         </div>
-                        <div class="aprobado" *ngIf="resuelto(dataItem.comentario_resolucion, dataItem.fecha_resolucion) && dataItem.aprobado" style="height: 45px;">
-                            <i class="fa fa-check ml-0 mt-1 fa-lg"></i><p> PEDIDO APROBADO</p>
-                        </div>
-                        <div class="rechazado" *ngIf="resuelto(dataItem.comentario_resolucion, dataItem.fecha_resolucion) && !dataItem.aprobado" style="height: 45px;">
-                            <i class="fa fa-times ml-0 mt-1 fa-lg" style="color: #FEC526;"></i><p> PEDIDO RECHAZADO</p>
-                        </div>
-                    </ng-template>
+                     </ng-template>
                 </kendo-grid-column>
                 <ng-template kendoGridDetailTemplate let-dataItem>
                     <section *ngIf="dataItem.productos">

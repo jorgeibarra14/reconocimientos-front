@@ -57,7 +57,7 @@ export class AdminInicioStoreComponent implements OnInit {
             width: '500px',
             data: {
                 tipo: 0,
-                pedidoId: id
+                id_pedido: id
             }
         });
 
@@ -72,7 +72,7 @@ export class AdminInicioStoreComponent implements OnInit {
             width: '500px',
             data: {
                 tipo: 1,
-                pedidoId: id
+                id_pedido: id
             }
         });
 
@@ -87,7 +87,7 @@ export class AdminInicioStoreComponent implements OnInit {
             width: '500px',
             data: {
                 tipo: 3,
-                pedidoId: id
+                id_pedido: id
             }
         });
 

@@ -142,13 +142,8 @@
                                         <input type="text" class="form-control" placeholder="CIUDAD" [value]="datosUser.sistema" readonly>
                                     </div>
                                 </div> -->
-                                <div class="col-md-12">
-                                    <div class="form-group pr-3 pl-3">
-                                        <input type="text" class="form-control" maxlength="10" minlength="10" pattern="[0-9]*"  placeholder="CELULAR" [(ngModel)]="datosUser.celular" required>
-                                    </div>
-                                </div>
                                 <div class="col-md-12 boton-enviar" *ngIf="itemsCart.length > 0 && puntosDisponibles >= subtotal">
-                                    <button class="btn btn-large btn-animation" (click)="guardarPedido()" [disabled]="datosUser.celular.length != 10">
+                                    <button class="btn btn-large btn-animation" (click)="guardarPedido()">
                                         <div class="spinner-border" role="status" *ngIf="loading">
                                             <span class="sr-only">Loading...</span>
                                         </div>

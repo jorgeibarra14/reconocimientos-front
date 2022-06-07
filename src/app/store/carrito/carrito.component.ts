@@ -23,42 +23,42 @@ export class CarritoStoreComponent implements OnInit, OnChanges, AfterViewInit  
   itemsCartDiffer: any; // Variable clonada de itemsCart para saber si cambió su contenido
   habilitarBoton = false;
   user: any = {
-    Nombre: "",
+    Nombre: '',
     Id: 0,
-    Foto:"",
+    Foto: '',
   };
   idEmpleadoLogeado: string;
   datosUser: any = {
-    nombreCompleto: "",
-    puesto: "",
-    area: "",
-    sistema: "",
+    nombreCompleto: '',
+    puesto: '',
+    area: '',
+    sistema: '',
     celular: null
   };
-  puntosDisponibles: number = 0;
-  esUsuarioNormal: boolean = true;
+  puntosDisponibles: 0;
+  esUsuarioNormal: boolean;
 
   // topSize: number = 0;
   itemsCart: any = [];
   productos: Producto[] = [];
-  subtotal: number = 0;
-  cantidadItems: number = 0;
-  //Alerts
+  subtotal: 0;
+  cantidadItems: 0;
+  // Alerts
   // textoDanger: string = '';
   // alertSuccess: boolean = false;
   // alertDanger: boolean = false;
 
-  loading: boolean = false;
+  loading: boolean;
   // currentRoute: string = '';
 
   company: any = {
-    color: "",
-    isoLogo: "",
-    logo: "",
-    name: "",
-    prefix: ""
+    color: '',
+    isoLogo: '',
+    logo: '',
+    name: '',
+    prefix: ''
   };
-  unidadValor = "";
+  unidadValor = '';
   accionSingular = '';
   accionPlural = '';
 
@@ -76,7 +76,7 @@ export class CarritoStoreComponent implements OnInit, OnChanges, AfterViewInit  
     this.user = this.authService.getCookieUser();
     this.idEmpleadoLogeado = this.user.Id;
 
-    if(this.user != undefined) {
+    if (this.user !== undefined) {
       this.colaboradorService.getUserCompany(this.user.Id).subscribe(r => {
         this.company = r;
       });
@@ -84,18 +84,18 @@ export class CarritoStoreComponent implements OnInit, OnChanges, AfterViewInit  
 
     this.configService.getConfig(this.user.AppId).subscribe((r: any) => {
       r.forEach(element => {
-        if(element.key == 'unidad_valor') {
+        if(element.key === 'unidad_valor') {
           this.unidadValor = element.value;
         }
-        if(element.key == 'accion_plural') {
+        if(element.key === 'accion_plural') {
           this.accionPlural = element.value;
         }
-        if(element.key == 'accion_singular') {
+        if(element.key === 'accion_singular') {
           this.accionSingular = element.value;
         }
       });
     });
-    //Demo
+    // Demo
     // localStorage.setItem('cart', JSON.stringify(this.demoItemsCart));
   }
 
@@ -105,7 +105,7 @@ export class CarritoStoreComponent implements OnInit, OnChanges, AfterViewInit  
           .subscribe(
             resp => {
               this.datosUser = resp[0];
-              this.datosUser.celular = null
+              this.datosUser.celular = null;
               this.mostrarEnlaces();
               // console.log(this.datosUser);
               // this.loading = false;
@@ -113,7 +113,7 @@ export class CarritoStoreComponent implements OnInit, OnChanges, AfterViewInit  
                * FALTA LA RUTA API QUE SUME COMISIONES + MIS RECONOCIMIENTOS
                */
               this.reconocimientoService.getPuntosAcumulados(this.idEmpleadoLogeado, true).subscribe(
-                  resp=>{
+                  resp => {
                       this.puntosDisponibles = resp;
                       this.loading = false;
                   });
@@ -124,7 +124,7 @@ export class CarritoStoreComponent implements OnInit, OnChanges, AfterViewInit  
           )
   }
   ngAfterViewInit() {
-    if( !(this.itemsCart = JSON.parse(localStorage.getItem("cart"))) ){
+    if (!(this.itemsCart = JSON.parse(localStorage.getItem('cart'))) ){
       this.itemsCart = [];
     }else{
       this.validarItemsCarrito();
@@ -138,15 +138,15 @@ export class CarritoStoreComponent implements OnInit, OnChanges, AfterViewInit  
     this.cdRef.detectChanges();
   }
   ngOnChanges(change: SimpleChanges) {
-    if(change.itemAddCart && change.itemAddCart.currentValue){
+    if (change.itemAddCart && change.itemAddCart.currentValue){
       // console.log("cambio cart from parent");
-      //Add to cart item
-      var productoAdd = change.itemAddCart.currentValue;
-      //Revisar si existe en el carrito
-      var existeEnCarrito = false;
+      // Add to cart item
+      let productoAdd = change.itemAddCart.currentValue;
+      // Revisar si existe en el carrito
+      let existeEnCarrito = false;
       this.itemsCart.forEach(el => {
         // console.log("el.id("+el.id+") == productoAdd.id("+productoAdd.id+")")
-        if(el.id == productoAdd.id){
+        if (el.id === productoAdd.id){
           // console.log("entra a: " + productoAdd.id);
           existeEnCarrito = true;
           this.loading = true;
@@ -163,12 +163,12 @@ export class CarritoStoreComponent implements OnInit, OnChanges, AfterViewInit  
                 }, err => {
                   this.loading = false;
                 }
-              )
+              );
           return;
         }
       });
-      if(!existeEnCarrito){
-        if(productoAdd.id){
+      if (!existeEnCarrito){
+        if (productoAdd.id){
           this.loading = true;
           this.productoService.getProductoById(productoAdd.id)
               .subscribe(
@@ -184,7 +184,7 @@ export class CarritoStoreComponent implements OnInit, OnChanges, AfterViewInit  
                 }, err => {
                   this.loading = false;
                 }
-              )
+              );
         }
       }
     }
@@ -219,15 +219,15 @@ export class CarritoStoreComponent implements OnInit, OnChanges, AfterViewInit  
   // }
   //
   validarItemsCarrito(){
-    var i = 0;
-    var itemsCartTmp = JSON.parse(JSON.stringify(this.itemsCart));
+    let i = 0;
+    const itemsCartTmp = JSON.parse(JSON.stringify(this.itemsCart));
     this.itemsCart = [];
     itemsCartTmp.forEach(el => {
       this.loading = true;
       this.productoService.getProductoById(el.id)
               .subscribe(
                 resp => {
-                  if(resp[0].stock >= el.qty){
+                  if (resp[0].stock >= el.qty){
                     this.itemsCart.push({
                         id: el.id,
                         img: resp[0].imagen,
@@ -241,12 +241,12 @@ export class CarritoStoreComponent implements OnInit, OnChanges, AfterViewInit  
                   this.calcularSubtotal();
                   this.actualizarLocalStorageCarrito();
                 }, err => {
-                  console.log("No se encontró el producto: "+el.id);
+                  console.log('No se encontró el producto: ' + el.id);
                   this.loading = false;
                 }
               );
     });
-    if(itemsCartTmp.length == 0){
+    if (itemsCartTmp.length === 0){
       this.loading = false;
     }
     // console.log(itemsCartTmp);
@@ -258,16 +258,16 @@ export class CarritoStoreComponent implements OnInit, OnChanges, AfterViewInit  
     this.itemsCart.forEach(item => this.cantidadItems += item.qty );
   }
   //Acción del boton + - item del carrito
-  cambioQty(id: number, newValue: number){
+  cambioQty (id, newValue){
     this.loading = true;
-    if(newValue <= 0){ // Eliminar el item del carrito
+    if (newValue <= 0){ // Eliminar el item del carrito
       this.eliminarItemDelCarrito(id);
       this.loading = false;
     }else{
       this.itemsCart.forEach(item => {
-        if(id == item.id){
+        if (id === item.id){
           // Revisar si no pone más que el stock
-          item.qty = (item.stock < newValue)?item.stock:newValue;
+          item.qty = (item.stock < newValue) ? item.stock : newValue;
           this.calcularSubtotal();
           this.actualizarLocalStorageCarrito();
           this.loading = false;
@@ -278,7 +278,7 @@ export class CarritoStoreComponent implements OnInit, OnChanges, AfterViewInit  
   }
   eliminarItemDelCarrito(id: number){
     this.itemsCart.forEach((item, index, object) => {
-      if(id == item.id){
+      if (id === item.id){
         this.itemsCart.splice(index, 1);
         this.calcularSubtotal();
         this.actualizarLocalStorageCarrito();
@@ -287,9 +287,9 @@ export class CarritoStoreComponent implements OnInit, OnChanges, AfterViewInit  
     });
   }
   actualizarCantidad(cantidad: number, cantidadActual:number, stock: number): number{
-    var sumatoria = cantidad + cantidadActual;
+    let sumatoria = cantidad + cantidadActual;
     // this.alertDanger = false; this.alertSuccess = false; this.textoDanger = '';
-    if(stock < sumatoria){
+    if (stock < sumatoria){
       // this.textoDanger = 'No hay suficiente stock para añadir '+(sumatoria - stock)+' más';
       // this.alertDanger = true;
       // setTimeout(() => this.alertDanger = false, 3500);
@@ -324,36 +324,30 @@ export class CarritoStoreComponent implements OnInit, OnChanges, AfterViewInit  
   actualizarLocalStorageCarrito(){
     localStorage.setItem('cart', JSON.stringify(this.itemsCart));
   }
-  //Pedido
+  // Pedido
   guardarPedido(){
     this.loading = true;
     // console.log(this.itemsCart);
-    var productos = [];
+    let productos = [];
     this.itemsCart.forEach(el => {
-      var tmp = {
-        "producto_id": el.id,
-        "producto_nombre": el.nombre,
-        "producto_costo": el.precio,
-        "producto_imagen": el.img,
-        "cantidad": el.qty
+      const tmp = {
+        producto_id: el.id,
+        producto_nombre: el.nombre,
+        producto_costo: el.precio,
+        producto_imagen: el.img,
+        cantidad: el.qty
       };
       productos.push(tmp);
     });
-    if (this.probarEntrada('^[0-9]*$',this.datosUser.celular)) {
-      this.habilitarBoton = true;
-    } else {
-      this.habilitarBoton = false;
-    }
 
-    let envio = {
-      "id_solicitante": this.idEmpleadoLogeado,
-      "nombre_solicitante": this.datosUser.nombreCompleto,
-      "puesto_solicitante": this.datosUser.puesto,
-      "area_solicitante": this.datosUser.area,
-      "sistema_solicitante": this.datosUser.sistema,
-      "productos": productos,
-      "celularEmpleado": parseInt(this.datosUser.celular)
-    }
+    const envio = {
+      id_solicitante: this.idEmpleadoLogeado,
+      nombre_solicitante: this.datosUser.nombreCompleto,
+      puesto_solicitante: this.datosUser.puesto,
+      area_solicitante: this.datosUser.area,
+      sistema_solicitante: this.datosUser.sistema,
+      productos: productos,
+    };
     console.log(this.datosUser);
     this.pedidosService.addPedidos(envio)
         .subscribe(
@@ -366,7 +360,7 @@ export class CarritoStoreComponent implements OnInit, OnChanges, AfterViewInit  
             //   allowOutsideClick: false
             // }).then((result) => {
             //   this.router.navigate([`/store/mis-pedidos`]);
-            // });;
+            // });
             Swal.fire({
               icon: 'success',
               title: 'Enviado a autorización',
@@ -377,15 +371,15 @@ export class CarritoStoreComponent implements OnInit, OnChanges, AfterViewInit  
             this.actualizarLocalStorageCarrito();
             this.loading = false;
           }, err => {
-            console.log("Error: ", err);
-            if(err.error && err.error == 'No hay stock suficiente para realizar el pedido' ){
+            console.log('Error: ', err);
+            if (err.error && err.error === 'No hay stock suficiente para realizar el pedido' ){
               Swal.fire({
                 icon: 'error',
                 title: 'No hay stock',
                 text: 'No hay stock suficiente para realizar el pedido.'
               });
             }else{
-              //Genérico
+              // Genérico
               Swal.fire({
                 icon: 'error',
                 title: 'Ocurrió un error',
@@ -394,19 +388,7 @@ export class CarritoStoreComponent implements OnInit, OnChanges, AfterViewInit  
             }
             this.loading = false;
           }
-        )
-  }
-  probarEntrada(regexp, cadena){
-    var subcadena;
-    var res = false;
-    if (regexp.test(cadena)) {
-      subcadena = ' contiene ';
-      res = true
-    } else {
-      subcadena = ' no contiene ';
-      res = false;
-    }
-    return res
+        );
   }
   //Validar link a mostrar
   mostrarEnlaces(){
@@ -415,7 +397,7 @@ export class CarritoStoreComponent implements OnInit, OnChanges, AfterViewInit  
      * Y SI EL SERVICIO TENDRÁ UN CAMPO PARA VALIDACIÓN O SERÁ DESDE EL FRONT
      */
     // if(this.datosUser.puesto == 'CONSULTOR FUNCIONAL'){
-    if(this.datosUser.area == 'COMERCIAL'){
+    if (this.datosUser.area === 'COMERCIAL'){
       this.esUsuarioNormal = false;
     }else{
       this.esUsuarioNormal = true;
