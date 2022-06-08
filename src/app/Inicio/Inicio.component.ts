@@ -86,6 +86,7 @@ export class InicioComponent implements OnInit {
 
       this.reconocimientosService.getTopReconocidos().subscribe(r => {
         this.ejecutivos = r;
+        
         r.forEach((ej) => {
           if(ej.top == 1){
             this.ejecutivoTop1 = ej;

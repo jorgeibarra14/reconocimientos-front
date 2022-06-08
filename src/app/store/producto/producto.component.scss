@@ -22,7 +22,7 @@
         font-size: 48px;
         // line-height: 32px;
         font-weight: bold;
-        color: #3CD52E;
+        color: orange;
         display: flex;
         align-items: center;
         img{
@@ -65,7 +65,7 @@
             }
         }
         .btn-add-cart{
-            background-color: #3cd42e;
+            background-color: orange;
             font-weight: 900;
             border-radius: 20px;
             color: white;
@@ -81,7 +81,7 @@
             display: block;
             margin-top: 15px;
             font-weight: 900;
-            color: #3CD52E;
+            color: orange;
         }
     }
     .sin-stock{
@@ -102,7 +102,7 @@
             .green{
                 width: 136px;
                 height: 100%;
-                background-color: #3CD52E;
+                background-color: orange;
             }
         }
     }
@@ -135,7 +135,7 @@
         .green{
             width: 136px;
             height: 100%;
-            background-color: #3CD52E;
+            background-color: orange;
         }
     }
     a{
@@ -147,7 +147,7 @@
         text-decoration: none;
         border-bottom: 2px solid #ddd;
         &:hover{
-            border-bottom-color: #3CD52E;
+            border-bottom-color: orange;
         }
     }
 }
@@ -160,7 +160,7 @@
     align-items: center;
     i{
         padding: 18px 20px;
-        background: #3CD52E;
+        background: orange;
         color: white;
         margin-right: 24px;
         border-radius: 50%;

@@ -3,7 +3,9 @@
     [style]="'background: ' + bg_color + '; color: ' + text_color"
     *ngIf="showAvatar"
     >
-    <span class="avatar-ul-m">
+    <span class="avatar-ul-m" *ngIf="!showImage">
         {{ capitalizeString }}
     </span>
+    
+    <img *ngIf="showImage"  [class]="'avatar ' + size + ' ' + type" [src]="image"  alt="">
 </span>

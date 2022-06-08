@@ -24,11 +24,11 @@
         margin-top: 5px;
     }
     &:hover{
-        background-color: #3CD52E;
+        background-color: orange;
         transform: scale(1.1);
     }
     &.active{
-        background-color: #3cd52e;
+        background-color: orange;
     }
 }
 /*@media (max-width: 992.5px){

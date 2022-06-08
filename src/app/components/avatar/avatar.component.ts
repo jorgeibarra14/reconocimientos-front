@@ -12,6 +12,9 @@ export class AvatarComponent implements OnInit {
   @Input() bg_color: string;
   @Input() text_color: string;
   @Input() name: string = '';
+  @Input() image: string = '';
+
+  showImage = false;
 
   capitalizeString: string = '?';
   showAvatar: boolean = false;
@@ -24,6 +27,9 @@ export class AvatarComponent implements OnInit {
       if(this.name != ''){
         this.capitalizeString = this.name.toString().substring(0,1).toUpperCase();
         this.showAvatar = true;
+      }
+      if(this.image != null) {
+        this.showImage = true;
       }
     }, 500);
   }

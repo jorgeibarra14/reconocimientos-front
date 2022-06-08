@@ -105,45 +105,45 @@ export class ModalAdminstrarPedidosComponent implements OnInit {
 
                         // Enviar notificacion????
                         // tslint:disable-next-line:max-line-length
-                        // this.notificacionesService.setNotificacion(this.data.reconocimientoId, this.data.idEmpleadoEnvia, 0, [this.data.reconoceA, this.observacionEscrita])
-                        //     .subscribe(
-                        //         (val) => {
-                        //             //console.log("Reconocimeintos aprobados = ", val);
-                        //         },
-                        //         response => {
-                        //             console.log("Ocurrió un error:", response);
-                        //             // this.alertFailed = true;
-                        //             // if (true) {
-                        //             //     setTimeout(() => {
-                        //             //         this.alertFailed = false;
-                        //             //     }, 3000);
-                        //             // }
-                        //             // this.enviado = false;
-                        //         },
-                        //         () => {
-                        //             console.log("Notificacion guardada.");
-                        //         });
+                        this.notificacionesService.setNotificacion(this.data.reconocimientoId, this.data.idEmpleadoEnvia, 0, [this.data.reconoceA, this.observacionEscrita])
+                            .subscribe(
+                                (val) => {
+                                    //console.log("Reconocimeintos aprobados = ", val);
+                                },
+                                response => {
+                                    console.log("Ocurrió un error:", response);
+                                    // this.alertFailed = true;
+                                    // if (true) {
+                                    //     setTimeout(() => {
+                                    //         this.alertFailed = false;
+                                    //     }, 3000);
+                                    // }
+                                    // this.enviado = false;
+                                },
+                                () => {
+                                    console.log("Notificacion guardada.");
+                                });
 
-                        // this.notificacionesService.EnviarCorreoNotificacion(this.data.reconocimientoId, this.data.idEmpleadoEnvia, 0, 0, [this.data.reconoceA, this.observacionEscrita])
-                        //     .subscribe(
-                        //         (val) => {
-                        //             //console.log("Reconocimeintos aprobados = ", val);
-                        //         },
-                        //         response => {
-                        //             console.log("Ocurrió un error:", response);
-                        //             // this.alertFailed = true;
+                        this.notificacionesService.EnviarCorreoNotificacion(this.data.reconocimientoId, this.data.idEmpleadoEnvia, 0, 0, [this.data.reconoceA, this.observacionEscrita])
+                            .subscribe(
+                                (val) => {
+                                    //console.log("Reconocimeintos aprobados = ", val);
+                                },
+                                response => {
+                                    console.log("Ocurrió un error:", response);
+                                    // this.alertFailed = true;
 
-                        //             // if (true) {
-                        //             //     setTimeout(() => {
-                        //             //         this.alertFailed = false;
-                        //             //     }, 3000);
-                        //             // }
+                                    // if (true) {
+                                    //     setTimeout(() => {
+                                    //         this.alertFailed = false;
+                                    //     }, 3000);
+                                    // }
 
-                        //             // this.enviado = false;
-                        //         },
-                        //         () => {
-                        //             console.log("correo de notificacion enviado.");
-                        //         });
+                                    // this.enviado = false;
+                                },
+                                () => {
+                                    console.log("correo de notificacion enviado.");
+                                });
 
                         // this.aumentaPuntos();
                         this.alertSucces = true;
@@ -210,40 +210,40 @@ export class ModalAdminstrarPedidosComponent implements OnInit {
 
                     // Enviar notificacion????
                     // tslint:disable-next-line:max-line-length
-                    // this.notificacionesService.setNotificacion(this.data.reconocimientoId, this.data.idEmpleadoRecibe, 1, [this.data.enviadoPor])
-                    //     .subscribe(
-                    //         (val) => {
-                    //             //console.log("Reconocimeintos aprobados = ", val);
-                    //         },
-                    //         response => {
-                    //             console.log("Ocurrió un error:", response);
-                    //             // this.alertFailed = true;
-                    //             // setTimeout(() => {
-                    //             //     this.alertFailed = false;
-                    //             // }, 3000);
-                    //             // this.enviado = false;
-                    //         },
-                    //         () => {
-                    //             console.log("Notificacion guardada.");
-                    //         });
+                    this.notificacionesService.setNotificacion(this.data.reconocimientoId, this.data.idEmpleadoRecibe, 1, [this.data.enviadoPor])
+                        .subscribe(
+                            (val) => {
+                                //console.log("Reconocimeintos aprobados = ", val);
+                            },
+                            response => {
+                                console.log("Ocurrió un error:", response);
+                                // this.alertFailed = true;
+                                // setTimeout(() => {
+                                //     this.alertFailed = false;
+                                // }, 3000);
+                                // this.enviado = false;
+                            },
+                            () => {
+                                console.log("Notificacion guardada.");
+                            });
 
                     // tslint:disable-next-line:max-line-length
-                    // this.notificacionesService.EnviarCorreoNotificacion(this.data.reconocimientoId, 0, this.data.idEmpleadoRecibe, 1, [this.data.enviadoPor])
-                    //     .subscribe(
-                    //         (val) => {
-                    //             //console.log("Reconocimeintos aprobados = ", val);
-                    //         },
-                    //         response => {
-                    //             console.log("Ocurrió un error:", response);
-                    //             // this.alertFailed = true;
-                    //             // setTimeout(() => {
-                    //             //     this.alertFailed = false;
-                    //             // }, 3000);
-                    //             // this.enviado = false;
-                    //         },
-                    //         () => {
-                    //             console.log("Correo de notificación enviado.");
-                    //         });
+                    this.notificacionesService.EnviarCorreoNotificacion(this.data.reconocimientoId, 0, this.data.idEmpleadoRecibe, 1, [this.data.enviadoPor])
+                        .subscribe(
+                            (val) => {
+                                //console.log("Reconocimeintos aprobados = ", val);
+                            },
+                            response => {
+                                console.log("Ocurrió un error:", response);
+                                // this.alertFailed = true;
+                                // setTimeout(() => {
+                                //     this.alertFailed = false;
+                                // }, 3000);
+                                // this.enviado = false;
+                            },
+                            () => {
+                                console.log("Correo de notificación enviado.");
+                            });
 
                     this.alertSucces = true;
                     Swal.fire('Pedido aprobado', ' La información se guardo correctamente.', 'success');

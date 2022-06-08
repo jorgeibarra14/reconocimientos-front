@@ -192,22 +192,22 @@ export class ModalAdminReconocimientosComponent implements OnInit {
                                 console.log("Notificacion guardada.");
                             });
 
-                    // this.notificacionesService.EnviarCorreoNotificacion(this.data.reconocimientoId, 0, this.data.idEmpleadoRecibe, 1, [this.data.enviadoPor])
-                    //     .subscribe(
-                    //         (val) => {
-                    //             //console.log("Reconocimeintos aprobados = ", val);
-                    //         },
-                    //         response => {
-                    //             console.log("Ocurrió un error:", response);
-                    //             // this.alertFailed = true;
-                    //             // setTimeout(() => {
-                    //             //     this.alertFailed = false;
-                    //             // }, 3000);
-                    //             // this.enviado = false;
-                    //         },
-                    //         () => {
-                    //             console.log("Correo de notificación enviado.");
-                    //         });
+                    this.notificacionesService.EnviarCorreoNotificacion(this.data.reconocimientoId, 0, this.data.idEmpleadoRecibe, 1, [this.data.enviadoPor])
+                        .subscribe(
+                            (val) => {
+                                //console.log("Reconocimeintos aprobados = ", val);
+                            },
+                            response => {
+                                console.log("Ocurrió un error:", response);
+                                // this.alertFailed = true;
+                                // setTimeout(() => {
+                                //     this.alertFailed = false;
+                                // }, 3000);
+                                // this.enviado = false;
+                            },
+                            () => {
+                                console.log("Correo de notificación enviado.");
+                            });
 
                     this.alertSucces = true;
                     Swal.fire('Reconocimiento aprobado', ' La información se guardo correctamente.', 'success');

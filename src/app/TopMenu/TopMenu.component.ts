@@ -16,7 +16,7 @@ export class TopMenuComponent implements OnInit {
   user: any = {
     Nombre: "",
     Id: 0,
-    Foto:""
+    avatar:""
   };
   company: any = {
     color: "",
@@ -45,6 +45,7 @@ export class TopMenuComponent implements OnInit {
   ) {
     console.log("ENV_cookieUser");
     const user = this.authService.getCookieUser();
+
     if(user != undefined) {
       this.colaboradorService.getUserCompany(user.Id).subscribe(r => {
         this.company = r;
