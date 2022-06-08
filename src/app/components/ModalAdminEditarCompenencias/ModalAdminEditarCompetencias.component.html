@@ -18,9 +18,20 @@
           </mat-form-field>
 
           <mat-form-field appearance="outline">
-            <mat-label>Concepto</mat-label>
-            <mat-select [formControlName]="'concepto'" name="concepto">
+            <mat-label>Esquema de puntos</mat-label>
+            <mat-select [formControlName]="'concepto'" (selectionChange)="setEvent($event)" name="concepto">
               <mat-option *ngFor="let c of conceptos" [value]="c">
+                {{c.name}}
+              </mat-option>
+            </mat-select>
+            <mat-error>El concepto es obligatorio</mat-error>
+
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Actividad</mat-label>
+            <mat-select [formControlName]="'actividad'" name="actividad">
+              <mat-option *ngFor="let c of conceptoSelected" [value]="c">
                 {{c.name}} - {{c.points}} Pts
               </mat-option>
             </mat-select>

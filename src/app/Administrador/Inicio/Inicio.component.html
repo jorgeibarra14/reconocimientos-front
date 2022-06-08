@@ -6,7 +6,7 @@
             <kendo-grid [kendoGridBinding]="gridData" [resizable]="true" width="100%" [filterable]="true"
             [rowClass]="rowCallback"
                 [columnMenu]="true" [loading]="loading" [sortable]="{ allowUnsort: true, mode: 'multiple' }"
-                [pageable]="{ buttonCount: 5, pageSizes: [5,10,20,100] }" [pageSize]="5">
+                [pageable]="{ buttonCount: 5, pageSizes: [5,10,20,100] }" [pageSize]="10">
                 <kendo-grid-column field="enviadoPor" [title]="'Enviado por'" width="15%"
                 class="statusColumn"
                     [headerStyle]="{'color': '#3C404C','line-height': '1em', 'font-weight': 'bold'}"

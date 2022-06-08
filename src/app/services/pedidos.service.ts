@@ -33,7 +33,6 @@ export class PedidosService {
         return this.http.get<any>(`${API}/Pedidos/EliminarPedidos?id=` + id);
     }
     getPedidosByUserId(userId: string): Observable<any> {
-        debugger
         this.urlService = `${API}/Pedidos/ObtenerPedidos/${userId}`;
         return this.http.get<any>(this.urlService);
     }

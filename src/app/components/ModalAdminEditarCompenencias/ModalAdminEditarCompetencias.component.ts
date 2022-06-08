@@ -41,6 +41,7 @@ export class ModalAdminEditarCompetencias implements OnInit {
     idEmpleadoLogeado: any;
     resultadoBusqueda2: any;
     conceptos: any = [];
+    conceptoSelected: any = [];
     filteredOptions: Observable<any[]>;
 
     constructor(
@@ -58,6 +59,7 @@ export class ModalAdminEditarCompetencias implements OnInit {
             empleado: [, [Validators.required]],
             justificacion: [, [Validators.required, Validators.minLength(1)]],
             concepto: [, [Validators.required]],
+            actividad: [, [Validators.required]],
 
         });
 
@@ -84,6 +86,11 @@ export class ModalAdminEditarCompetencias implements OnInit {
         this.competenciasService.getConceptos().subscribe(r => {
             this.conceptos = r;
         });
+    }
+
+    setEvent(data: any) {
+        this.conceptoSelected = [];
+        this.conceptoSelected = data.value.eventsConcepts;
     }
 
     ngOnInit() {
@@ -174,9 +181,9 @@ export class ModalAdminEditarCompetencias implements OnInit {
             let obj = {
                 idEmpleado : this.formulario.get('empleado').value.id,
                 justificacion: this.formulario.get('justificacion').value,
-                valor: this.formulario.get('concepto').value.points,
+                valor: this.formulario.get('actividad').value.points,
                 tipo: this.formulario.get('concepto').value.name,
-                conceptoId: this.formulario.get('concepto').value.id,
+                conceptoId: this.formulario.get('actividad').value.id,
                 idEmpleadoOtorga: this.idEmpleadoLogeado,
                 imagen: this.file
 
