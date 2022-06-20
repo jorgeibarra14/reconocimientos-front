@@ -51,12 +51,12 @@ export class EnviarReconocimientoComponent implements OnInit {
     ) {
         this.activo = true;
         const user = this.authService.getCookieUser();
-        if(user != undefined) {
+        if (user !== undefined) {
             this.colaboradorService.getUserCompany(user.Id).subscribe(r => {
                 this.reconocimientosService.getEmpleadosPorNombre('', this.idEmpleadoLogeado, r.id)
                     .subscribe(resp => {
-                        this.resultadoBusqueda = resp
-                        this.resultadoBusqueda2 = resp
+                        this.resultadoBusqueda = resp;
+                        this.resultadoBusqueda2 = resp;
                     } );
             });
           }
@@ -72,7 +72,7 @@ export class EnviarReconocimientoComponent implements OnInit {
             fecha_registro: this.transformDate(Date.now())
         });
 
-        
+
     }
 
     ngOnInit() {
@@ -187,7 +187,6 @@ export class EnviarReconocimientoComponent implements OnInit {
                                 });
                         });
         } else {
-            console.log("no enviado");
             this.enviado = false;
         }
     }
@@ -195,16 +194,14 @@ export class EnviarReconocimientoComponent implements OnInit {
 
 
     onEmpleadoChange(nombreEmpleado: string) {
-      if (nombreEmpleado != undefined && nombreEmpleado != null) {
+      if (nombreEmpleado !== undefined && nombreEmpleado != null) {
 
           this.resultadoBusqueda = this.resultadoBusqueda2;
-          let data: any[] =  this.resultadoBusqueda
+          let data: any[] =  this.resultadoBusqueda;
           data = data.filter(e => {
-              return e.nombreCompleto.toLowerCase().includes(nombreEmpleado)
+              return e.nombreCompleto.toLowerCase().includes(nombreEmpleado);
           });
-          console.log(this.competencias);
           this.resultadoBusqueda = data;
-          console.log(this.empleadoSeleccionado);
 
       }
   }

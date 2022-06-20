@@ -19,11 +19,11 @@ export class InicioComponent implements OnInit {
   activo:Boolean;
   loading: boolean = false;
   user: any = {
-    Nombre: "",
+    Nombre: '',
     Id: 0,
-    Foto:""
+    Foto:''
   };
-  //Pruebas
+  // Pruebas
   ejecutivos: any[] = [];
   //   { top: 1, nombre: "Nombre Ejecutivo 1", puesto: "Puesto Ejecutivo", ciudad: "Ciudad" },
   //   { top: 2, nombre: "Nombre Ejecutivo 2", puesto: "Puesto Ejecutivo", ciudad: "Ciudad" },
@@ -32,20 +32,20 @@ export class InicioComponent implements OnInit {
   //   { top: 5, nombre: "Nombre Ejecutivo 5", puesto: "Puesto Ejecutivo", ciudad: "Ciudad" },
   // ];
   ejecutivoTop1: any = {
-    nombre: "",
-    puesto: "",
-    ciudad: ""
+    nombre: '',
+    puesto: '',
+    ciudad: ''
   };
   ejecutivosTop2Al4: any[] = [];
   puntosDisponibles: Number = 0;
   company: any = {
-    color: "",
-    isoLogo: "",
-    logo: "",
-    name: "",
-    prefix: ""
+    color: '',
+    isoLogo: '',
+    logo: '',
+    name: '',
+    prefix: ''
   };
-  unidadValor = "";
+  unidadValor = '';
   accionSingular = '';
   accionPlural = '';
   banner = '';
@@ -61,7 +61,7 @@ export class InicioComponent implements OnInit {
       this.idEmpleadoLogeado = this.user.Id ;
       this.activo = true;
 
-      if(this.user != undefined) {
+      if (this.user !== undefined) {
         this.colaboradorService.getUserCompany(this.user.Id).subscribe(r => {
           this.company = r;
         });
@@ -69,16 +69,16 @@ export class InicioComponent implements OnInit {
 
       this.configService.getConfig(this.user.AppId).subscribe((r: any) => {
         r.forEach(element => {
-          if(element.key == 'unidad_valor') {
+          if (element.key === 'unidad_valor') {
             this.unidadValor = element.value;
           }
-          if(element.key == 'accion_plural') {
+          if (element.key === 'accion_plural') {
             this.accionPlural = element.value;
           }
-          if(element.key == 'accion_singular') {
+          if (element.key === 'accion_singular') {
             this.accionSingular = element.value;
           }
-          if(element.key == 'banner_inicio') {
+          if (element.key === 'banner_inicio') {
             this.banner = element.value;
           }
         });
@@ -86,17 +86,16 @@ export class InicioComponent implements OnInit {
 
       this.reconocimientosService.getTopReconocidos().subscribe(r => {
         this.ejecutivos = r;
-        
         r.forEach((ej) => {
-          if(ej.top == 1){
+          if (ej.top === 1){
             this.ejecutivoTop1 = ej;
           }else{
             this.ejecutivosTop2Al4.push(ej);
             this.ejecutivosTop2Al4.sort(function(a, b): number{
-              if(a.top > b.top ){
+              if (a.top > b.top ){
                 return 1;
               }
-              if(a.top < b.top ){
+              if (a.top < b.top ){
                 return -1;
               }
               return 0;
@@ -108,8 +107,8 @@ export class InicioComponent implements OnInit {
 
   ngOnInit() {
     this.loading = true;
-    this.reconocimientosService.getPuntosAcumulados(this.idEmpleadoLogeado,this.activo).subscribe(resp=>{
-      this.puntosDisponibles=resp;
+    this.reconocimientosService.getPuntosAcumulados(this.idEmpleadoLogeado, this.activo).subscribe(resp => {
+      this.puntosDisponibles = resp;
       this.loading = false;
     });
     /**
