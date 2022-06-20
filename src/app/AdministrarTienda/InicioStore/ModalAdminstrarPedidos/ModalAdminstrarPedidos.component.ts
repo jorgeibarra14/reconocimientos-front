@@ -65,13 +65,11 @@ export class ModalAdminstrarPedidosComponent implements OnInit {
                 comentario_resolucion: this.observacionEscrita,
                 fecha_resolucion: this.transformDate(Date.now())
             };
-            this.pedidosService.updatePedidos(envio)
-                .subscribe(
+            this.pedidosService.updatePedidos(envio).subscribe(
                     (val) => {
                         console.log('Pedido rechazado = ', val);
                     },
                     response => {
-                        // console.log("Ocurrió un error:", response);
                         this.enviado = false;
                         Swal.fire({
                             icon: 'error',
@@ -282,12 +280,11 @@ export class ModalAdminstrarPedidosComponent implements OnInit {
                 () => {
                     // Actualizar estatus del pedido
                   const estatus = type === 2 ? 'No autorizado' : type === 1 ? 'Autorizado' : 'En Transito';
-                    const envioEstatus = {
+                  const envioEstatus = {
                         id_pedido: Number(this.data.id_pedido),
                         estado: estatus
                     };
-                    this.estatusPedidoService.updatePedidosEstatusPedido(envioEstatus)
-                        .subscribe(
+                  this.estatusPedidoService.updatePedidosEstatusPedido(envioEstatus).subscribe(
                             (val) => {
                                 console.log('Reconocimeintos aprobados = ', val);
                             },
@@ -303,11 +300,10 @@ export class ModalAdminstrarPedidosComponent implements OnInit {
                             () => {
                                 console.log('Estatus actualizado.');
                             });
-
-                    this.alertSucces = true;
-                    Swal.fire('Pedido modificado', ' La información se guardo correctamente.', 'success');
-                    this.enviado = false;
-                    this.dialogRef.close();
+                  this.alertSucces = true;
+                  Swal.fire('Pedido modificado', ' La información se guardo correctamente.', 'success');
+                  this.enviado = false;
+                  this.dialogRef.close();
                 });
     }
 

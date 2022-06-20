@@ -31,7 +31,6 @@ export class AdminInicioComponent implements OnInit {
         private authService: AuthService
     ) {
         const user = this.authService.getCookieUser();
-        
         this.idEmpleadoLogeado = user.Id;
         this.activo = true;
     }
@@ -106,7 +105,6 @@ export class AdminInicioComponent implements OnInit {
 
         dialogRef.afterClosed().subscribe(result => {
             console.log('The dialog was closed');
-            //console.log(result);
             this.loading = true;
             this.refresh(result);
         });

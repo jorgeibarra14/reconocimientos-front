@@ -26,7 +26,7 @@ export class PedidosService {
     }
     updatePedidos(value: any): Observable<any> {
         // this.urlService = ;
-        return this.http.post<any>(`${API}/Pedidos/ModificarPedidos`, value);
+          return this.http.post<any>(`${API}/Pedidos/ModificarPedidos`, value);
     }
     deletePedidos(id: number): Observable<any> {
         // this.urlService = ;

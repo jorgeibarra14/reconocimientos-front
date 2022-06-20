@@ -70,7 +70,6 @@ export class AdminPuntosComponent implements OnInit {
         });
     }
 
-
     abrirNuevo() {
         const dialogRef = this.dialog.open(ModalAdminEditarPuntos, {
             width: '500px',
