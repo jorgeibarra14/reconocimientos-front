@@ -3,7 +3,7 @@
   width: 100%;
 }
 .header{
-    background: url('../../assets/img/banners/inicio.png');
+    background: url('../../assets/img/banners/banner.png');
     height: 190px;
     background-position: center left;
     background-size: cover;
@@ -79,10 +79,10 @@
             border-radius: 50px;
         }
         &:hover {
-            color: orange;
+            color: #539BC1;
         }
         &:hover img{
-            background-color: orange;
+            background-color: #539BC1;
         }
     }
 

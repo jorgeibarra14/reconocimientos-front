@@ -1,5 +1,5 @@
 .header{
-    background: url('../../assets/img/banners/mis-reconocimientos.png');
+    background: url('../../assets/img/banners/generico.png');
     height: 150px;
     background-position: center left;
     background-size: cover;
@@ -15,7 +15,7 @@
         color: white;
         font-size: 22px;
         span{
-            color: orange;
+            color: #539BC1;
         }
     }
 }
@@ -51,7 +51,7 @@
                 margin-bottom: 10px;
                 border-radius: 25px;
                 .progress-bar{
-                    background-color: orange !important;
+                    background-color: #539BC1 !important;
                 }
             }
             p{

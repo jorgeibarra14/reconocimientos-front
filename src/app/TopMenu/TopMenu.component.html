@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-dark gris ">
-  <a class="navbar-brand" routerLink="/Inicio">
-    <img class="img-fluid" [src]="company.logo" alt="" />
+  <a class="navbar-brand" routerLink="/Inicio" style="width: 100%;">
+    <img class="img-fluid" src="assets/img/urrea_white.svg" alt="" />
   </a>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -18,7 +18,7 @@
         </li> -->
         <li class="nav-item dropdown mr-2 mt-auto mb-auto notificaciones">
           <a class="nav-link pb-0 pt-0" href="javascript:void(0);" id="notificacionsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" (click)="verNotificaciones()">
-            <i class="fas fa-1x fa-bell" style="color: #0B3B59;"></i><span *ngIf='show' class="badge badge-pill badge-warning">{{ notificaciones.conteoNoLeidos }}</span>
+            <i class="fas fa-1x fa-bell" style="color: white;"></i><span *ngIf='show' class="badge badge-pill badge-warning">{{ notificaciones.conteoNoLeidos }}</span>
           </a>
           <div id="text-notificaciones">Notificaciones</div>
           <div class="dropdown-menu" aria-labelledby="notificacionsDropdown">
@@ -37,7 +37,7 @@
         </li>
         <li class="nav-item dropdown mr-2 mt-auto mb-auto">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span style="color: black;">{{ user.Nombre + ' ' + user.Paterno + ' ' + user.Materno }}</span>
+            <span style="color: white;">{{ user.Nombre + ' ' + user.Paterno + ' ' + user.Materno }}</span>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <a *ngIf="accesoAdmin" class="dropdown-item" routerLink="/admin">Administración</a>

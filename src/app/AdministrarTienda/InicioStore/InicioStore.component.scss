@@ -11,7 +11,7 @@
         &:hover{
             border-width: 2px;
             border-style: solid;
-            border-color: orange !important;
+            border-color: #539BC1 !important;
         }
     }
     .btn-rechazar{
@@ -34,7 +34,7 @@
         border-color: #F57F10 !important;
         font-size: 14px;
         i{
-            color: orange;
+            color: #539BC1;
         }
         &:hover{
             border-width: 2px;
@@ -49,12 +49,12 @@
         color: white;
         font-size: 14px;
         i{
-            color: #orange;
+            color: #539BC1;
         }
         &:hover{
             border-width: 2px;
             border-style: solid;
-            border-color: #orange !important;
+            border-color: #539BC1 !important;
         }
     }
 
@@ -65,7 +65,7 @@
       text-transform: uppercase;
       font-size: 14px;
         i{
-            color: orange;
+            color: #539BC1;
         }
     }
     .rechazado{
@@ -75,7 +75,7 @@
       text-transform: uppercase;
       font-size: 14px;
         i{
-            color: orange;
+            color: #539BC1;
         }
     }
 }

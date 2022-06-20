@@ -1,5 +1,5 @@
 .header{
-    background: url('../../../assets/img/banners/tienda.png');
+    background: url('../../../assets/img/banners/generico.png');
     height: 130px;
     background-position: center left;
     background-size: cover;
@@ -27,7 +27,7 @@
         .green{
             width: 136px;
             height: 100%;
-            background-color: orange;
+            background-color: #539BC1;
         }
     }
 }
@@ -82,10 +82,10 @@
                 padding-bottom: 5px;
                 &.current, &:hover{
                     .img{
-                        background: orange !important;
+                        background: #539BC1 !important;
                     }
                     a{
-                        color: orange !important;
+                        color: #539BC1 !important;
                     }
                 }
             }
@@ -117,7 +117,7 @@
     align-items: center;
     i{
         padding: 18px 20px;
-        background: orange;
+        background: #539BC1;
         color: white;
         margin-right: 24px;
         border-radius: 50%;
