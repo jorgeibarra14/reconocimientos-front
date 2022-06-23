@@ -45,6 +45,7 @@ export class TopMenuComponent implements OnInit {
   ) {
     console.log("ENV_cookieUser");
     const user = this.authService.getCookieUser();
+    
 
     if(user != undefined) {
       this.colaboradorService.getUserCompany(user.Id).subscribe(r => {

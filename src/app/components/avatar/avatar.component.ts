@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { throwMatDialogContentAlreadyAttachedError } from '@angular/material/dialog';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-avatar-icon',
@@ -18,20 +19,33 @@ export class AvatarComponent implements OnInit {
 
   capitalizeString: string = '?';
   showAvatar: boolean = false;
-
-  constructor() { }
+  user;
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-    setTimeout( () =>{
-      // console.log("Name: " + this.name);
-      if(this.name != ''){
-        this.capitalizeString = this.name.toString().substring(0,1).toUpperCase();
+    
+      this.user = this.authService.getCookieUser();
+
+    if(this.size == 'l') {
+      if(this.user.Nombre != ''){
+        this.capitalizeString = this.user.Nombre.substring(0,1).toUpperCase();
         this.showAvatar = true;
       }
+      
+      if(this.user.Avatar != null) {
+        this.showImage = true;
+      }
+    } else {
+      
+      this.capitalizeString = this.name.substring(0,1).toUpperCase();
+      this.showAvatar = true;
+      
+      
       if(this.image != null) {
         this.showImage = true;
       }
-    }, 500);
-  }
+    }
+
+    }
 
 }

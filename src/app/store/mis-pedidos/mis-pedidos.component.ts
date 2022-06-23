@@ -18,10 +18,10 @@ export interface PeriodicElement {
   styleUrls: ['./mis-pedidos.component.scss']
 })
 
-
 export class MisPedidosComponent implements OnInit {
   displayedColumns: string[] = ['nombre', 'status'];
   dataSource;
+  loading = false;
 
   
 
@@ -38,7 +38,9 @@ export class MisPedidosComponent implements OnInit {
   }
 
   obtenerPedidosPorUserId(userId: string) {
+    this.loading = true;
     this.pedidosService.getPedidosByUserId(userId).subscribe(r => {
+      
       let data = [];
       r.forEach(reg => {
         reg.productos.forEach(element => {
@@ -53,6 +55,7 @@ export class MisPedidosComponent implements OnInit {
 
 
       this.dataSource = new MatTableDataSource(data);
+      this.loading = false;
 
       // this.dataSource = r;
     })

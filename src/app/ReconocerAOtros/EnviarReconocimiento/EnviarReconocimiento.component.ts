@@ -51,10 +51,12 @@ export class EnviarReconocimientoComponent implements OnInit {
     ) {
         this.activo = true;
         const user = this.authService.getCookieUser();
+        this.loading = true;
         if (user !== undefined) {
             this.colaboradorService.getUserCompany(user.Id).subscribe(r => {
                 this.reconocimientosService.getEmpleadosPorNombre('', this.idEmpleadoLogeado, r.id)
                     .subscribe(resp => {
+                        this.loading = false;
                         this.resultadoBusqueda = resp;
                         this.resultadoBusqueda2 = resp;
                     } );
