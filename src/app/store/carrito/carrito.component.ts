@@ -11,7 +11,7 @@ import { Producto } from "../../shared/Models/producto";
 import Swal from 'sweetalert2';
 import { ColaboradoresService } from 'src/app/services/colaboradores.service';
 import { ConfigService } from 'src/app/services/config.service';
-
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-carrito-store',
   templateUrl: './carrito.component.html',
@@ -97,6 +97,11 @@ export class CarritoStoreComponent implements OnInit, OnChanges, AfterViewInit  
     });
     // Demo
     // localStorage.setItem('cart', JSON.stringify(this.demoItemsCart));
+  }
+
+  cerrarSesion(){
+    this.authService.deleteCookie();
+    window.location.href = environment.Itgov;
   }
 
   ngOnInit(): void {
