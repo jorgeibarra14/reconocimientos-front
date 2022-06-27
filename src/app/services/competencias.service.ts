@@ -13,13 +13,13 @@ const ITGOVAPI = environment.APIItGov;
 export class CompetenciasService {
   urlService:string;
 
-  constructor( private http:HttpClient ){ 
+  constructor( private http:HttpClient ){
     // console.log("Competencias Service");
   }
 
   getCompetencias(pActivo:Boolean,pNivel:String):Observable<any>{
     // console.log("Metodo getCompetencias()");
-    this.urlService = `${API}/Competencia/ObtenerCompetencias?activo=` + pActivo + `&nivel=` + pNivel + ``;
+    this.urlService = `${ITGOVAPI}/BussinessPractices`;
     return this.http.get<any>(this.urlService);
   }
   getAllCompetencias():Observable<any>{
