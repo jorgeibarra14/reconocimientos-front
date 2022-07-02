@@ -1,6 +1,7 @@
-<div class="card text-center" (click)="filtrar(competencia.nombre)" [ngClass]="{'active': competencia.nombre == competencia_activa}">
+<div (click)="filtrar(competencia.nombre)" [ngClass]="setColor(competencia)">
     <span id="number">{{ competencia.cantidad }}</span>
     <!-- <img [src]="competencia.img" style="filter: invert(1);" class="img-fluid" width="100%" height="100%"> -->
     <img [src]="'https://files.transformpoligono.com/' + competencia.img" class="img-fluid" width="100%" height="100%">
-    <span id="text">{{ competencia.nombre }}</span>
 </div>
+
+

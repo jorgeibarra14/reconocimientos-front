@@ -1,7 +1,6 @@
 .card{
     width: 130px;
     margin-top: 10px;
-    background-color: #0B3B59;
     color: white;
     padding-left: 5px;
     padding-right: 5px;
@@ -11,12 +10,27 @@
     height: 130px;
     transition: 300ms;
     span#number{
-        font-size: 25px;
+        font-size: 17px;
         font-weight: bold;
     }
     img{
-        max-width: 35px;
+        max-width: 90px;
         margin: auto;
+    }
+    &.blue {
+      background-color: #1F2950 !important;
+    }
+    &.cyan {
+      background-color: #3AAAB7 !important;
+    }
+    &.red {
+      background-color: #B41A30 !important;
+    }
+    &.orange {
+      background-color: #E6A83D !important;
+    }
+    &.default {
+      background-color: #1E293B;
     }
     span#text{
         line-height: 1;
@@ -24,11 +38,11 @@
         margin-top: 5px;
     }
     &:hover{
-        background-color: #539BC1;
+        background-color: #1E293B;
         transform: scale(1.1);
     }
     &.active{
-        background-color: #539BC1;
+        background-color: #1E293B;
     }
 }
 /*@media (max-width: 992.5px){

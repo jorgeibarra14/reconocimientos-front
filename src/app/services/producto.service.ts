@@ -23,10 +23,28 @@ export class ProductoService {
         return this.http.get<any>(`${API}/Productos/ObtenerProductosPorCategoriaId?categoriaId=` + pId + ``);
     }
     addProductos(value: any): Observable<any> {
-        return this.http.post<any>(`${API}/Productos/AgregarProductos`, value);
+        let fd = new FormData();
+        fd.append('nombre', value.nombre);
+        fd.append('descripcion', value.descripcion);
+        fd.append('costo', value.costo);
+        fd.append('stock', value.stock);
+        fd.append('file', value.imagen, value.imagen.name);
+        fd.append('categoria_id', value.categoria_id);
+        fd.append('Activo', value.Activo);
+        fd.append('notas', value.notas);
+        return this.http.post<any>(`${API}/Productos/AgregarProductos`, fd);
     }
     updateProductos(value: any): Observable<any> {
-        return this.http.post<any>(`${API}/Productos/ModificarProductos`, value);
+      let fd = new FormData();
+      fd.append('nombre', value.nombre);
+      fd.append('descripcion', value.descripcion);
+      fd.append('costo', value.costo);
+      fd.append('stock', value.stock);
+      fd.append('file', value.imagen, value.imagen.name);
+      fd.append('categoria_id', value.categoria_id);
+      fd.append('Activo', value.Activo);
+      fd.append('notas', value.notas);
+      return this.http.post<any>(`${API}/Productos/ModificarProductos`, fd);
     }
     deleteProductos(id: Number): Observable<any> {
         return this.http.get<any>(`${API}/Productos/EliminarProductos?id=` + id);

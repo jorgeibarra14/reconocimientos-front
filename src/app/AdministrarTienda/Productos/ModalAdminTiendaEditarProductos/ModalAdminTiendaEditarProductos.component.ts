@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
 export class ModalAdminTiendaEditarProductos implements OnInit {
 
     formulario: FormGroup;
-    file: any;
+    file: string | ArrayBuffer;
     idProducto: number = 0;
     enviado: boolean = false;
     activo: boolean = true;
@@ -66,17 +66,17 @@ export class ModalAdminTiendaEditarProductos implements OnInit {
     guardar() {
         if (this.formulario.valid) {
             this.enviado = true;
-            if (this.data.tipo == 1) {
+            if (this.data.tipo === 1) {
                 let envioUpdate = {
-                    "id": Number(this.idProducto),
-                    "nombre": this.formulario.controls['producto'].value,
-                    "descripcion": this.formulario.controls['descripcion'].value,
-                    "costo": Number(this.formulario.controls['costo'].value),
-                    "stock": Number(this.formulario.controls['stock'].value),
-                    "imagen": this.file,
-                    "categoria_id": Number(this.formulario.controls['categoria_id'].value),
-                    "Activo": this.activo,
-                    "notas": this.formulario.controls['notas'].value
+                  id: Number(this.idProducto),
+                  nombre: this.formulario.controls['producto'].value,
+                  descripcion: this.formulario.controls['descripcion'].value,
+                  costo: Number(this.formulario.controls['costo'].value),
+                  stock: Number(this.formulario.controls['stock'].value),
+                  imagen: this.file,
+                  categoria_id: Number(this.formulario.controls['categoria_id'].value),
+                  Activo: this.activo,
+                  notas: this.formulario.controls['notas'].value
                 };
                 this.productoService.updateProductos(envioUpdate)
                     .subscribe(
@@ -109,14 +109,14 @@ export class ModalAdminTiendaEditarProductos implements OnInit {
                     );
             } else {
                 let envioAdd = {
-                    "nombre": this.formulario.controls['producto'].value,
-                    "descripcion": this.formulario.controls['descripcion'].value,
-                    "costo": Number(this.formulario.controls['costo'].value),
-                    "stock": Number(this.formulario.controls['stock'].value),
-                    "imagen": this.file,
-                    "categoria_id": Number(this.formulario.controls['categoria_id'].value),
-                    "Activo": this.activo,
-                    "notas": this.formulario.controls['notas'].value
+                  nombre: this.formulario.controls['producto'].value,
+                  descripcion: this.formulario.controls['descripcion'].value,
+                  costo: Number(this.formulario.controls['costo'].value),
+                  stock: Number(this.formulario.controls['stock'].value),
+                  imagen: this.file,
+                  categoria_id: Number(this.formulario.controls['categoria_id'].value),
+                  Activo: this.activo,
+                  notas: this.formulario.controls['notas'].value
                 };
                 this.productoService.addProductos(envioAdd)
                     .subscribe(
@@ -155,14 +155,6 @@ export class ModalAdminTiendaEditarProductos implements OnInit {
 
     fileChanged(e) {
         this.file = e.target.files[0];
-        this.uploadFile();
-    }
-
-    uploadFile() {
-        let fileReader = new FileReader();
-        fileReader.onload = (e) => {
-            this.file = fileReader.result;
-        };
-        fileReader.readAsDataURL(this.file);
+        // this.uploadFile();
     }
 }

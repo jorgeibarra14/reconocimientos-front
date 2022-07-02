@@ -44,6 +44,10 @@ import { ProductoStoreComponent } from './store/producto/producto.component';
 import { StoreMigasComponent } from './components/store-migas/store-migas.component';
 import { StoreProductGridComponent } from './components/store-product-grid/store-product-grid.component';
 import { CatalogoComponent } from './store/catalogo/catalogo.component';
+
+// import { InfoComponent } from './info/info.component';
+// import { InfoNegocioComponent } from './infoNegocio/InfoNegocio.component';
+
 //AdminTienda
 import { AdminInicioStoreComponent } from "./AdministrarTienda/InicioStore/InicioStore.component";
 import { AdminMenuTiendaComponent } from "./AdministrarTienda/MenuAdminTienda/MenuAdminTienda.component";
@@ -70,7 +74,8 @@ import { MisPedidosComponent } from './store/mis-pedidos/mis-pedidos.component';
 import { LOCALE_ID, } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import localeEsAr from '@angular/common/locales/es-AR';
-import { MaterialModule } from 'src/app/material.module'
+import { MaterialModule } from 'src/app/material.module';
+import { InfoComponent } from './info/info.component';
 
 
 registerLocaleData(localeEsAr);
@@ -113,7 +118,9 @@ registerLocaleData(localeEsAr);
     RolesUsuariosComponent,
     ModalEditarRolesUsuarios,
     ModalEditarRoles,
-    AvatarComponent
+    AvatarComponent,
+    InfoComponent,
+    // InfoNegocioComponent
   ],
   imports: [
     BrowserModule,

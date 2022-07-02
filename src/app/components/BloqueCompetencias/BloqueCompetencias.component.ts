@@ -20,4 +20,30 @@ export class BloqueCompetenciasComponent implements OnInit {
     filtrar(id){
         this.clickCompetencia.emit(id);
     }
+
+  setColor (competencia) {
+    let color = 'card text-center default ';
+
+    if (competencia.nombre === this.competencia_activa) {
+        color += 'active';
+      }
+    switch (competencia.id_competencia) {
+      case 1:
+        color = 'card text-center cyan';
+        break;
+      case 2:
+        color = 'card text-center blue';
+        break;
+      case 3:
+        color = 'card text-center red';
+        break;
+      case 4:
+        color = 'card text-center orange';
+        break;
+      default:
+        color = 'card text-center default';
+        break;
+    }
+    return color;
+    }
 }

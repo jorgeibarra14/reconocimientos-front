@@ -24,6 +24,8 @@ import { RhAdminGuard } from "./shared/Guards/rh-admin.guard";
 import { UserVendedorGuard } from "./shared/Guards/user-vendedor.guard";
 import { UserNormalGuard } from "./shared/Guards/user-normal.guard";
 import { RolesUsuariosComponent } from './Administrador/rolesUsuarios/rolesUsuarios.component';
+import { InfoComponent } from './info/info.component';
+// import { InfoNegocioComponent } from './infoNegocio/InfoNegocio.component';
 
 const routes: Routes = [
   /**
@@ -32,6 +34,10 @@ const routes: Routes = [
   { path: 'Login', component: LoginComponent },
   { path: 'Inicio', canActivate: [UserGuard], component: InicioComponent },
   { path: 'rolesUsuarios', canActivate: [UserGuard], component: RolesUsuariosComponent },
+  { path: 'Login', component: LoginComponent },
+  { path: 'info', component: InfoComponent },
+  // { path: 'infoNegocio', component: InfoNegocioComponent },
+
   /**
    * NO COMERCIAL (RECONOCER)
    */
@@ -75,8 +81,6 @@ const routes: Routes = [
       { path: 'productos', canActivate: [AdminStoreGuard], component: AdminTiendProductosComponent }
     ]
   },
-
-  /** */
   { path: '**', redirectTo: '/Inicio', pathMatch: 'full' },
 ];
 
