@@ -51,7 +51,7 @@
                     [style]="{'background-color': '#FFF','color': '#000'}"
                     [footerStyle]="{'background-color': '#0B3B59','color': '#fff'}">
                     <ng-template kendoGridCellTemplate let-dataItem>
-                        <img [src]="dataItem.imagen" class="img-fluid" style="max-width: 50px;">
+                        <img [src]="'https://store.transformpoligono.com/' + dataItem.imagen" class="img-fluid" style="max-width: 50px;">
                     </ng-template>
                 </kendo-grid-column>
                 <kendo-grid-column [title]="'Acciones'" [width]="120"

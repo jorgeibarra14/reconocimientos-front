@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
     //console.log(access_token);
     if(access_token){
       if(this.authService.setCookie(access_token)){
-        this.router.navigate(['/Inicio']);
+        this.router.navigate(['/info']);
       }
     }else{
       window.location.href = environment.Itgov;

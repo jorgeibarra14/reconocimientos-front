@@ -21,7 +21,7 @@
 }
 .bg-principal{
     &>.row{
-        min-height: calc(100vh - 100px);
+        // min-height: calc(100vh - 100px);
     }
     h1{
         color: #3c404c;
@@ -150,3 +150,49 @@
     //     background-color: #00a4e0;
     // }
 }
+
+
+
+.card{
+  width: 300px;
+  margin-top: 10px;
+  color: white;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  cursor: pointer;
+  // height: 200px;
+  transition: 300ms;
+  background-color: #1E293B;
+  span#concepto{
+      font-size: 17px;
+      font-weight: bold;
+  }
+  img{
+      max-width: 90px;
+      margin: auto;
+  }
+
+  span#text{
+      line-height: 1;
+      font-size: 12px;
+      margin-top: 5px;
+  }
+  &:hover{
+      background-color: #1E293B;
+      transform: scale(1.1);
+  }
+  &.active{
+      background-color: #1E293B;
+  }
+}
+.bold {
+  font-weight: bold;
+}
+/*@media (max-width: 992.5px){
+  .card{
+      width: 130px;
+      margin-top: 10px;
+  }
+}*/

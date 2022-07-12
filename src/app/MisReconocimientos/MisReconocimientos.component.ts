@@ -18,6 +18,7 @@ export class MisReconocimientosComponent implements OnInit {
     puntosAcumulados: number = 0;
     puntosSigNivel: number = 0;
     porcentajeSigNivel: number = 0;
+    reconocimientos: any = [];
     niveles: any[] = [
         { nivel: 1, img: "../assets/img/mis_reconocimientos/Disquette-blanco.png", maxPuntos: 50 },
         { nivel: 2, img: "../assets/img/mis_reconocimientos/USB-blanco.png", maxPuntos: 99 },
@@ -36,14 +37,14 @@ export class MisReconocimientosComponent implements OnInit {
     constructor(
         private reconocimientosService: ReconocimientosService,
         private authService: AuthService
-    ) {     
-        const user = this.authService.getCookieUser();   
-        this.idEmpleadoLogeado = user.Id;    
-        this.puestoEmpleadoLogeado = user.Puesto;  
+    ) {
+        const user = this.authService.getCookieUser();
+        this.idEmpleadoLogeado = user.Id;
+        this.puestoEmpleadoLogeado = user.Puesto;
         this.activo = true;
     }
 
-    ngOnInit() {   
+    ngOnInit() {
         this.reconocimientosService.getMisReconocimientos(this.idEmpleadoLogeado,this.activo,this.puestoEmpleadoLogeado)
             .subscribe(resp=>{
                 this.competencias = resp;
@@ -55,13 +56,14 @@ export class MisReconocimientosComponent implements OnInit {
                         this.loading = false;
                     });
             });
+            this.obtenerReconocimientos();
     }
 
     filtrarDatos(nombreCompetencia){
         this.filtroPersonas = [];
         this.buscado = false;
         this.reconocimientosService.getMisReconocimientosComp(this.idEmpleadoLogeado, nombreCompetencia, this.activo)
-                                    .subscribe(resp=>{ 
+                                    .subscribe(resp=>{
                                         this.filtroPersonas = resp;
                                         this.buscado = true;
                                     });
@@ -71,9 +73,14 @@ export class MisReconocimientosComponent implements OnInit {
         this.competencia_activa = "";
         this.filtroPersonas = this.personas;
     }
+    obtenerReconocimientos() {
+      this.reconocimientosService.getMisPuntosConcepto(this.idEmpleadoLogeado).subscribe(r => {
+        this.reconocimientos = r;
+      });
+    }
     mostrarNiveles(){
         this.niveles.forEach( (el, index) =>{
-            if( (this.niveles[index + 1] && 
+            if( (this.niveles[index + 1] &&
                 this.puntosAcumulados > this.niveles[index].maxPuntos && this.puntosAcumulados <= this.niveles[index + 1].maxPuntos) ||
                 (el.nivel == 1 && el.maxPuntos > this.puntosAcumulados)
             ){

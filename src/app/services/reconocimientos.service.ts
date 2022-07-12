@@ -76,12 +76,16 @@ export class ReconocimientosService {
 
   getReconocimientoEntregado(pIdEmpleadoLogeado: string, pIdEmpleadorecibe: string, pActivo: Boolean): Observable<any> {
     // console.log("Reconocimientos.service - getReconocimientoEntregado()");
-    this.urlService = `${API}/Reconocimiento/ValidarReconociminetoEntregado?pId_empleado_recibe=` + pIdEmpleadorecibe + 
+    this.urlService = `${API}/Reconocimiento/ValidarReconociminetoEntregado?pId_empleado_recibe=` + pIdEmpleadorecibe +
     `&id_empleado_envia=` + pIdEmpleadoLogeado + `&activo=` + pActivo + ``;
     return this.http.get<any>(this.urlService);
   }
 
   getTopReconocidos() {
     return this.http.get<any>(`${API}/Reconocimiento/ObtenerTopReconocidos`);
+  }
+
+  getMisPuntosConcepto(id_empleado: string): Observable<any> {
+    return this.http.get<any>(`${API}/Reconocimiento/conceptosPuntos?id_empleado_recibe=${id_empleado}`);
   }
 }

@@ -4,7 +4,8 @@
         <div class="row align-items-center" style="height: 100%;">
             <div class="col-md-12">
                 <h1>Aplaudir a otros</h1>
-                <p class="descripcion m-0">Aquí podrás ver las competencias que has observado en otros.</p>
+                <p class="descripcion m-0">Reconoce a otros Colaboradores otorgándoles un aplauso por haber vivido alguna de las
+                  prácticas de negocio de URREA, recuerda ser muy objetivo con el motivo</p>
             </div>
         </div>
     </div>
@@ -45,12 +46,12 @@
                         </div>
                         <div *ngIf="competencia_activa == '' && competencias !== undefined && competencias.length > 0"
                             class="col-md-12 text-center">
-                            <div class="alert alert-secondary" role="alert">Selecciona una competencia para ver quiénes
+                            <div class="alert alert-secondary" role="alert">Selecciona una práctica de negocio para ver a quiénes
                                 has reconocido.</div>
                         </div>
                         <div *ngIf="competencias === undefined || competencias.length == 0"
                             class="col-md-12 text-center">
-                            <div class="alert alert-secondary" role="alert">Aún no has aplaudido a alguien.</div>
+                            <div class="alert alert-secondary" role="alert">Aún no tienes ningún reconocimiento recibido.</div>
                         </div>
                     </div>
                 </div>

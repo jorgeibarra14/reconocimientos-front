@@ -1,7 +1,7 @@
 <div class="product-card animatedRec animate__animated">
     <a href="javascript:void(0);" [routerLink]="'/store/producto/'+producto.id">
         <div class="product-img">
-            <img [src]="producto.imagen" onerror="this.src='../../../assets/img/demo/notavailable.png'" class="img-fluid">
+            <img [src]="'https://store.transformpoligono.com/' + producto.imagen" onerror="this.src='../../../assets/img/demo/notavailable.png'" class="img-fluid">
         </div>
         <!-- <h6>{{ producto.nombre }}</h6> -->
         <div class="product-price">
