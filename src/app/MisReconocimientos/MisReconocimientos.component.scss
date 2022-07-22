@@ -1,3 +1,20 @@
+body {
+  background: #e2e8f0;
+
+}
+.contentall {
+  background-color: #e2e8f0;
+  background-clip: padding-box;
+    min-height: calc(100vh - 225px);
+
+}
+.containt {
+  background-color: #f1f5f9;
+  padding: 3%;
+  border-radius: 15px;
+  margin-top: 1%;
+
+}
 .header{
     background: url('../../assets/img/banners/generico.png');
     height: 150px;
@@ -7,8 +24,8 @@
     h1{
         color: white;
         font-weight: bold;
-        text-transform: uppercase;
-        font-size: 32px;
+        // text-transform: uppercase;
+        font-size: 1.5rem;
         border-bottom: none;
     }
     .descripcion{
@@ -26,16 +43,16 @@
     h1{
         color: #3c404c;
         font-weight: 900;
-        font-size: 28px;
-        border-bottom: 1px solid #0B3B59;
-        text-transform: uppercase;
+        font-size: 1.5rem;
+        // border-bottom: 1px solid #0B3B59;
+        // text-transform: uppercase;
     }
     .img-c-rango{
         padding: 10px;
         margin-left: 10px;
         margin-right: 10px;
         color: #0B3B59;
-        text-transform: uppercase;
+        // text-transform: uppercase;
         // font-weight: bold;
         font-size: 18px;
         text-align: left;
@@ -154,7 +171,7 @@
 
 
 .card{
-  width: 300px;
+  width: 130px;
   margin-top: 10px;
   color: white;
   padding-left: 5px;
@@ -162,18 +179,33 @@
   padding-top: 10px;
   padding-bottom: 10px;
   cursor: pointer;
-  // height: 200px;
+  height: 130px;
   transition: 300ms;
-  background-color: #1E293B;
-  span#concepto{
+  span#number{
       font-size: 17px;
       font-weight: bold;
   }
   img{
-      max-width: 90px;
+      max-width: 67px;
       margin: auto;
+      -webkit-filter: invert(100%); /* Safari/Chrome */
+      filter: invert(100%);
   }
-
+  &.blue {
+    background-color: #1F2950 !important;
+  }
+  &.cyan {
+    background-color: #3AAAB7 !important;
+  }
+  &.red {
+    background-color: #B41A30 !important;
+  }
+  &.orange {
+    background-color: #E6A83D !important;
+  }
+  &.default {
+    background-color: #1E293B;
+  }
   span#text{
       line-height: 1;
       font-size: 12px;
@@ -186,9 +218,6 @@
   &.active{
       background-color: #1E293B;
   }
-}
-.bold {
-  font-weight: bold;
 }
 /*@media (max-width: 992.5px){
   .card{

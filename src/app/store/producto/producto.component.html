@@ -46,13 +46,13 @@
         <div class="col-md-6 order-md-1 order-0">
             <img [src]="'https://store.transformpoligono.com/' + producto.imagen" onerror="this.src='../../../assets/img/demo/notavailable.png'" class="img-fluid animatedRec animate__animated">
         </div>
-        <div class="col-md-12 order-2 mt-5 mt-lg-0">
+        <div class="col-md-12 order-2 mt-5 mt-lg-0" *ngIf="producto.notas != null">
             <div class="instrucciones-title">
                 <h5>Instrucciones</h5>
                 <div class="line"><div class="green"></div></div>
             </div>
             <div class="instrucciones-text">
-                The rich text element allows you to create and format headings, paragraphs, blockquotes, images, and video all in one place instead of having to add and format them individually. Just double-click and easily create content. A rich text element can be used with static or dynamic content. For static content, just drop it into any page and begin editing. For dynamic content, add a rich text field to any collection and then connect a rich text element to that field in the settings panel. Voila!
+              {{producto.notas}}
             </div>
         </div>
     </div>

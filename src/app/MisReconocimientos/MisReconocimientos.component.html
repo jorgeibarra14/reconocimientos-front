@@ -9,130 +9,93 @@
         </div>
     </div>
 </div>
-<div class="container-fluid bg-principal">
-    <div class="row">
-        <!-- CONTENT -->
-        <div class="col-md-12 order-1 order-md-0">
-            <div class="row">
-                <div class="col-md-12">
-                    <h1 class="mt-3 mb-3 pb-3">Mis aplausos recibidos</h1>
-                </div>
-                <div class="col-md-12 text-center mb-2" *ngIf="competencia_activa != ''">
-                    <button type="button" class="btn btn-dark borrar-seleccion" (click)="borrarFiltro()">X Borrar
-                        selección</button>
-                </div>
-                <div class="col-md-12 competencias">
-                    <div class="row justify-content-center">
-                        <div class="col" *ngFor="let competencia of competencias">
-                            <ho1a-BloqueCompetencias [competencia]="competencia"
-                                [competencia_activa]="competencia_activa" (clickCompetencia)="filtrarDatos($event)">
-                            </ho1a-BloqueCompetencias>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 personas">
-                    <div class="row">
-                        <div class="col-md-12 mb-2" *ngFor="let persona of filtroPersonas">
-                            <ho1a-BloquePersonas [persona]="persona" [type]="'mis-reconocimientos'"></ho1a-BloquePersonas>
-                        </div>
-                        <div *ngIf="filtroPersonas?.length == 0 && competencia_activa != '' && buscado"
-                            class="col-md-12 text-center">
-                            <div class="alert alert-info" role="alert">No hay resultados.</div>
-                        </div>
-                        <div *ngIf="competencia_activa == '' && competencias !== undefined && competencias.length > 0"
-                            class="col-md-12 text-center">
-                            <div class="alert alert-secondary" role="alert">Selecciona una práctica de negocio para ver tu aplauso.</div>
-                        </div>
-                        <div *ngIf="competencias === undefined || competencias.length == 0"
-                            class="col-md-12 text-center">
-                            <div class="alert alert-secondary" role="alert">Aún no tienes ningún reconocimiento
-                                recibido.</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- SIDEBAR -->
-        <!-- <div class="col-md-3 sidebar order-0 order-md-1 pb-5 pt-5">
-            <div class="row valores pb-5">
-                <div class="col-md-12">
-                    <h1 style="padding: 10px; margin: 10px;">VALOR</h1>
-                </div>
-                <div class="img-c-valor row">
-                    <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-                        <img src="../assets/img/mis_reconocimientos/Disquette.png" class="img-fluid ml-2">
-                    </div>
-                    <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 mt-3">
-                        <span style="display: block; margin-left: 20px; font-weight:normal;"class="titulo">50 Válvulas</span>
-                        <span style="display: block; margin-left: 20px;" class="titulo">$500 mxn</span>
-                    </div>
-                </div>
-                <div class="img-c-valor row">
-                    <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-                        <img src="../assets/img/mis_reconocimientos/USB.png" class="img-fluid ml-2">
-                    </div>
-                    <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 mt-3">
-                        <span style="display: block; margin-left: 20px; font-weight:normal;"class="titulo">99 Válvulas</span>
-                        <span style="display: block; margin-left: 20px;" class="titulo">$990 mxn</span>
-                    </div>
-                </div>
-                <div class="img-c-valor row">
-                    <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-                        <img src="../assets/img/mis_reconocimientos/Disco_duro.png" class="img-fluid ml-2">
-                    </div>
-                    <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 mt-3">
-                        <span style="display: block; margin-left: 20px; font-weight:normal;"class="titulo">499 Válvulas<br>(1 mega)</span>
-                        <span style="display: block; margin-left: 20px;" class="titulo">$4990 mxn</span>
-                    </div>
-                </div>
-                <div class="img-c-valor row">
-                    <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-                        <img src="../assets/img/mis_reconocimientos/Servidor.png" class="img-fluid ml-2">
-                    </div>
-                    <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 mt-3">
-                        <span style="display: block; margin-left: 20px; font-weight:normal;"class="titulo">599 Válvulas<br>(5 megas)</span>
-                        <span style="display: block; margin-left: 20px;" class="titulo">$5990 mxn</span>
-                    </div>
-                </div>
-                <div class="img-c-valor row">
-                    <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-                        <img src="../assets/img/mis_reconocimientos/Megacable_Data_Center.png" class="img-fluid ml-2">
-                    </div>
-                    <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 mt-3">
-                        <span style="display: block; margin-left: 20px; font-weight:normal;"class="titulo">+600 Válvulas<br>(1 tera)</span>
-                        <span style="display: block; margin-left: 20px;" class="titulo">+$6000 mxn</span>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-    </div>
-    <div class="div">
+<div class="container-fluid bg-principal contentall">
+  <div class="">
+    <div class="row ">
       <!-- CONTENT -->
-      <div class="col-md-12 order-1 order-md-0">
+      <div class="col-lg-2 col-md-2 d-none-sm"></div>
+      <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 order-1 order-md-0 containt">
           <div class="row">
               <div class="col-md-12">
-                  <h1 class="mt-3 mb-3 pb-3">Mis Reconocimientos recibidos</h1>
+                  <h1 class="mt-3 mb-3 pb-3">Mis aplausos</h1>
               </div>
-              <!-- <div class="col-md-12 text-center mb-2" *ngIf="competencia_activa != ''">
+              <div class="col-md-12 text-center mb-2" *ngIf="competencia_activa != ''">
                   <button type="button" class="btn btn-dark borrar-seleccion" (click)="borrarFiltro()">X Borrar
                       selección</button>
-              </div> -->
+              </div>
               <div class="col-md-12 competencias">
                   <div class="row justify-content-center">
-                      <div class="col" *ngFor="let r of reconocimientos">
-                        <div class="card space-between">
-                          <span class="text-center" id="concepto">{{r.evento}}</span>
-                          <span class="text-justify mt-3">{{r.concepto}}</span>
-                          <span id="number" class="text-center bold mt-2">{{ r.puntos + ' Válvulas' }}</span>
-                          <img src="../../assets/img/bytecoin/currency-byte.png" alt="">
-                        </div>
-
+                      <div class="col" *ngFor="let competencia of competencias">
+                          <ho1a-BloqueCompetencias [competencia]="competencia"
+                              [competencia_activa]="competencia_activa" (clickCompetencia)="filtrarDatos($event)">
+                          </ho1a-BloqueCompetencias>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-12 personas">
+                  <div class="row">
+                      <div class="col-md-12 mb-2" *ngFor="let persona of filtroPersonas">
+                          <ho1a-BloquePersonas [persona]="persona" [type]="'mis-reconocimientos'"></ho1a-BloquePersonas>
+                      </div>
+                      <div *ngIf="filtroPersonas?.length == 0 && competencia_activa != '' && buscado"
+                          class="col-md-12 text-center">
+                          <div class="alert alert-info" role="alert">No hay resultados.</div>
+                      </div>
+                      <div *ngIf="competencia_activa == '' && competencias !== undefined && competencias.length > 0"
+                          class="col-md-12 text-center">
+                          <div class="alert alert-secondary" style="background-color: #fff;" role="alert">Selecciona una práctica de negocio para ver tu aplauso.</div>
+                      </div>
+                      <div *ngIf="competencias === undefined || competencias.length == 0"
+                          class="col-md-12 text-center">
+                          <div class="alert alert-secondary" role="alert">Aún no tienes ningún reconocimiento
+                              recibido.</div>
                       </div>
                   </div>
               </div>
           </div>
       </div>
+      <div class="col-lg-2 col-md-2 d-none-sm"></div>
 
   </div>
+  <div class="row">
+    <!-- CONTENT -->
+    <div class="col-lg-2 col-md-2 d-none-sm"></div>
+
+    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 order-1 order-md-0 containt mb-4 ">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="mt-3 mb-3 pb-3">Mis reconocimientos</h1>
+            </div>
+            <!-- <div class="col-md-12 text-center mb-2" *ngIf="competencia_activa != ''">
+                <button type="button" class="btn btn-dark borrar-seleccion" (click)="borrarFiltro()">X Borrar
+                    selección</button>
+            </div> -->
+            <div class="col-md-12 competencias">
+                <div class="row justify-content-center">
+                    <div class="col" *ngFor="let r of reconocimientos">
+                        <div class="card space-between default" (click)="filtrar(r.evento)">
+                          <span class="text-center">1</span>
+                          <span class="text-center">{{r.evento}}</span>
+                          <img src="assets/img/inicio/iconos/stars.SVG" class="img-fluid" width="100%" height="9%">
+                      </div>
+
+
+                      <!-- <div class="card space-between">
+                        <span class="text-center" id="concepto">{{r.evento}}</span>
+                        <span class="text-justify mt-3">{{r.concepto}}</span>
+                        <span id="number" class="text-center bold mt-2">{{ r.puntos + ' Válvulas' }}</span>
+                        <img src="../../assets/img/bytecoin/currency-byte.png" alt="">
+                      </div> -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2 col-md-2 d-none-sm"></div>
+
+</div>
+  </div>
+
 </div>
 <ho1a-Loading *ngIf="(competencia_activa != '' && filtroPersonas?.length == 0) || loading"></ho1a-Loading>

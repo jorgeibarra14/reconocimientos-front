@@ -1,3 +1,9 @@
+.contentall {
+  background-color: #e2e8f0;
+  background-clip: padding-box;
+    // min-height: calc(100vh - 225px);
+
+}
 .header{
     background: url('../../../assets/img/banners/generico.png');
     height: 130px;
@@ -7,7 +13,7 @@
     h1{
         color: white;
         font-weight: bold;
-        text-transform: uppercase;
+        // text-transform: uppercase;
     }
 }
 .container-productos{
@@ -27,33 +33,33 @@
         .green{
             width: 136px;
             height: 100%;
-            background-color: #539BC1;
+            background-color: #1e293b;
         }
     }
 }
 .sidebar{
     .puntos-disponibles{
-        background-color: #e9e9ec;
+        background-color: #f1f5f9;
         border-radius: 15px;
         .title{
             color: #004168;
-            font-size: 30px;
+            font-size: 1.5 rem;
             line-height: 1;
-            text-transform: uppercase;
+            // text-transform: uppercase;
             font-weight: bold;
         }
         .puntos{
-            background: url('../../../assets/img/inicio/Estrella_Plata.png') #004168;
+            // background: url('../../../assets/img/inicio/Estrella_Plata.png') #004168;
             border-radius: 15px;
             background-repeat: no-repeat;
             background-position: center;
             background-size: contain;
             span{
-                color: white;
+                color: #004168;
                 font-size: 50px;
                 font-weight: 900;
                 line-height: 1;
-                text-shadow: 5px 5px 5px black;
+                // text-shadow: 5px 5px 5px black;
                 z-index: 2;
                 position: relative;
             }
@@ -65,27 +71,26 @@
                 top: 0;
                 left: 0;
                 border-radius: 15px;
-                background-color: rgba(0,0,0,0.25);
+                // background-color: rgba(0,0,0,0.25);
                 z-index: 1;
             }
         }
     }
     .categorias-div{
-        background: #0B3B59
-;
-
+        background: #0B3B59;
         border-radius: 15px;
         .categorias{
             .list-group-item{
                 background: transparent !important;
                 padding-top: 5px;
+                border: none;
                 padding-bottom: 5px;
                 &.current, &:hover{
                     .img{
-                        background: #539BC1 !important;
+                        background: #539bc1 !important;
                     }
                     a{
-                        color: #539BC1 !important;
+                        color: #539bc1 !important;
                     }
                 }
             }
@@ -102,7 +107,7 @@
             a{
                 padding-left: 8px;
                 color: white;
-                font-size: 22px;
+                font-size: 16px;
                 text-decoration: none;
             }
         }
@@ -117,7 +122,7 @@
     align-items: center;
     i{
         padding: 18px 20px;
-        background: #539BC1;
+        background: #1e293b;
         color: white;
         margin-right: 24px;
         border-radius: 50%;

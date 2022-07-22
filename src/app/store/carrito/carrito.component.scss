@@ -10,7 +10,7 @@
     background: transparent !important;
     // z-index: 9;
     a{
-        text-transform: uppercase;
+        // text-transform: uppercase;
         font-size: 14px;
         font-weight: bold;
     }
@@ -145,9 +145,10 @@
             .puntos_disponibles{
                 p{
                     color: white;
-                    text-transform: uppercase;
+                    // text-transform: uppercase;
                     span{
                         font-weight: 900;
+                        font-size: 1.5rem;
                     }
                 }
             }
@@ -175,7 +176,7 @@
                 }
             }
             .sin-Válvulas-suficientes{
-                color: yellow;
+                color: #fff;
                 text-align: center;
             }
         }

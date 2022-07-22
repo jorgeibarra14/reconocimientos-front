@@ -4,19 +4,21 @@
   <div class="container" style="height: 100%;">
     <div class="row align-items-center" style="height: 100%;">
       <div class="col-md-12">
-        <h1>Reconoce a otros</h1>
-        <p class="descripcion m-0">Aquí podrás reconocer a otros las Prácticas de negocio de <span>URREA</span>,
-          guiándote<br>con los formularios para ser muy objetivos de las conductas a reconocer.</p>
+        <h1>Aplaude a otros Colaboradores</h1>
+        <p class="descripcion m-0">Aquí podrás reconocer a otros Colaboradores a través de un aplauso por alguna
+          Práctica de negocio de <b>URREA</b>,
+          recuerda ser muy objetivo en tu reconocimiento.
       </div>
     </div>
   </div>
 </div>
 
-<div class="container-fluid bg-principal">
+<div class="container-fluid bg-principal contentall">
   <div class="row justify-content-end">
     <!-- SIDEBAR -->
-    <div class="col-md-4 sidebar pr-5 pl-5">
-      <div class="row puntos-disponibles mt-3">
+
+    <div class="col-md-5 sidebar pr-5 pl-5">
+      <div class="row puntos-disponibles mt-5">
         <div class="col-lg-9 pt-4 pb-4 my-auto">
           <span class="title">Aplausos disponibles</span>
         </div>
@@ -24,13 +26,13 @@
           <span>{{ puntosDisponibles }}</span>
         </div>
       </div>
-      <div class="row grafica mt-3 pr-4 pl-4 pt-4 pb-4">
+      <div class="row grafica mt-3 p-4">
         <div class="col-md-12">
           <div class="img">
             <img class="img-fluid"
               src="../../../assets/img/reconocer_otros/Plataforma Reconocimientos_COMERCIAL_Persona.png">
           </div>
-          <p class="title">Persona</p>
+          <p class="title">Colaborador</p>
         </div>
         <div class="col-md-12">
           <div class="col text-center simbolo">
@@ -42,19 +44,7 @@
             <img class="img-fluid"
               src="../../../assets/img/reconocer_otros/Plataforma Reconocimientos_COMERCIAL_Situación.png">
           </div>
-          <p class="title">Situación</p>
-        </div>
-        <div class="col-md-12">
-          <div class="col text-center simbolo">
-            <p id="simbolo" class=""><i class="fas fa-plus"></i></p>
-          </div>
-        </div>
-        <div class="col-md-12">
-          <div class="img">
-            <img class="img-fluid"
-              src="../../../assets/img/reconocer_otros/Plataforma Reconocimientos_COMERCIAL_Conducta.png">
-          </div>
-          <p class="title">Conducta</p>
+          <p class="title">Práctica de negocio</p>
         </div>
         <div class="col-md-12">
           <div class="col text-center simbolo">
@@ -66,12 +56,12 @@
             <img class="img-fluid"
               src="../../../assets/img/reconocer_otros/Plataforma Reconocimientos_COMERCIAL_Resultados.png">
           </div>
-          <p class="title">Resultados</p>
+          <p class="title">Aplauso</p>
         </div>
       </div>
     </div>
     <!-- ./SIDEBAR -->
-    <div class="col-md-8">
+    <div class="col-md-7">
       <div class="row formulario ml-4 mr-4 mb-4 pb-5">
         <div class="col-md-12 text-center enviar">
           <h1>Enviar aplauso</h1>
@@ -107,12 +97,11 @@
                   </mat-option>
                 </mat-autocomplete> -->
                 <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-                  <mat-option *ngFor="let resultado of resultadoBusqueda"
-                      [value]="resultado">
-                      <!-- <img class="example-option-img" aria-hidden [src]="resultado.foto " height="25"> -->
-                      <span>&nbsp;{{resultado.nombreCompleto}}</span>
+                  <mat-option *ngFor="let resultado of resultadoBusqueda" [value]="resultado">
+                    <!-- <img class="example-option-img" aria-hidden [src]="resultado.foto " height="25"> -->
+                    <span>&nbsp;{{resultado.nombreCompleto}}</span>
                   </mat-option>
-              </mat-autocomplete>
+                </mat-autocomplete>
               </div>
             </div>
             <div class="form-group row">

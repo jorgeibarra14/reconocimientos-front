@@ -1,67 +1,54 @@
 <app-carrito-store></app-carrito-store>
-<!-- <img [src]="banner" class="banner"  alt=""> -->
-<div class="header">
-  <div class="container" style="height: 100%;">
-    <div class="row align-items-end" style="height: 100%;">
-      <div class="col-md-12 text-right">
-        <h1>¡Viviendo los Reconocimientos de {{company.name}}!</h1>
-      </div>
-    </div>
-  </div>
-</div>
 
-<div class="container-fluid">
+<div class="container-fluid contentall">
   <div class="row">
     <!-- SIDEBAR -->
     <div class="col-md-4 col-lg-4 sidebar p-5">
-      <div class="row puntos-disponibles mt-3">
-        <div class="col-lg-9 pt-4 pb-4 my-auto">
-          <span class="title">{{unidadValor}} disponibles</span>
+
+      <div class="row enlaces p-4">
+        <div class="row puntos-disponibles" style="width: 100%;">
+          <div class="col-lg-9 pt-4 pb-4 text-center my-auto">
+            <span class="title text-center">{{unidadValor}} disponibles</span>
+          </div>
+          <div class="col-lg-3 text-center pt-4 pb-4 puntos pl-0 pr-0">
+              <span>{{ puntosDisponibles }}</span>
+          </div>
         </div>
-        <div class="col-lg-3 text-center pt-4 pb-4 puntos pl-0 pr-0">
-            <span>{{ puntosDisponibles }}</span>
-        </div>
-      </div>
-      <div class="row enlaces mt-3 p-4">
         <div class="col-md-12">
           <div class="img-c row" href="javascript:void(0);" routerLink="/info">
-            <img src="../assets/img/inicio/info.png" class="img-fluid">
-            <span class="titulo mt-3 ml-2">¿Qué es Reconocimientos?</span>
+            <img src="assets/img/inicio/iconos/info.SVG" class="img-fluid">
+            <span class="titulo mt-1 ml-3">¿Qué es reconocimiento?</span>
           </div>
           <div class="img-c row" href="javascript:void(0);" routerLink="/mis-reconocimientos">
-            <img src="../assets/img/inicio/Moneda.png" class="img-fluid">
-            <span class="titulo mt-3 ml-2">Mis {{accionPlural}}</span>
+            <img src="assets/img/inicio/iconos/estrella.SVG" class="img-fluid">
+            <span class="titulo mt-1 ml-3">Mis {{accionPlural | lowercase}}</span>
           </div>
-          <div class="img-c row" href="javascript:void(0);" routerLink="/reconocer">
-            <img src="../assets/img/inicio/mano_con_moneda.png" class="img-fluid">
-            <span class="titulo mt-3 ml-2">{{accionSingular}} a Otros</span>
+          <div class="img-c row" href="javascript:void(0);" routerLink="/reconocer/enviar-reconocimiento">
+            <img src="assets/img/inicio/iconos/aplaudir.SVG" class="img-fluid">
+            <span class="titulo mt-1 ml-3">{{accionSingular}} a otros</span>
           </div>
           <div class="img-c row" href="javascript:void(0);" routerLink="/store">
-            <img src="../assets/img/inicio/tienda.png" class="img-fluid">
-            <span class="titulo mt-3 ml-2">Tienda</span>
+            <img src="assets/img/inicio/iconos/store.SVG" class="img-fluid">
+            <span class="titulo mt-1 ml-3">Tienda</span>
           </div>
-<!--          <div class="img-c row" href="javascript:void(0);" routerLink="/infoNegocio">-->
-<!--            <img src="../assets/img/inicio/tienda.png" class="img-fluid">-->
-<!--            <span class="titulo mt-3 ml-2">¿Qué es práctica de negocio?</span>-->
-<!--          </div>-->
         </div>
       </div>
     </div>
     <!-- ./SIDEBAR -->
     <!-- CONTENT -->
-    <div class="col-md-8 col-lg-8 content">
-      <div class="row">
-        <div class="col-md-12 mt-3">
-          <h1>TOP 5 MÁS APLAUDIDOS</h1>
+    <div class="col-md-8 col-lg-8 p-5">
+      <div class="row content">
+        <div class="col-md-12 text-center">
+          <h1>Top 5 más aplaudidos</h1>
         </div>
-        <div class="col-md-12 mt-5 mb-5">
+        <div class="col-md-12 mb-5">
           <div class="row" *ngIf="ejecutivos.length > 0">
             <div class="col-lg-4 col-md-5 mb-5 mb-md-0">
-              <div class="bg-byteAvatar mb-3">
+              <div class="bg-byteAvatar mb-3 winner">
                 <app-avatar-icon
                   size="inicio"
                   type="rounded-circle"
-                  bg_color="#00a3df"
+                  bg_color="#0B3B59"
                   [image]="ejecutivoTop1.avatar"
                   text_color="white"
                   [name]="ejecutivoTop1.nombreCompleto"
@@ -71,12 +58,12 @@
               <div class="puesto">{{ ejecutivoTop1.puesto }}</div>
               <div class="ciudad">{{ ejecutivoTop1.area }}</div>
             </div>
-            <div class="col-lg-8 col-md-7">
-              <div class="list-item-award" *ngFor="let ejecutivo of ejecutivosTop2Al4">
+            <div class="col-lg-7 col-md-7">
+              <div class="list-item-award mt-4" *ngFor="let ejecutivo of ejecutivosTop2Al4">
                 <div class="img-star">
-                  <img class="img-fluid" src="../../assets/img/inicio/Estrella_Plata.png" *ngIf="ejecutivo.top == 2">
-                  <img class="img-fluid" src="../../assets/img/inicio/Estrella_Plata.png" *ngIf="ejecutivo.top == 3">
-                  <img class="img-fluid" src="../../assets/img/inicio/Estrella_Plata.png" *ngIf="ejecutivo.top != 2 && ejecutivo.top != 3">
+                  <img class="img-fluid" src="assets/img/inicio/iconos/stars.SVG" style="height: 40px;" *ngIf="ejecutivo.top == 2">
+                  <img class="img-fluid" src="assets/img/inicio/iconos/stars.SVG" style="height: 40px;" *ngIf="ejecutivo.top == 3">
+                  <img class="img-fluid" src="assets/img/inicio/iconos/stars.SVG" style="height: 40px;" *ngIf="ejecutivo.top != 2 && ejecutivo.top != 3">
                 </div>
                 <div class="nombre">{{ ejecutivo.nombreCompleto }}</div>
                 <div class="puesto">{{ ejecutivo.puesto }}</div>

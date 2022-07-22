@@ -1,8 +1,10 @@
+
 footer{
     margin-top: 0px;
+    height: 80px;
     .copyright{
-        color: white;
-        background-color: #3c404c;
+        color: #000;
+        background-color: #fff;
         font-size: 12px;
     }
     .colors{
@@ -20,4 +22,9 @@ footer{
             background-color: #539BC1;
         }
     }
+}
+
+.copy {
+  font-weight: 500;
+  color: #6b7a90;
 }

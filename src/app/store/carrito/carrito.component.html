@@ -9,10 +9,10 @@
                 <a class="nav-link" href="javascript:void(0);" routerLink="/Inicio">Inicio</a>
             </li>
             <li class="nav-item" *ngIf="esUsuarioNormal">
-                <a class="nav-link" href="javascript:void(0);" routerLink="/mis-reconocimientos" >Mis {{accionPlural}}</a>
+                <a class="nav-link" href="javascript:void(0);" routerLink="/mis-reconocimientos" >Mis {{accionPlural | lowercase}}</a>
             </li>
             <li class="nav-item" *ngIf="esUsuarioNormal">
-                <a class="nav-link" href="javascript:void(0);" routerLink="/reconocer">{{accionSingular}} a otros</a>
+                <a class="nav-link" href="javascript:void(0);" routerLink="/reconocer">Aplausos</a>
             </li>
             <li class="nav-item" *ngIf="!esUsuarioNormal">
                 <a class="nav-link" href="javascript:void(0);">Mis {{accionPlural}}</a>
@@ -70,7 +70,7 @@
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h1>Bolsa</h1>
+                <h1>Mis pedidos</h1>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
@@ -87,7 +87,7 @@
                                 </tr>
                                 <tr *ngFor="let item of itemsCart" class="product">
                                     <td class="mw-25 img">
-                                        <img [src]="item.img" onerror="this.src='../../../assets/img/demo/notavailable.png'" class="img-fluid img-thumbnail">
+                                        <img [src]="'https://store.transformpoligono.com/' + item.img" onerror="this.src='../../../assets/img/demo/notavailable.png'" class="img-fluid img-thumbnail">
                                     </td>
                                     <td class="mw-75 content">
                                         <div class="title">{{ item.nombre }}</div>
@@ -114,15 +114,15 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="form-envio pt-4 pb-4">
-                            <div class="row">
+                            <!-- <div class="row">
                                 <div class="col-md-12 text-center">
                                     <h1>Envío</h1>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="row">
                                 <div class="col-md-12 puntos_disponibles">
                                     <div class="form-group pr-3 pl-3">
-                                        <p class="m-0">{{unidadValor}} disponibles: <span>{{ puntosDisponibles }}</span></p>
+                                        <p class="m-0"> Mis {{unidadValor | lowercase}} disponibles: <span>{{ puntosDisponibles }}</span></p>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -150,7 +150,7 @@
                                         <div class="spinner-border" role="status" *ngIf="loading">
                                             <span class="sr-only">Loading...</span>
                                         </div>
-                                        <span *ngIf="!loading">Pedir</span>
+                                        <span *ngIf="!loading">Canjear</span>
                                     </button>
                                 </div>
                                 <div class="col-md-12 sin-Válvulas-suficientes" *ngIf="itemsCart.length > 0 && puntosDisponibles < subtotal">

@@ -40,7 +40,8 @@ export class ProductoService {
       fd.append('descripcion', value.descripcion);
       fd.append('costo', value.costo);
       fd.append('stock', value.stock);
-      fd.append('file', value.imagen, value.imagen.name);
+      fd.append('file', value.imagen);
+      fd.append('imagen', value.imagen);
       fd.append('categoria_id', value.categoria_id);
       fd.append('Activo', value.Activo);
       fd.append('notas', value.notas);

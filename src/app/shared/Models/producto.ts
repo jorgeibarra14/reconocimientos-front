@@ -8,4 +8,5 @@ export interface Producto {
     instrucciones?: string | '';
     categoria: string | '';
     categoria_id: number | 0;
-}  
+    notas: string;
+}

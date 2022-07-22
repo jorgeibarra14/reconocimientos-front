@@ -67,8 +67,8 @@
                 }
             }
             button{
-                background-color: #539BC1;
-                color: white;
+                background-color: #e9e9ec;
+                color: #00496e;
                 text-transform: uppercase;
                 font-weight: bold;
                 border-radius: 25px;
@@ -76,7 +76,7 @@
             }
         }
         &:hover .product-price button{
-            background-color: white;
+            background-color: #e9e9ec;
             color: #00496e;
         }
     }

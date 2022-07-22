@@ -1,3 +1,9 @@
+.contentall {
+  background-color: #e2e8f0;
+  background-clip: padding-box;
+    min-height: calc(100vh - 225px);
+
+}
 .header{
     background: url('../../../assets/img/banners/generico.png');
     height: 130px;
@@ -7,8 +13,8 @@
     h1{
         color: white;
         font-weight: bold;
-        text-transform: uppercase;
-        font-size: 32px;
+        // text-transform: uppercase;
+        font-size: 1.5rem;
     }
     .descripcion{
         color: white;
@@ -21,27 +27,27 @@
 .sidebar{
     // background-color: #1a3e60;
     .puntos-disponibles{
-        background-color: #e9e9ec;
+        background-color: #f1f5f9;
         border-radius: 15px;
         .title{
             color: #004168;
-            font-size: 30px;
+            font-size: 1.5rem;
             line-height: 1;
-            text-transform: uppercase;
+            // text-transform: uppercase;
             font-weight: bold;
         }
         .puntos{
-            background: url('../../../assets/img/inicio/Estrella_Plata.png') #004168;
+            // background: url('../../../assets/img/inicio/Estrella_Plata.png') #004168;
             border-radius: 15px;
             background-repeat: no-repeat;
             background-position: center;
             background-size: contain;
             span{
-                color: white;
+                color: #004168;
                 font-size: 50px;
                 font-weight: 900;
                 line-height: 1;
-                text-shadow: 5px 5px 5px black;
+                // text-shadow: 5px 5px 5px black;
                 z-index: 2;
                 position: relative;
             }
@@ -53,19 +59,19 @@
                 top: 0;
                 left: 0;
                 border-radius: 15px;
-                background-color: rgba(0,0,0,0.25);
+                // background-color: rgba(0,0,0,0.25);
                 z-index: 1;
             }
         }
     }
     .grafica{
-        background-color: #e9e9ec;
+        background-color: white;
         border-radius: 15px;
         .title{
             color:#0B3B59
 ;
             display: inline-grid;
-            font-size: 26px;
+            font-size: 1.5rem;
             font-weight: bold;
             margin-bottom: 0px;
             margin-left: 10px;
@@ -82,8 +88,8 @@
         .simbolo{
             max-width: 90px;
             #simbolo{
-                color: #539BC1;
-                font-size: 60px;
+                color: #004168;
+                font-size: 1.5rem;
                 font-weight: 900;
                 line-height: 1;
                 margin-top: 10px;
@@ -141,8 +147,7 @@
     }
 }
 .formulario{
-    background: #0B3B59
-;
+    background: #f1f5f9;
 
     margin-top: 50px;
     border-radius: 15px;
@@ -150,8 +155,9 @@
         h1{
             margin-top: 15px;
             margin-bottom: 15px;
-            color: white;
-            text-transform: uppercase;
+            color: #004168;
+            font-size: 1.5rem;
+            // text-transform: uppercase;
             font-weight: bold;
         }
     }
@@ -160,12 +166,12 @@
         padding: 20px;
         // background-color: white;
         label{
-            color: white;
+            color: #004168;
             font-weight: bold;
-            font-size: 26px;
+            font-size: 1.5rem;
             white-space: break-spaces;
             i{
-                color: #539BC1;
+                color: #004168;
                 font-size: 30px;
                 margin-right: 10px;
                 svg{
@@ -182,7 +188,7 @@
         }
         .search{
             i{
-                color: #539BC1;
+                color: #004168;
                 position: absolute;
                 right: 30px;
                 top: 10px;
@@ -192,7 +198,7 @@
         }
         .competencias-list{
             i{
-                color: #539BC1;
+                color: #004168;
                 font-size: 30px;
                 margin-right: 10px;
                 position: absolute;
@@ -204,7 +210,7 @@
         .invalid-feedback{
             display: block !important;
             // text-shadow: 1px 1px 1px yellow;
-            color: yellow;
+            color: #0B3B59;
             font-weight: bold;
             font-size: 14px;
         }
@@ -233,10 +239,10 @@
     display: flex;
     align-items: center;
     button{
-        background-color: #539BC1;
+        background-color: #0B3B59;
         color: white;
         font-weight: bold;
-        font-size: 2.6vw;
+        font-size: 1.5rem;
         margin: auto;
         &:hover{
             background-color: white;
@@ -350,7 +356,7 @@
     .formulario{
         .enviar{
             h1{
-                font-size: 24px;
+                font-size: 1.5rem;
             }
         }
     }

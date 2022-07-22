@@ -8,7 +8,7 @@ import { AuthService } from "../services/auth.service";
     templateUrl: './ReconocerAOtros.component.html',
     styleUrls: ['./ReconocerAOtros.component.scss']
 })
-export class ReconocerAOtrosComponent implements OnInit { 
+export class ReconocerAOtrosComponent implements OnInit {
     competencia_activa: string = "";
     puntosDisponibles: number = 0;
 
@@ -26,9 +26,9 @@ export class ReconocerAOtrosComponent implements OnInit {
         private reconocimientosService: ReconocimientosService,
         private puntoService: PuntosService,
         private authService: AuthService
-    ) { 
-            const user = this.authService.getCookieUser();   
-            this.idEmpleadoLogeado = user.Id;  
+    ) {
+            const user = this.authService.getCookieUser();
+            this.idEmpleadoLogeado = user.Id;
             this.puestoEmpleadoLogeado = user.Puesto;
             this.activo = true;
         }
