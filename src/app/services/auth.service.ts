@@ -14,16 +14,17 @@ const ENV_cookieUser = environment.cookieUser;
 })
 
 export class AuthService {
-    constructor( 
-        private http:HttpClient, 
+    constructor(
+        private http:HttpClient,
         private cookieService: CookieService,
-        private tokenService: TokenService 
-    ){ 
+        private tokenService: TokenService
+    ){
         //console.log("Auth Service");
     }
 
     setCookie(token){
         var jwt_user: any = jwt_decode(token);
+
         if (jwt_user.Id !== 0 && jwt_user.Id !== null) {
             //Pruebas
             // localStorage.setItem('user', JSON.stringify(jwt_user));
@@ -44,6 +45,7 @@ export class AuthService {
     }
     getCookieUser(){
         const token = this.tokenService.getToken();
+
         if(token){
             // console.log(this.tokenService.isTokenValid())
             var user: any = jwt_decode( token );

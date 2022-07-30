@@ -45,7 +45,7 @@ export class TopMenuComponent implements OnInit {
   ) {
     console.log("ENV_cookieUser");
     const user = this.authService.getCookieUser();
-    
+
 
     if(user != undefined) {
       this.colaboradorService.getUserCompany(user.Id).subscribe(r => {
@@ -57,6 +57,7 @@ export class TopMenuComponent implements OnInit {
   ngOnInit() {
     setTimeout(() => {
       this.user = this.authService.getCookieUser();
+      debugger
       //console.log("entra a settimeout TopMenu");
       if(this.user != null){
         // this.reconocimientosService.getEmpleadosPorId(this.user.Id).subscribe(resp=>{

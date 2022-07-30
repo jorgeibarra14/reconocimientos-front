@@ -59,6 +59,7 @@ export class InicioComponent implements OnInit {
     ) {
       this.user = this.authService.getCookieUser();
       this.idEmpleadoLogeado = this.user.Id ;
+      debugger
       this.activo = true;
 
       if (this.user !== undefined) {

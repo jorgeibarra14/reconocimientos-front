@@ -4,7 +4,7 @@
         <div class="row align-items-center" style="height: 100%;">
             <div class="col-md-12">
                 <h1>Mis Reconocimientos</h1>
-                <p class="descripcion m-0">Aquí ver podrás ver los reconocimientos que has recibido</p>
+                <p class="descripcion p-0">Aquí ver podrás ver los reconocimientos que has recibido</p>
             </div>
         </div>
     </div>
@@ -47,7 +47,7 @@
                       </div>
                       <div *ngIf="competencias === undefined || competencias.length == 0"
                           class="col-md-12 text-center">
-                          <div class="alert alert-secondary" role="alert">Aún no tienes ningún reconocimiento
+                          <div class="alert alert-secondary" role="alert">Aún no tienes ningún aplauso
                               recibido.</div>
                       </div>
                   </div>
@@ -77,7 +77,8 @@
                           <span class="text-center">1</span>
                           <span class="text-center">{{r.evento}}</span>
                           <img src="assets/img/inicio/iconos/stars.SVG" class="img-fluid" width="100%" height="9%">
-                      </div>
+                        </div>
+
 
 
                       <!-- <div class="card space-between">
@@ -89,6 +90,11 @@
 
                     </div>
                 </div>
+                <div *ngIf="reconocimientos.length == 0"
+                class="col-md-12 text-center">
+                <div class="alert alert-secondary" role="alert">Aún no tienes ningún reconocimiento
+                    recibido.</div>
+              </div>
             </div>
         </div>
     </div>

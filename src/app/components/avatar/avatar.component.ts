@@ -23,7 +23,7 @@ export class AvatarComponent implements OnInit {
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-    
+
       this.user = this.authService.getCookieUser();
 
     if(this.size == 'l') {
@@ -31,18 +31,20 @@ export class AvatarComponent implements OnInit {
         this.capitalizeString = this.user.Nombre.substring(0,1).toUpperCase();
         this.showAvatar = true;
       }
-      
-      if(this.user.Avatar != null) {
+
+      if(this.user.Avatar != null && this.user.Avatar != ''){
         this.showImage = true;
       }
     } else {
-      
+
       this.capitalizeString = this.name.substring(0,1).toUpperCase();
       this.showAvatar = true;
-      
-      
-      if(this.image != null) {
+
+
+      if(this.image != null && this.image != '') {
         this.showImage = true;
+      } else {
+        this.showImage = false;
       }
     }
 
